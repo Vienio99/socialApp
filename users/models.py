@@ -5,4 +5,4 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
   age = models.PositiveIntegerField(null=True, blank=True)
-  hobby = models.CharField(blank=True)
+  hobby = models.CharField(blank=True, max_length=50)
