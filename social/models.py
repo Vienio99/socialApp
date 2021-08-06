@@ -1,18 +1,21 @@
 from django.db import models
 from users.models import CustomUser
-from django.utils import timezone, dateformat
+from django.utils import timezone
 
 
 # Create your models here.
 
 class Post(models.Model):
-    title = models.CharField(max_length=30)
     author = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
     )
+    title = models.CharField(max_length=30)
     text = models.TextField()
-    pub_date = models.DateField(timezone.now())
+    pub_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):
@@ -25,4 +28,4 @@ class Comment(models.Model):
         Post,
         on_delete=models.CASCADE,
     )
-    pub_date = models.DateField(timezone.now())
+    pub_date = models.DateTimeField(default=timezone.now)
