@@ -1,13 +1,14 @@
 from django.db import models
-from users.models import CustomUser
 from django.utils import timezone
+from social_project import settings
+from users.models import CustomUser
 
 
 # Create your models here.
 
 class Post(models.Model):
     author = models.ForeignKey(
-        CustomUser,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
     title = models.CharField(max_length=30)
@@ -20,7 +21,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     author = models.ForeignKey(
-        CustomUser,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
     text = models.TextField()
