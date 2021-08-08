@@ -1,8 +1,8 @@
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from social.models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = get_user_model()
-        fields = "all"
+        model = Post
+        fields = "__all__"
