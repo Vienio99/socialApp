@@ -10,7 +10,7 @@ class PostModelTest(TestCase):
 
     def setUp(self):
         user = User.objects.create(username='user1')
-        Post.objects.create(title='Fancy title for my post', author=user, text='Hello guys', pub_date=timezone.now())
+        Post.objects.create(title='Fancy title for my post', author=user, text='Hello guys',)
 
     def test_post_has_proper_title(self):
         post = Post.objects.get(title='Fancy title for my post')
@@ -37,7 +37,7 @@ class CommentModelTest(TestCase):
         post = Post.objects.create(title='Fancy title for my post',
                                    author=user,
                                    text='Hello guys',
-                                   pub_date=timezone.now())
+                                   )
         Comment.objects.create(author=user, text='Hello', post=post)
 
     def test_comment_has_proper_text(self):
@@ -57,6 +57,7 @@ class CommentModelTest(TestCase):
     def test_comment_has_proper_pub_date(self):
         comment = Comment.objects.get(text='Hello')
         self.assertEqual(comment.pub_date.strftime('%d-%m-%Y %H:%M:%S'), timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
+
 
 class UserModelTest(TestCase):
 
