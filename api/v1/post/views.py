@@ -1,17 +1,18 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from social.models import Post
 from .serializer import PostSerializer
 
 
-class PostApi(ListCreateAPIView):
+class PostList(ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (AllowAny,)
 
 
-class PostRetrieveUpdateDestroyAPI(RetrieveUpdateDestroyAPIView):
+class PostDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         return Post.objects.filter(id=self.kwargs.get('pk', None))

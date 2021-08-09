@@ -57,3 +57,16 @@ class CommentModelTest(TestCase):
     def test_comment_has_proper_pub_date(self):
         comment = Comment.objects.get(text='Hello')
         self.assertEqual(comment.pub_date.strftime('%d-%m-%Y %H:%M:%S'), timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
+
+class UserModelTest(TestCase):
+
+    def setUp(self):
+        User.objects.create(username='user1', age=10, hobby='tennis')
+
+    def test_user_has_proper_age(self):
+        user = User.objects.get(username='user1')
+        self.assertEqual(user.age, 10)
+
+    def test_user_has_proper_hobby(self):
+        user = User.objects.get(username='user1')
+        self.assertEqual(user.hobby, 'tennis')
