@@ -7,67 +7,62 @@ User = get_user_model()
 
 
 class PostModelTest(TestCase):
+    # Added because otherwise Pycharm identifies user as an unresolved reference
+    user = None
 
-    def setUp(self):
-        user = User.objects.create(username='user1')
-        Post.objects.create(title='Fancy title for my post', author=user, text='Hello guys',)
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = User.objects.create(username='user1')
+        cls.post = Post.objects.create(title='Fancy title for my post', author=cls.user, text='Hello guys', )
 
     def test_post_has_proper_title(self):
-        post = Post.objects.get(title='Fancy title for my post')
-        self.assertEqual(post.title, 'Fancy title for my post')
+        self.assertEqual(self.post.title, 'Fancy title for my post')
 
     def test_post_has_proper_author(self):
-        user = User.objects.get(username='user1')
-        post = Post.objects.get(author=user)
-        self.assertEqual(post.author.username, 'user1')
+        self.assertEqual(self.post.author.username, 'user1')
 
     def test_post_has_proper_pub_date(self):
-        post = Post.objects.get(title='Fancy title for my post')
-        self.assertEqual(post.pub_date.strftime('%d-%m-%Y %H:%M:%S'), timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
+        self.assertEqual(self.post.pub_date.strftime('%d-%m-%Y %H:%M:%S'), timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
 
-    def test_post_has_proper_text(self):
-        post = Post.objects.get(title='Fancy title for my post')
-        self.assertEqual(post.text, 'Hello guys')
+    def test_post_has_not_proper_text(self):
+        self.assertNotEqual(self.post.text, 'Hello girls')
 
 
 class CommentModelTest(TestCase):
+    # Added because otherwise Pycharm identifies user as an unresolved reference
+    post = None
+    user = None
 
-    def setUp(self):
-        user = User.objects.create(username='user1')
-        post = Post.objects.create(title='Fancy title for my post',
-                                   author=user,
-                                   text='Hello guys',
-                                   )
-        Comment.objects.create(author=user, text='Hello', post=post)
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = User.objects.create(username='user1')
+        cls.post = Post.objects.create(title='Fancy title for my post',
+                                       author=cls.user,
+                                       text='Hello guys',
+                                       )
+        cls.comment = Comment.objects.create(author=cls.user, text='Hello', post=cls.post)
 
     def test_comment_has_proper_text(self):
-        comment = Comment.objects.get(text='Hello')
-        self.assertEqual(comment.text, 'Hello')
+        self.assertEqual(self.comment.text, 'Hello')
 
     def test_comment_has_proper_author(self):
-        user = User.objects.get(username='user1')
-        comment = Comment.objects.get(text='Hello')
-        self.assertEqual(comment.author, user)
+        self.assertEqual(self.comment.author, self.user)
 
     def test_comment_has_proper_post(self):
-        post = Post.objects.get(title='Fancy title for my post')
-        comment = Comment.objects.get(text='Hello')
-        self.assertEqual(comment.post, post)
+        self.assertEqual(self.comment.post, self.post)
 
     def test_comment_has_proper_pub_date(self):
-        comment = Comment.objects.get(text='Hello')
-        self.assertEqual(comment.pub_date.strftime('%d-%m-%Y %H:%M:%S'), timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
+        self.assertEqual(self.comment.pub_date.strftime('%d-%m-%Y %H:%M:%S'), timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
 
 
 class UserModelTest(TestCase):
 
-    def setUp(self):
-        User.objects.create(username='user1', age=10, hobby='tennis')
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = User.objects.create(username='user1', age=10, hobby='tennis')
 
     def test_user_has_proper_age(self):
-        user = User.objects.get(username='user1')
-        self.assertEqual(user.age, 10)
+        self.assertEqual(self.user.age, 10)
 
     def test_user_has_proper_hobby(self):
-        user = User.objects.get(username='user1')
-        self.assertEqual(user.hobby, 'tennis')
+        self.assertEqual(self.user.hobby, 'tennis')
