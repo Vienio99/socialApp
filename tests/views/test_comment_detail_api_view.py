@@ -12,7 +12,7 @@ class CommentDetailApiViewTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.user = User.objects.create(username='user1', password='secret')
+        cls.user = User.objects.create_user(username='user1', password='secret')
         cls.post = Post.objects.create(title='Fancy title for my post',
                                        author=cls.user,
                                        text='Hello guys',
@@ -32,12 +32,7 @@ class CommentDetailApiViewTest(APITestCase):
         response = self.client.get('/api/v1/comment/2')
         self.assertEqual(response.status_code, 404)
 
-    # def test_can_alter_existing_comment(self):
-    #     self.client.login(username='user1')
-    #     response = self.client.put('/api/v1/comment/1',
-    #                                {'text': 'Not world'})
-    #     self.assertEqual(response.status_code, 200)
-
-    #
-    # def test_can_delete_existing_comment(self):
-    #
+    def test_user_can_delete_his_comment(self):
+        self.client.login(username='user1', password='secret')
+        response = self.client.delete('/api/v1/comment/1')
+        self.assertEqual(response.status_code, 204)

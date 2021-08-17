@@ -11,7 +11,7 @@ class PostDetailApiViewTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.user = User.objects.create(username='user1')
+        cls.user = User.objects.create_user(username='user1', password='secret')
         cls.post = Post.objects.create(title='Fancy title for my post',
                                        author=cls.user,
                                        text='Hello guys',
@@ -26,6 +26,11 @@ class PostDetailApiViewTest(APITestCase):
             response.data
         )
 
-    def test_post_that_doesnt_exist(self):
+    def test_cant_read_post_that_doesnt_exist(self):
         response = self.client.get('/api/v1/post/2')
         self.assertEqual(response.status_code, 404)
+
+    def test_user_can_delete_his_post(self):
+        self.client.login(username='user1', password='secret')
+        response = self.client.delete('/api/v1/post/1')
+        self.assertEqual(response.status_code, 204)

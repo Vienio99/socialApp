@@ -52,7 +52,8 @@ class CommentModelTest(TestCase):
         self.assertEqual(self.comment.post, self.post)
 
     def test_comment_has_proper_pub_date(self):
-        self.assertEqual(self.comment.pub_date.strftime('%d-%m-%Y %H:%M:%S'), timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
+        self.assertEqual(self.comment.pub_date.strftime('%d-%m-%Y %H:%M:%S'),
+                         timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
 
 
 class UserModelTest(TestCase):

@@ -11,7 +11,7 @@ class PostListApiViewTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.user = User.objects.create(username='user1')
+        cls.user = User.objects.create_user(username='user1')
         cls.post = Post.objects.create(title='Fancy title for my post',
                                        author=cls.user,
                                        text='Hello guys',
@@ -34,21 +34,25 @@ class PostListApiViewTest(APITestCase):
             )
 
     def test_can_create_new_post(self):
-        self.client.post('/api/v1/post/', {'title': 'Hello not world',
-                                           'author': 1,
-                                           'text': 'Hello boys'
-                                           })
+        data = {
+            'title': 'Hello not world',
+            'author': 1,
+            'text': 'Hello boys'
+        }
+        self.client.post('/api/v1/post/', data)
         response = self.client.get('/api/v1/post/3')
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data['title'], 'Hello not world')
 
     def test_created_post_has_proper_data(self):
-        self.client.post('/api/v1/post/', {'title': 'Hello not world',
-                                           'author': 1,
-                                           'text': 'Hello boys'
-                                           })
+        data = {
+            'title': 'Hello not world',
+            'author': 1,
+            'text': 'Hello boys'
+        }
+        self.client.post('/api/v1/post/', data)
 
-        response = self.client.get('/api/v1/post/4')
+        response = self.client.get('/api/v1/post/3')
 
         self.assertEqual(response.data['title'], 'Hello not world')

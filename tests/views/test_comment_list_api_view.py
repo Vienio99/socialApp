@@ -12,7 +12,7 @@ class CommentListApiViewTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.user = User.objects.create(username='user1')
+        cls.user = User.objects.create_user(username='user1')
         cls.post = Post.objects.create(title='Fancy title for my post',
                                        author=cls.user,
                                        text='Hello guys',
@@ -33,18 +33,21 @@ class CommentListApiViewTest(APITestCase):
             )
 
     def test_can_create_new_comment(self):
-        response = self.client.post('/api/v1/comment/', {'author': 1,
-                                                         'text': 'My new comment',
-                                                         'post': 1,
-                                                         })
+        data = {
+                'author': 1,
+                'text': 'My new comment',
+                'post': 1,
+                }
+        response = self.client.post('/api/v1/comment/', data)
         self.assertEqual(response.status_code, 201)
 
     def test_created_comment_has_proper_data(self):
-        response = self.client.post('/api/v1/comment/', {'author': 1,
-                                                         'text': 'Fancy text',
-                                                         'post': 1,
-                                                         })
+        data = {
+                'author': 1,
+                'text': 'Fancy text',
+                'post': 1,
+                }
+        response = self.client.post('/api/v1/comment/', data)
         self.assertEqual(response.data['author'], 1)
         self.assertEqual(response.data['text'], 'Fancy text')
         self.assertEqual(response.data['post'], 1)
-
