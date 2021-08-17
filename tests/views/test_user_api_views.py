@@ -43,6 +43,3 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['password'], 'secret1')
 
 
-
-    # def test_cant_read_users_password(self):
-
