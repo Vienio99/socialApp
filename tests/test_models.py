@@ -55,6 +55,9 @@ class CommentModelTest(TestCase):
         self.assertEqual(self.comment.pub_date.strftime('%d-%m-%Y %H:%M:%S'),
                          timezone.now().strftime('%d-%m-%Y %H:%M:%S'))
 
+    def test_comment_has_proper_slug(self):
+        self.assertEqual(self.comment.slug, )
+
 
 class UserModelTest(TestCase):
 
