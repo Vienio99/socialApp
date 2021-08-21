@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f35db49-6a88-4069-aefa-83558f79d91e" name="Changes" comment="useless commit" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1wGzxmrKtxgvbyYWcl8Ep34zwV5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="$USER_HOME$/.nvm/versions/node/v16.4.1/lib/node_modules/standard" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/views" />
+      <recent name="$PROJECT_DIR$/api/v1/user" />
+      <recent name="$PROJECT_DIR$/api/v1/post" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api" />
+      <recent name="$PROJECT_DIR$/tests/views" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django tests.Test: tests">
+    <configuration name="Test: tests" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="socialApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="tests" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: tests.views.test_comment_api_view" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="socialApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="tests.views.test_comment_api_view" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: tests.views.test_post_api_view" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="socialApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="tests.views.test_post_api_view" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: tests.views.test_post_api_view.PostDetailApiViewTest.test_can_read_a_specific_post" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="socialApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="tests.views.test_post_api_view.PostDetailApiViewTest.test_can_read_a_specific_post" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: tests.views.test_post_detail_api_view" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="socialApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="tests.views.test_post_detail_api_view" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="socialApp" type="Python.DjangoServer" factoryName="Django server">
+      <module name="socialApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="social_project.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: tests" />
+        <item itemvalue="Django tests.Test: tests.views.test_post_api_view.PostDetailApiViewTest.test_can_read_a_specific_post" />
+        <item itemvalue="Django tests.Test: tests.views.test_post_api_view" />
+        <item itemvalue="Django tests.Test: tests.views.test_comment_api_view" />
+        <item itemvalue="Django tests.Test: tests.views.test_post_detail_api_view" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f35db49-6a88-4069-aefa-83558f79d91e" name="Changes" comment="" />
+      <created>1628099963074</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1628099963074</updated>
+      <workItem from="1628099965240" duration="5489000" />
+      <workItem from="1628142787160" duration="2191000" />
+      <workItem from="1628188848396" duration="21535000" />
+      <workItem from="1628540097215" duration="44995000" />
+    </task>
+    <task id="LOCAL-00001" summary="added Comment model">
+      <created>1628101740429</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1628101740429</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added model tests">
+      <created>1628231195825</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1628231195825</updated>
+    </task>
+    <task id="LOCAL-00003" summary="created api endpoint for comments">
+      <created>1628352263710</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1628352263710</updated>
+    </task>
+    <task id="LOCAL-00004" summary="swapped User model references according to best practices">
+      <created>1628437379608</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1628437379608</updated>
+    </task>
+    <task id="LOCAL-00005" summary="created endpoints for post and user">
+      <created>1628439223128</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1628439223128</updated>
+    </task>
+    <task id="LOCAL-00006" summary="refactored code in api views and urls">
+      <created>1628537376725</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1628537376725</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added react app and eslint">
+      <created>1628623770738</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1628623770738</updated>
+    </task>
+    <task id="LOCAL-00008" summary="refactored code in tests - using classmethods">
+      <created>1628663561851</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1628663561851</updated>
+    </task>
+    <task id="LOCAL-00009" summary="refactored structure in tests and added new ones">
+      <created>1629020048919</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1629020048919</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added new tests for views">
+      <created>1629228889836</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1629228889836</updated>
+    </task>
+    <task id="LOCAL-00011" summary="new tests for permissions while performing put request - failing for now">
+      <created>1629230593829</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1629230593829</updated>
+    </task>
+    <task id="LOCAL-00012" summary="restricted permissions on to update and delete posts and comments for owners only">
+      <created>1629568965634</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1629568965634</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added slug fields to Post and Comment model">
+      <created>1629575047072</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1629575047072</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added models in admin.py">
+      <created>1629575324355</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1629575324355</updated>
+    </task>
+    <task id="LOCAL-00015" summary="removed slug fields from comment model as it doesn't make sense to make slugs there">
+      <created>1629576379991</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1629576379991</updated>
+    </task>
+    <task id="LOCAL-00016" summary="useless commit">
+      <created>1629579904667</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1629579904667</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="added Comment model" />
+    <MESSAGE value="added model tests" />
+    <MESSAGE value="created api endpoint for comments" />
+    <MESSAGE value="swapped User model references according to best practices" />
+    <MESSAGE value="created endpoints for post and user" />
+    <MESSAGE value="refactored code in api views and urls" />
+    <MESSAGE value="added react app and eslint" />
+    <MESSAGE value="refactored code in tests - using classmethods" />
+    <MESSAGE value="refactored structure in tests and added new ones" />
+    <MESSAGE value="added new tests for views" />
+    <MESSAGE value="new tests for permissions while performing put request - failing for now" />
+    <MESSAGE value="restricted permissions on to update and delete posts and comments for owners only" />
+    <MESSAGE value="added slug fields to Post and Comment model" />
+    <MESSAGE value="added models in admin.py" />
+    <MESSAGE value="removed slug fields from comment model as it doesn't make sense to make slugs there" />
+    <MESSAGE value="useless commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="useless commit" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_post_list_api_view.coverage" NAME="Test: tests.views.test_post_list_api_view Coverage Results" MODIFIED="1629145618755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_user_api_views_UserListApiViewTest_test_can_get_created_user.coverage" NAME="Test: tests.test_user_api_views.UserListApiViewTest.test_can_get_created_user Coverage Results" MODIFIED="1629017124960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_PostListApiViewTest.coverage" NAME="Test: tests.test_views.PostListApiViewTest Coverage Results" MODIFIED="1628798898829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_comment_list_api_view.coverage" NAME="Test: tests.views.test_comment_list_api_view Coverage Results" MODIFIED="1629565624108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post_api_views.coverage" NAME="Test: tests.test_post_api_views Coverage Results" MODIFIED="1629016142627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_user_api_views_CommentDetailApiViewTest_test_can_get_created_user.coverage" NAME="Test: tests.test_user_api_views.CommentDetailApiViewTest.test_can_get_created_user Coverage Results" MODIFIED="1629017485769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_post_detail_api_view_PostDetailApiViewTest_test_user_can_delete_his_post.coverage" NAME="Test: tests.views.test_post_detail_api_view.PostDetailApiViewTest.test_user_can_delete_his_post Coverage Results" MODIFIED="1629228817037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_post_detail_api_view.coverage" NAME="Test: tests.views.test_post_detail_api_view Coverage Results" MODIFIED="1629565847137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_CommentListApiViewTest_test_comment_list_api_view_status_code.coverage" NAME="Test: tests.test_views.CommentListApiViewTest.test_comment_list_api_view_status_code Coverage Results" MODIFIED="1628539436099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_user_api_views_CommentDetailApiViewTest.coverage" NAME="Test: tests.test_user_api_views.CommentDetailApiViewTest Coverage Results" MODIFIED="1629018008817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views.coverage" NAME="Test: tests.views Coverage Results" MODIFIED="1629145513997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_PostModelTest_test_post_has_proper_pub_date.coverage" NAME="Test: tests.test_models.PostModelTest.test_post_has_proper_pub_date Coverage Results" MODIFIED="1628191536492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_user_api_views.coverage" NAME="Test: tests.test_user_api_views Coverage Results" MODIFIED="1629017204454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_user_api_views_UserListApiViewTest_test_can_create_user.coverage" NAME="Test: tests.test_user_api_views.UserListApiViewTest.test_can_create_user Coverage Results" MODIFIED="1629017094124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_user_api_views_CommentDetailApiViewTest_test_user_has_proper_username_and_password.coverage" NAME="Test: tests.test_user_api_views.CommentDetailApiViewTest.test_user_has_proper_username_and_password Coverage Results" MODIFIED="1629017787862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_PostModelTest.coverage" NAME="Test: tests.test_models.PostModelTest Coverage Results" MODIFIED="1628663052532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models.coverage" NAME="Test: tests.test_models Coverage Results" MODIFIED="1628710212179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post_api_views_PostDetailApiViewTest.coverage" NAME="Test: tests.test_post_api_views.PostDetailApiViewTest Coverage Results" MODIFIED="1629015729336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_comment_api_views_CommentDetailApiViewTest_test_can_alter_existing_comment.coverage" NAME="Test: tests.test_comment_api_views.CommentDetailApiViewTest.test_can_alter_existing_comment Coverage Results" MODIFIED="1629016350450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_comment_api_views_CommentListApiViewTest_test_can_create_new_comment.coverage" NAME="Test: tests.test_comment_api_views.CommentListApiViewTest.test_can_create_new_comment Coverage Results" MODIFIED="1629019004190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post_PostListApiViewTest_test_can_create_new_post.coverage" NAME="Test: tests.test_post.PostListApiViewTest.test_can_create_new_post Coverage Results" MODIFIED="1628799432494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_user_api_views_UserListApiViewTest.coverage" NAME="Test: tests.test_user_api_views.UserListApiViewTest Coverage Results" MODIFIED="1629017767228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$.coverage" NAME=" Coverage Results" MODIFIED="1629095795466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/views" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_comment_api_view.coverage" NAME="Test: tests.views.test_comment_api_view Coverage Results" MODIFIED="1629568933609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_CommentModelTest_test_post_has_proper_text.coverage" NAME="Test: tests.test_models.CommentModelTest.test_post_has_proper_text Coverage Results" MODIFIED="1628230298947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_post_api_view.coverage" NAME="Test: tests.views.test_post_api_view Coverage Results" MODIFIED="1629568936108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_comment_detail_api_view_CommentDetailApiViewTest_test_user_can_update_his_comment.coverage" NAME="Test: tests.views.test_comment_detail_api_view.CommentDetailApiViewTest.test_user_can_update_his_comment Coverage Results" MODIFIED="1629229810999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_comment_detail_api_view_CommentDetailApiViewTest_test_only_author_can_update_his_comment.coverage" NAME="Test: tests.views.test_comment_detail_api_view.CommentDetailApiViewTest.test_only_author_can_update_his_comment Coverage Results" MODIFIED="1629229972979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_comment_api_views_CommentDetailApiViewTest.coverage" NAME="Test: tests.test_comment_api_views.CommentDetailApiViewTest Coverage Results" MODIFIED="1629018795167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_UserModelTest_test_user_has_proper_age.coverage" NAME="Test: tests.test_models.UserModelTest.test_user_has_proper_age Coverage Results" MODIFIED="1628536123387" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_comment_api_views_CommentListApiViewTest_test_created_post_has_proper_data.coverage" NAME="Test: tests.test_comment_api_views.CommentListApiViewTest.test_created_post_has_proper_data Coverage Results" MODIFIED="1629019007654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post_api_views_PostListApiViewTest_test_can_create_new_post.coverage" NAME="Test: tests.test_post_api_views.PostListApiViewTest.test_can_create_new_post Coverage Results" MODIFIED="1628800253611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_comment_detail_api_view_CommentDetailApiViewTest_test_can_delete_existing_comment.coverage" NAME="Test: tests.views.test_comment_detail_api_view.CommentDetailApiViewTest.test_can_delete_existing_comment Coverage Results" MODIFIED="1629228717463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_post_api_view_PostDetailApiViewTest_test_can_read_a_specific_post.coverage" NAME="Test: tests.views.test_post_api_view.PostDetailApiViewTest.test_can_read_a_specific_post Coverage Results" MODIFIED="1629578677857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views.coverage" NAME="Test: tests.test_views Coverage Results" MODIFIED="1628799463062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_PostModelTest_test_post_has_proper_text.coverage" NAME="Test: tests.test_models.PostModelTest.test_post_has_proper_text Coverage Results" MODIFIED="1628230211251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_UserModelTest_test_user_has_proper_hobby.coverage" NAME="Test: tests.test_models.UserModelTest.test_user_has_proper_hobby Coverage Results" MODIFIED="1628537320909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_PostDetailApiViewTest_test_can_read_a_specific_post.coverage" NAME="Test: tests.test_views.PostDetailApiViewTest.test_can_read_a_specific_post Coverage Results" MODIFIED="1628708622942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_comment_api_views_CommentListApiViewTest.coverage" NAME="Test: tests.test_comment_api_views.CommentListApiViewTest Coverage Results" MODIFIED="1629019074180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_CommentListApiViewTest_test_can_create_new_comment.coverage" NAME="Test: tests.test_views.CommentListApiViewTest.test_can_create_new_comment Coverage Results" MODIFIED="1628797613696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_PostListApiViewTest_test_can_create_new_post.coverage" NAME="Test: tests.test_views.PostListApiViewTest.test_can_create_new_post Coverage Results" MODIFIED="1628798719493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_comment_api_views.coverage" NAME="Test: tests.test_comment_api_views Coverage Results" MODIFIED="1629018976578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post.coverage" NAME="Test: tests.test_post Coverage Results" MODIFIED="1628799449518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests.coverage" NAME="Test: tests Coverage Results" MODIFIED="1629580054318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_TestCustomUser.coverage" NAME="Test: tests.test_models.TestCustomUser Coverage Results" MODIFIED="1628102065441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_PostModelTest_test_post_has_proper_author.coverage" NAME="Test: tests.test_models.PostModelTest.test_post_has_proper_author Coverage Results" MODIFIED="1628190778110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post_api_views_PostListApiViewTest.coverage" NAME="Test: tests.test_post_api_views.PostListApiViewTest Coverage Results" MODIFIED="1629015735289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_CommentDetailApiViewTest.coverage" NAME="Test: tests.test_views.CommentDetailApiViewTest Coverage Results" MODIFIED="1628662225397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_user_api_views_CommentDetailApiViewTest_test_user_can_logout.coverage" NAME="Test: tests.views.test_user_api_views.CommentDetailApiViewTest.test_user_can_logout Coverage Results" MODIFIED="1629228201391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_user_api_views.coverage" NAME="Test: tests.views.test_user_api_views Coverage Results" MODIFIED="1629145681224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_comment_detail_api_view_CommentDetailApiViewTest_test_can_alter_existing_comment.coverage" NAME="Test: tests.views.test_comment_detail_api_view.CommentDetailApiViewTest.test_can_alter_existing_comment Coverage Results" MODIFIED="1629228654123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_CommentListApiViewTest.coverage" NAME="Test: tests.test_views.CommentListApiViewTest Coverage Results" MODIFIED="1628797543636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_user_api_views_CommentDetailApiViewTest_test_user_can_login.coverage" NAME="Test: tests.views.test_user_api_views.CommentDetailApiViewTest.test_user_can_login Coverage Results" MODIFIED="1629228005515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_PostDetailApiViewTest.coverage" NAME="Test: tests.test_views.PostDetailApiViewTest Coverage Results" MODIFIED="1628797781074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_post_detail_api_view_PostDetailApiViewTest_test_user_can_alter_his_post.coverage" NAME="Test: tests.views.test_post_detail_api_view.PostDetailApiViewTest.test_user_can_alter_his_post Coverage Results" MODIFIED="1629229630284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_comment_detail_api_view.coverage" NAME="Test: tests.views.test_comment_detail_api_view Coverage Results" MODIFIED="1629565684117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_CommentModelTest_test_comment_has_proper_author.coverage" NAME="Test: tests.test_models.CommentModelTest.test_comment_has_proper_author Coverage Results" MODIFIED="1628230540619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post_api_views_PostListApiViewTest_test_can_browse_all_posts.coverage" NAME="Test: tests.test_post_api_views.PostListApiViewTest.test_can_browse_all_posts Coverage Results" MODIFIED="1628800192976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+</project>
