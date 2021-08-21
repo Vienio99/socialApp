@@ -31,5 +31,4 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
     )
     pub_date = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField(null=False, unique=True)
 

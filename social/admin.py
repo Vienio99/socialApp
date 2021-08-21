@@ -11,7 +11,6 @@ class PostAdmin(admin.ModelAdmin):
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = (all,)
-    prepopulated_fields = {'slug': ('title',)}
 
 
 admin.site.register(Post, PostAdmin)

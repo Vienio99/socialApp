@@ -14,6 +14,7 @@ class PostList(ListCreateAPIView):
 class PostDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     permission_classes = (IsOwnerOrReadOnly,)
+    lookup_field = 'slug'
 
     def get_queryset(self):
         return Post.objects.filter(id=self.kwargs.get('pk', None))
