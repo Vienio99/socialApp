@@ -1,13 +1,318 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Social Cards
+------------------------------------
+*/
+.social-card {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  background: #fff;
+  float: left;
+  position: relative;
+  border-radius: 4px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  margin-bottom: 20px;
+  width: 300px;
+  border: 1px solid #dcdee0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.social-card .circle {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid #f3f3f4;
+  width: 9px;
+  height: 9px;
+  background: #506577;
+  z-index: 1;
+}
+
+.social-card .circle:hover {
+  cursor: pointer;
+}
+
+.social-card.full-width {
+  width: 100% !important;
+}
+
+.social-card.status {
+  background: rgba(210, 240, 255, 0.6);
+  border-radius: 4px;
+  padding: 15px 25px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+
+.social-card.status:hover, .social-card.status.hover {
+  border-color: #dde3ea !important;
+}
+
+.social-card.status h5 {
+  font-size: 12px;
+  margin: 0;
+  color: #353f4d;
+}
+
+.social-card.status h5 .time {
+  color: #353f4d;
+}
+
+.social-card.status h2 {
+  color: #353f4d;
+  font-size: 25px;
+  line-height: 32px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.social-card.status .reactions {
+  opacity: 0.45;
+  font-size: 12px;
+  padding: 0;
+  margin: 5px 0 0;
+  padding: 0;
+}
+
+.social-card.status .reactions li {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+}
+
+.social-card.status .reactions li a {
+  color: #061223;
+}
+
+.social-card.status .circle {
+  width: 9px;
+  height: 9px;
+  border: none;
+  background: #007be8;
+}
+
+.social-card .card-header,
+.social-card .card-footer {
+  background-color: #fff;
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
+}
+
+.social-card.share .card-header {
+  padding: 15px 15px 12px;
+  border-bottom: 1px solid #dcdee0;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+.social-card.share .card-header:hover {
+  background: rgba(210, 240, 255, 0.6);
+  border-color: #d2f0ff;
+  cursor: pointer;
+}
+
+.social-card.share .card-header:hover h6 {
+  opacity: 0.6;
+}
+
+.social-card.share .card-header.last {
+  border-bottom: none;
+}
+
+.social-card.share .card-header .user-pic {
+  float: left;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.social-card.share .card-header .user-pic > img {
+  width: 30px;
+  height: 30px;
+}
+
+.social-card.share .card-header h5 {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+  line-height: 22.7px;
+  font-family: "Inter UI", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: -0.006em;
+  margin-top: -3px;
+}
+
+.social-card.share .card-header h6 {
+  font-size: 12px;
+  margin: 0;
+  opacity: 0.45;
+  font-family: "Inter UI", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  opacity: 0.45;
+}
+
+.social-card.share .card-description {
+  padding: 12px 16px 11px;
+  font-size: 14px;
+  line-height: 21px;
+  margin: 0;
+}
+
+.social-card.share .card-description p {
+  margin-bottom: 4px;
+}
+
+.social-card.share .card-description .via {
+  opacity: 0.45;
+  display: block;
+  font-size: 12px;
+  font-family: "Inter UI", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.social-card.share .card-content {
+  position: relative;
+}
+
+.social-card.share .card-content .buttons {
+  left: 17px;
+  padding: 0;
+  position: absolute;
+  top: 10px;
+}
+
+.social-card.share .card-content .buttons li {
+  display: inline-block;
+  list-style: none;
+  margin-right: 10px;
+}
+
+.social-card.share .card-content .buttons li a {
+  color: #fff;
+}
+
+.social-card.share .card-feed {
+  overflow: hidden;
+  position: relative;
+  max-height: 400px;
+}
+
+.social-card.share .card-feed:hover .buttons {
+  opacity: 1;
+}
+
+.social-card.share .card-feed .buttons {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  opacity: 0;
+}
+
+.social-card.share .card-feed .buttons li {
+  display: inline-block;
+  list-style: none;
+}
+
+.social-card.share .card-feed .buttons li a {
+  color: #fff;
+  opacity: 0.8;
+  padding: 5px;
+}
+
+.social-card.share .card-feed > * {
+  max-width: 100%;
+}
+
+.social-card.share .card-footer {
+  padding: 14px 16px 11px;
+  font-size: 12px !important;
+}
+
+.social-card.share .card-footer:hover {
+  background: rgba(210, 240, 255, 0.6);
+  cursor: pointer;
+}
+
+.social-card.share .card-footer:hover .reactions,
+.social-card.share .card-footer:hover .time {
+  opacity: 0.8;
+}
+
+.social-card.share .card-footer .time {
+  float: left;
+  opacity: 0.45;
+  font-family: "Inter UI", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  margin-top: 1px;
+}
+
+.social-card.share .card-footer .reactions {
+  float: right;
+  margin: 0;
+  padding: 0;
+  opacity: 0.45;
+}
+
+.social-card.share .card-footer .reactions li {
+  display: inline-block;
+  list-style: none;
+}
+
+.social-card.share .card-footer .reactions li a {
+  color: inherit;
+}
+
+.social-card.share .card-description,
+.social-card.share .card-feed,
+.social-card.share .card-footer {
+  border-color: transparent;
+  border-style: solid;
+}
+
+.social-card.share .card-description {
+  border-width: 1px;
+}
+
+.social-card.share .card-feed {
+  border-width: 0 1px;
+  margin-top: -2px;
+}
+
+.social-card.share .card-footer {
+  border-width: 0 1px 1px 1px;
+}
+
+.social-card.share.share-other .card-description {
+  padding-bottom: 0;
+}
+
+.social-card.share.share-other .card-footer {
+  padding-top: 0;
+  border-radius: 0;
+}
+
+.social-card.share.share-other .card-footer:hover {
+  background: #fff;
+}
+
+.social-card.share.share-other .card-header {
+  border-top: 1px solid rgba(6, 18, 35, 0.14);
+}
+
+.social-card.share.share-other .circle {
+  background: #fed76e;
+}
+
+.social-card.col1 {
+  width: 300px;
+}
+
+.social-card.col2 {
+  width: 620px;
+}
+
+.social-card.col3 {
+  width: 920px;
+}
+
+.social-card img {
+  width: 100%;
 }

@@ -1,8 +1,8 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
-
+from rest_framework.permissions import AllowAny
 from social.models import Comment
 from .serializer import CommentSerializer
+from ...permissions import IsOwnerOrReadOnly
 
 
 class CommentList(ListCreateAPIView):
@@ -13,7 +13,7 @@ class CommentList(ListCreateAPIView):
 
 class CommentDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = CommentSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsOwnerOrReadOnly,)
 
     def get_queryset(self):
         return Comment.objects.filter(id=self.kwargs.get('pk', None))
