@@ -14,7 +14,7 @@ class Post(models.Model):
     title = models.CharField(max_length=30)
     text = models.TextField()
     pub_date = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField(null=False, unique=True)
+    slug = models.SlugField(null=False, unique=T)
 
     def __str__(self):
         return self.title
@@ -31,4 +31,5 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
     )
     pub_date = models.DateTimeField(default=timezone.now)
+    slug = models.SlugField()
 
