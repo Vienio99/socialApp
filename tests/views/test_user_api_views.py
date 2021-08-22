@@ -27,8 +27,8 @@ class CommentDetailApiViewTest(APITestCase):
             'password': 'secret2'
         }
         self.client.post('/api/v1/user/', data)
-
-        response = self.client.get('/api/v1/user/1')
+        newUser = User.objects.get(username='user2')
+        response = self.client.get(f'/api/v1/user/{newUser.pk}')
         self.assertEqual(response.status_code, 200)
 
     def test_user_has_proper_username_and_password(self):
@@ -37,8 +37,8 @@ class CommentDetailApiViewTest(APITestCase):
             'password': 'secret1'
         }
         self.client.post('/api/v1/user/', data)
-
-        response = self.client.get('/api/v1/user/1')
+        newUser = User.objects.get(username='user1')
+        response = self.client.get(f'/api/v1/user/{newUser.pk}')
         self.assertEqual(response.data['username'], 'user1')
         self.assertEqual(response.data['password'], 'secret1')
 
