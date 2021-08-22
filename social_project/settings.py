@@ -83,13 +83,16 @@ DATABASES = {
         'PASSWORD': '123',
         'HOST': '127.0.0.1',
         'PORT': '',
+        'TEST': {
+            'NAME': 'mytestdatabase',
+        },
     }
 }
 
 # Run sqlite instead of postgres when testing
 
-if 'test' in sys.argv or 'test_coverage' in sys.argv:  # Covers regular testing and django-coverage
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+# if 'test' in sys.argv or 'test_coverage' in sys.argv:  # Covers regular testing and django-coverage
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -135,3 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Changing to custom user model
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
