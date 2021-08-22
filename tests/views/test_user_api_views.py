@@ -19,7 +19,7 @@ class UserListApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 201)
 
 
-class CommentDetailApiViewTest(APITestCase):
+class UserDetailApiViewTest(APITestCase):
 
     def test_can_get_created_user(self):
         data = {
