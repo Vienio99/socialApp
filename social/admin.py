@@ -4,13 +4,5 @@ from django.contrib import admin
 from social.models import Post, Comment
 
 
-class PostAdmin(admin.ModelAdmin):
-    list_display = (all,)
-
-
-class CommentAdmin(admin.ModelAdmin):
-    list_display = (all,)
-
-
-admin.site.register(Post, PostAdmin)
-admin.site.register(Comment, CommentAdmin)
+admin.site.register(Post)
+admin.site.register(Comment)
