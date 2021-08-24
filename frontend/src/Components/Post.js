@@ -10,7 +10,7 @@ function Post(props) {
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios(
-                'http://127.0.0.1:8000/api/v1/post'
+                'http://127.0.0.1:8000/api/v1/post/'
             );
             setData(response.data);
             console.log(response.data);
