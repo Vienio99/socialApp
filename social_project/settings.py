@@ -25,7 +25,15 @@ SECRET_KEY = 'django-insecure-^lfwklc#5)+bjy_vask6n-%^yav%2y%p+hqzop-phf8b1yeuvt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Allow cors headers for consuming API
+
+
+ALLOWED_HOSTS = ['http://localhost:3000']
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
 
 # Application definition
 
@@ -40,6 +48,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'social.apps.SocialConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'social_project.urls'
@@ -134,6 +144,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+# Default format for api requests in tests
+
 REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
+

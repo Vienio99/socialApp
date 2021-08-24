@@ -24,15 +24,18 @@
       "plugin:react/recommended"
     ],
     "rules": {
-        "semi": [2, "always"]
+      "semi": [
+        2,
+        "always"
+      ]
     },
     "parserOptions": {
       "ecmaVersion": 2018,
       "sourceType": "module",
       "ecmaFeatures": {
-          "jsx": true
+        "jsx": true
       }
-  }
+    }
   },
   "browserslist": {
     "production": [
@@ -47,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.21.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0"
   }
