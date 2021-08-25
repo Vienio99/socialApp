@@ -17,16 +17,24 @@ function Post(props) {
         };
         fetchData();
     }, []);
-
-  return (
-      <ul>
-          {data.map(post => (
-              <li key={post.id}>
-                  <div>{post.title}</div>
-              </li>
-          ))}
-      </ul>
-  );
+    console.log(data);
+    return (
+        <div>
+            {data.map(post => (
+                <div className="card social-card share col1 ng-star-inserted" key={post.id}>
+                    <div className="card-header clearfix">
+                        <div>{post.author}</div>
+                        <div>{post.title}</div>
+                    </div>
+                    <div className="card-description">
+                        <p className="ng-tns-c18-8 ng-star-inserted">
+                            {post.text}
+                        </p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
 }
 
 export default Post;
