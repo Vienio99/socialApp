@@ -57,4 +57,4 @@ docs/_build/
 target/
 /node_modules/
 /frontend/src/assets/
-/.idea
+.idea/
