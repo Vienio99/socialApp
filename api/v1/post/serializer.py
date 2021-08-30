@@ -1,3 +1,4 @@
+from django.utils import timezone
 from rest_framework import serializers
 from social.models import Post
 
@@ -10,4 +11,5 @@ class PostSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super(PostSerializer, self).to_representation(instance)
         rep['author'] = instance.author.username
+        rep['pub_date'] = timezone.now() - instance.pub_date
         return rep

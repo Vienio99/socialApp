@@ -13,23 +13,48 @@ function Post(props) {
                 'http://127.0.0.1:8000/api/v1/post/'
             );
             setData(response.data);
-            console.log(response.data);
         };
         fetchData();
     }, []);
-    console.log(data);
     return (
         <div>
             {data.map(post => (
-                <div className="card social-card share col1 ng-star-inserted" key={post.id}>
-                    <div className="card-header clearfix">
-                        <div>{post.author}</div>
-                        <div>{post.title}</div>
+                <div className="card social-card share share-other col1" data-social="item" key={post.id}>
+                    <div className="circle" data-toggle="tooltip" title="Label" data-container="body">
+                    </div>
+                    <div className="card-content">
+                        {/*<ul className="buttons ">*/}
+                        {/*    <li>*/}
+                        {/*        <a href="#" className="d-flex"><i className="pg-icon">expand</i>*/}
+                        {/*        </a>*/}
+                        {/*    </li>*/}
+                        {/*    <li>*/}
+                        {/*        <a href="#" className="d-flex"><i className="pg-icon">heart_outline</i>*/}
+                        {/*        </a>*/}
+                        {/*    </li>*/}
+                        {/*</ul>*/}
+                        {/*<img alt="Quote" src="../assets/img/social/quote.jpg"/>*/}
                     </div>
                     <div className="card-description">
-                        <p className="ng-tns-c18-8 ng-star-inserted">
-                            {post.text}
-                        </p>
+                        <p>{post.text}</p>
+                    </div>
+                    <div className="card-footer clearfix">
+                        <div className="time">{post.pub_date}</div>
+                        <ul className="reactions">
+                            <li><a href="#" className="d-flex align-items-center">5,345 <i
+                                className="pg-icon">comment_alt</i></a>
+                            </li>
+                            <li><a href="#" className="d-flex align-items-center">23K <i
+                                className="pg-icon">heart</i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="card-header clearfix last">
+                        {/*<div className="user-pic">*/}
+                        {/*    <img alt="Profile Image" width="33" height="33" data-src-retina="assets/img/profiles/7x.jpg"*/}
+                        {/*         data-src="assets/img/profiles/7.jpg" src="../assets/img/profiles/7x.jpg"/>*/}
+                        {/*</div>*/}
+                        <h5>{post.author}</h5>
                     </div>
                 </div>
             ))}
