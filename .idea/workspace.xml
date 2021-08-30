@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f35db49-6a88-4069-aefa-83558f79d91e" name="Changes" comment="some files">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="0f35db49-6a88-4069-aefa-83558f79d91e" name="Changes" comment="updated git ignore">
+      <change beforePath="$PROJECT_DIR$/api/v1/post/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/post/serializer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630357031107</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="updated git ignore">
+      <created>1630357220751</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1630357220751</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,7 +278,8 @@
     <MESSAGE value="changed representation of author field on PostSerializer" />
     <MESSAGE value="created new db" />
     <MESSAGE value="some files" />
-    <option name="LAST_COMMIT_MESSAGE" value="some files" />
+    <MESSAGE value="updated git ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated git ignore" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/socialApp$Test__tests_views_test_post_list_api_view.coverage" NAME="Test: tests.views.test_post_list_api_view Coverage Results" MODIFIED="1629145618755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -320,7 +328,7 @@
     <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_views_PostListApiViewTest_test_can_create_new_post.coverage" NAME="Test: tests.test_views.PostListApiViewTest.test_can_create_new_post Coverage Results" MODIFIED="1628798719493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_comment_api_views.coverage" NAME="Test: tests.test_comment_api_views Coverage Results" MODIFIED="1629018976578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post.coverage" NAME="Test: tests.test_post Coverage Results" MODIFIED="1628799449518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/socialApp$Test__tests.coverage" NAME="Test: tests Coverage Results" MODIFIED="1630355183391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/socialApp$Test__tests.coverage" NAME="Test: tests Coverage Results" MODIFIED="1630357433107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_TestCustomUser.coverage" NAME="Test: tests.test_models.TestCustomUser Coverage Results" MODIFIED="1628102065441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_models_PostModelTest_test_post_has_proper_author.coverage" NAME="Test: tests.test_models.PostModelTest.test_post_has_proper_author Coverage Results" MODIFIED="1628190778110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/socialApp$Test__tests_test_post_api_views_PostListApiViewTest.coverage" NAME="Test: tests.test_post_api_views.PostListApiViewTest Coverage Results" MODIFIED="1629015735289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
