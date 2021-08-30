@@ -5,37 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f35db49-6a88-4069-aefa-83558f79d91e" name="Changes" comment="some files">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/entities/entities.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/entities/entities.dat.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/entities/entities.dat.values" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/entities/entities.dat.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/entities/entities.dat.values.s" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/entities/entities.dat_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/entities/entities.dat_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/storage_v2/_src_/database/socialdb.q_zfSA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/storage_v2/_src_/database/socialdb.q_zfSA/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/storage_v2/_src_/database/socialdb.q_zfSA/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/871ea2f6-f997-44e5-9484-ed3d97bc1161/storage_v2/_src_/database/socialdb.q_zfSA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/entities/entities.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/entities/entities.dat.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/entities/entities.dat.values" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/entities/entities.dat.values.at" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/entities/entities.dat.values.s" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/entities/entities.dat_i" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/entities/entities.dat_i.len" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/storage_v2/_src_/database/socialdb.q_zfSA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/storage_v2/_src_/database/socialdb.q_zfSA/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/storage_v2/_src_/database/socialdb.q_zfSA/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/995d83e0-297f-4c05-ae26-4aa1add97c85/storage_v2/_src_/database/socialdb.q_zfSA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/vienio99.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/social/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/v1/post/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/v1/post/serializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,7 +230,21 @@
       <option name="project" value="LOCAL" />
       <updated>1630356526242</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="some files">
+      <created>1630356912199</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1630356912199</updated>
+    </task>
+    <task id="LOCAL-00012" summary="some files">
+      <created>1630357031107</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1630357031107</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
