@@ -39,7 +39,7 @@ function Post(props) {
                         <p>{post.text}</p>
                     </div>
                     <div className="card-footer clearfix">
-                        <div className="time">{post.pub_date}</div>
+                        <div className="time">Posted {post.pub_date} hours ago</div>
                         <ul className="reactions">
                             <li><a href="#" className="d-flex align-items-center">5,345 <i
                                 className="pg-icon">comment_alt</i></a>

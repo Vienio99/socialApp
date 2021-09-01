@@ -11,5 +11,7 @@ class PostSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super(PostSerializer, self).to_representation(instance)
         rep['author'] = instance.author.username
-        rep['pub_date'] = timezone.now() - instance.pub_date
+
+        # Display date in hours
+        rep['pub_date'] = round((((timezone.now() - instance.pub_date).seconds / 24) / 24))
         return rep
