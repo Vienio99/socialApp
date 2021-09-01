@@ -20,7 +20,7 @@ function Post(props) {
         <div>
             {data.map(post => (
                 <div className="card social-card share share-other col1" data-social="item" key={post.id}>
-                    <div className="circle" data-toggle="tooltip" title="Label" data-container="body">
+                    <div data-toggle="tooltip" title="Label" data-container="body">
                     </div>
                     <div className="card-content">
                         {/*<ul className="buttons ">*/}
