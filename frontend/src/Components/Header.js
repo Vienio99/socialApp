@@ -52,12 +52,12 @@ function Header(props) {
                                                         <div className="more-details">
                                                             <div className="more-details-inner">
                                                                 <h5 className="semi-bold fs-16">“Apple’s Motivation -
-                                                                    Innovation <br>
-                                                                        distinguishes between <br>
-                                                                        A leader and a follower.”</br></br></h5>
+                                                                    Innovation <br />
+                                                                        distinguishes between <br />
+                                                                        A leader and a follower.”</h5>
                                                                 <p className="small hint-text">
                                                                     Commented on john Smiths wall.
-                                                                    <br> via pages framework.</br>
+                                                                    <br /> via pages framework.
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -176,7 +176,7 @@ function Header(props) {
                                     </span>
                             </button>
                             <div className="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
-                                <a href="#" className="dropdown-item"><span>Signed in as <br/><b>David Aunsberg</b></span></a>
+                                <a href="#" className="dropdown-item"><span>Signed in as <br /><b>David Aunsberg</b></span></a>
                                 <div className="dropdown-divider"/>
                                 <a href="#" className="dropdown-item">Your Profile</a>
                                 <a href="#" className="dropdown-item">Your Activity</a>
@@ -188,7 +188,7 @@ function Header(props) {
                                 <a href="#" className="dropdown-item">Logout</a>
                                 <div className="dropdown-divider"/>
                                 <span
-                                    className="dropdown-item fs-12 hint-text">Last edited by David<br/>on Friday at 5:27PM</span>
+                                    className="dropdown-item fs-12 hint-text">Last edited by David<br />on Friday at 5:27PM</span>
                             </div>
                         </div>
                         {/*END User Info*/}
