@@ -41,11 +41,11 @@ function Post(props) {
                     <div className="card-footer clearfix">
                         <div className="time">Posted {post.pub_date} hours ago</div>
                         <ul className="reactions">
-                            <li><a href="#" className="d-flex align-items-center">5,345 <i
-                                className="pg-icon">comment_alt</i></a>
-                            </li>
                             <li><a href="#" className="d-flex align-items-center">23K <i
-                                className="pg-icon">heart</i></a>
+                                className="pg-icon">likes</i></a>
+                            </li>
+                            <li><a href="#" className="d-flex align-items-center">2<i
+                                className="pg-icon">comments</i></a>
                             </li>
                         </ul>
                     </div>
