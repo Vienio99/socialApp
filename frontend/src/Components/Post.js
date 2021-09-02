@@ -42,10 +42,10 @@ function Post(props) {
                         <div className="time">Posted {post.pub_date} hours ago</div>
                         <ul className="reactions">
                             <li><a href="#" className="d-flex align-items-center">23K <i
-                                className="pg-icon">likes</i></a>
+                                className="pg-icon">like</i></a>
                             </li>
                             <li><a href="#" className="d-flex align-items-center">2<i
-                                className="pg-icon">comments</i></a>
+                                className="pg-icon">comment</i></a>
                             </li>
                         </ul>
                     </div>

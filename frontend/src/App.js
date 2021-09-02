@@ -2,14 +2,16 @@ import './App.css';
 import React from "react";
 import Post from './Components/Post.js';
 import Header from './Components/Header.js';
+import Content from './Components/Content.js';
 
 function App() {
   return (
     <div className="App">
-        <header className="App-header">
+        <body className="fixed-header horizontal-menu horizontal-app-menu  pace-done">
             <Header />
-        </header>
-        <Post />
+            <Content />
+            <Post />
+        </body>
     </div>
   );
 }
