@@ -17,7 +17,7 @@ function Post(props) {
         fetchData();
     }, []);
     return (
-        <div>
+        <React.Fragment>
             {data.map(post => (
                 <div className="card social-card share share-other col1" data-social="item" key={post.id}>
                     <div data-toggle="tooltip" title="Label" data-container="body">
@@ -58,7 +58,7 @@ function Post(props) {
                     </div>
                 </div>
             ))}
-        </div>
+        </React.Fragment>
     );
 }
 
