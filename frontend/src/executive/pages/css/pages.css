@@ -13703,7 +13703,7 @@ input.list-view-search {
 ------------------------------------
 */
 .social-wrapper .social .jumbotron {
-  height: 60vh;
+  height: 20vh;
   padding-top: 0;
 }
 
@@ -16625,12 +16625,13 @@ Main components
   }
 }
 
-@media (max-width: 992px) {
-  .share-other .card-content {
-    height: 250px;
-    min-height: 250px;
-  }
-}
+/*Probably not needed*/
+/*@media (max-width: 992px) {*/
+/*  .share-other .card-content {*/
+/*    height: 100px;*/
+/*    min-height: 100px;*/
+/*  }*/
+/*}*/
 
 .widget-14 .row-xs-height:nth-child(1) {
   height: 30px;
