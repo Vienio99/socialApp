@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import PostForm from './PostForm';
 import Post from './Post.js';
+import Footer from "./Footer";
 
 function Content() {
     return (
@@ -15,7 +16,7 @@ function Content() {
                             <div className="jumbotron" data-social="cover" data-pages="parallax"
                                  data-scroll-element=".page-container">
                                 <div className="cover-photo">
-                                    <img alt="Cover photo" src="../executive/assets/img/social/cover.jpg"/>
+                                    <img alt="Cover photo" src=""/>
                                 </div>
                                 <div className="container container-fixed-lg sm-p-l-0 sm-p-r-0">
                                     <div className="inner">
@@ -44,6 +45,7 @@ function Content() {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         </div>
     );

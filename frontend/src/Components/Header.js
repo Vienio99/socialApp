@@ -1,7 +1,4 @@
-import {useEffect, useState} from 'react';
 import React from "react";
-import axios from 'axios';
-
 
 
 function Header(props) {
@@ -169,7 +166,7 @@ function Header(props) {
                             <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" aria-label="profile dropdown">
                         <span className="thumbnail-wrapper d32 circular inline">
-                                        <img src="assets/img/profiles/avatar.jpg" alt=""
+                                        <img src="" alt=""
                                              data-src="assets/img/profiles/avatar.jpg"
                                              data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="32" height="32"/>
                                     </span>
@@ -199,7 +196,7 @@ function Header(props) {
                 </div>
                 <div className="header-inner justify-content-start header-lg-height title-bar">
                     <div className="brand inline align-self-end">
-                        <img src="assets/img/logo_s.png" alt="logo" data-src="assets/img/logo_s.png"
+                        <img src="" alt="logo" data-src="assets/img/logo_s.png"
                              data-src-retina="assets/img/logo_s_2x.png" width="17" height="20"/>
                     </div>
                     <h2 className="page-title align-self-end">
