@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import PostForm from './PostForm';
 import Post from './Post.js';
 import Footer from "./Footer";
@@ -35,9 +35,6 @@ function Content() {
                                     <div className="day" data-social="day">
                                         <PostForm />
                                         {/*START ITEM*/}
-                                        <div className="card card-borderless no-border bg-transparent full-width"
-                                             data-social="item">
-                                        </div>
                                         <Post/>
                                     </div>
                                 </div>
