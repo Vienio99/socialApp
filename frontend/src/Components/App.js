@@ -1,7 +1,12 @@
-import './App.css';
 import React from "react";
-import Header from "./Components/Header";
-import Content from "./Components/Content";
+import Header from "./Header";
+import Content from "./Content";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
