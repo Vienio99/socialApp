@@ -16,7 +16,7 @@ function Content() {
                             <div className="jumbotron" data-social="cover" data-pages="parallax"
                                  data-scroll-element=".page-container">
                                 <div className="cover-photo">
-                                    <img alt="Cover photo" src=""/>
+                                    <img alt="Cover photo" src="../../public/executive/assets/img/hobby.jpg"/>
                                 </div>
                                 <div className="container container-fixed-lg sm-p-l-0 sm-p-r-0">
                                     <div className="inner">
@@ -34,7 +34,6 @@ function Content() {
                                     {/*START DAY*/}
                                     <div className="day" data-social="day">
                                         <PostForm />
-                                        {/*START ITEM*/}
                                         <Post/>
                                     </div>
                                 </div>

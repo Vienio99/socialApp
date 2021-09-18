@@ -41,7 +41,7 @@ function Post(props) {
                     <div className="card-footer clearfix">
                         <div className="time">Posted {post.pub_date} hours ago</div>
                         <ul className="reactions">
-                            <li><a href="#" className="d-flex align-items-center">23K <i
+                            <li><a href="#" className="d-flex align-items-center">23 <i
                                 className="pg-icon">like</i></a>
                             </li>
                             <li><a href="#" className="d-flex align-items-center">2<i
