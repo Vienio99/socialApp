@@ -1,6 +1,7 @@
 import React from "react";
 
 
+
 export default function UserInfo() {
     return (
         <div className="d-flex align-items-center">
@@ -11,9 +12,9 @@ export default function UserInfo() {
                 <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false" aria-label="profile dropdown">
                         <span className="thumbnail-wrapper d32 circular inline">
-                                        <img src="" alt=""
-                                             data-src="assets/img/profiles/avatar.jpg"
-                                             data-src-retina="assets/img/profiles/avatar_small2x.jpg"
+                                        <img src="executive/assets/img/profiles/d2x.jpg" alt=""
+                                             data-src="executive/assets/img/profiles/d2x.jpg"
+                                             data-src-retina="executive/assets/img/profiles/d2x.jpg"
                                              width="32"
                                              height="32"/>
                                     </span>
