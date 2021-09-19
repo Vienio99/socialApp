@@ -1,19 +1,11 @@
 import React from "react";
 import Header from "./Header";
 import Content from "./Content";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import HomeScreen from "../Screens/HomeScreen";
 
 function App() {
     return (
-        <React.Fragment>
-            <Header/>
-            <Content/>
-        </React.Fragment>
+        <HomeScreen />
     );
 }
 

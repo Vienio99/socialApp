@@ -20,8 +20,8 @@ function Header(props) {
                 </div>
                 <div className="header-inner justify-content-start header-lg-height title-bar">
                     <div className="brand inline align-self-end">
-                        <img src="" alt="logo" data-src="assets/img/logo_s.png"
-                             data-src-retina="assets/img/logo_s_2x.png" width="17" height="20"/>
+                        <img src="executive/assets/img/logo_s.png" alt="logo" data-src="executive/assets/img/logo_s.png"
+                             data-src-retina="executive/assets/img/logo_s_2x.png" width="17" height="20"/>
                     </div>
                     <h2 className="page-title align-self-end">
                         social

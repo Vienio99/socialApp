@@ -44,6 +44,8 @@ Generated From SASS
 */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600");
 @import url("https://keplerapis.com/fonts/css?family=Inter+UI:300,400,500,600");
+
+
 .pace .pace-progress {
   background: #19AD79;
   height: 3px;
@@ -19654,3 +19656,12 @@ Main components
     display: none;
   }
 }
+
+a { color:inherit } /* Globally */
+
+/* Each state */
+
+a:visited { text-decoration: none; color:inherit; }
+a:hover { text-decoration: none; color:inherit; }
+a:focus { text-decoration: none; color:inherit; }
+a:hover, a:active { text-decoration: none; color:inherit }
