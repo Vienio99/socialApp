@@ -1,12 +1,13 @@
 import React from "react";
+import Header from "../Components/Header";
 import Content from "../Components/Content";
 
-function HomeScreen() {
+function PostScreen() {
     return (
         <React.Fragment>
-            <Content/>
+            <div>Working</div>
         </React.Fragment>
     );
 }
 
-export default HomeScreen;
+export default PostScreen;

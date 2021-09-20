@@ -12,7 +12,7 @@ export default function UserInfo() {
                 <button className="profile-dropdown-toggle" type="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false" aria-label="profile dropdown">
                         <span className="thumbnail-wrapper d32 circular inline">
-                                        <img src="executive/assets/img/profiles/d2x.jpg" alt=""
+                                        <img src="/executive/assets/img/profiles/d2x.jpg" alt=""
                                              data-src="executive/assets/img/profiles/d2x.jpg"
                                              data-src-retina="executive/assets/img/profiles/d2x.jpg"
                                              width="32"

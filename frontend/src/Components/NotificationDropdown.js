@@ -101,7 +101,7 @@ export default function NotificationDropdown() {
                                                 <img width="30" height="30"
                                                      data-src-retina="assets/img/profiles/1x.jpg"
                                                      data-src="assets/img/profiles/1.jpg" alt=""
-                                                     src="executive/assets/img/profiles/1.jpg"/>
+                                                     src="/executive/assets/img/profiles/1.jpg"/>
                                             </div>
                                             <a href="#" className="text-complete pull-left">
                                                 <span className="bold">Revox Design Labs</span>

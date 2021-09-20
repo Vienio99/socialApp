@@ -34,7 +34,7 @@ function Content() {
                                     {/*START DAY*/}
                                     <div className="day" data-social="day">
                                         <PostForm />
-                                        <Post/>
+                                        <Post />
                                     </div>
                                 </div>
                             </div>
