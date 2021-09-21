@@ -6,7 +6,7 @@ Contains Widget related styles. These styles are not included in core Pages CSS 
 [Table of contents]
 
 1. MAP SALES
-2. TODO LIST
+2. TODODO LIST
 3. COMMENTS WIDGET
 4. Projects
 */
@@ -50,7 +50,7 @@ Contains Widget related styles. These styles are not included in core Pages CSS 
 /* END  MAP SALES */
 
 
-/* Start TODO LIST */
+/* Start TODODO LIST */
 .task{
 	cursor: pointer;
 }
@@ -108,7 +108,7 @@ http://codepen.io/EdenSG/pen/jPENoE
 .checkbox.text-center label::after{
 	left: 1.2px;
 }
-/* END TODO LIST */
+/* END TODODO LIST */
 
 /* Start COMMENTS WIDGET */
 .pending-comments-widget .widget-header {

@@ -1922,7 +1922,7 @@
         return Calendar._getDate(format);
     };
     PagesCalendar.prototype.destroy = function() {
-        //TODO
+        //TODODO
     };
     /** 
      * @function  

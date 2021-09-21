@@ -9,21 +9,21 @@ import {
 } from "react-router-dom";
 
 
-function Post(props) {
-    const [data, setData] = useState([]);
+function PostList(props) {
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchPosts = async () => {
             const response = await axios(
                 'http://127.0.0.1:8000/api/v1/post/'
             );
-            setData(response.data);
+            setPosts(response.data);
         };
-        fetchData();
+        fetchPosts();
     }, []);
     return (
         <React.Fragment>
-            {data.map(post => (
+            {posts.map(post => (
                 <div className="card social-card share share-other col1" data-social="item" key={post.id}>
                     <div data-toggle="tooltip" title="Label" data-container="body">
                     </div>
@@ -68,4 +68,4 @@ function Post(props) {
         </React.Fragment>
     );
 }
-export default Post;
+export default PostList;

@@ -1712,7 +1712,7 @@ TableTools.prototype = {
 			}
 		}
 
-		// Post-selection function
+		// PostList-selection function
 		if ( this.s.select.postSelected !== null )
 		{
 			this.s.select.postSelected.call( this, anSelected );
@@ -1761,7 +1761,7 @@ TableTools.prototype = {
 			}
 		}
 
-		// Post-deselection function
+		// PostList-deselection function
 		if ( this.s.select.postDeselected !== null )
 		{
 			this.s.select.postDeselected.call( this, anDeselectedTrs );

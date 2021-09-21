@@ -1,11 +1,14 @@
 import React from "react";
-import Header from "../Components/Header";
-import Content from "../Components/Content";
+import PostDetail from "../Components/PostDetail";
 
-function PostScreen() {
+//TO-DO - define prop types and read about it
+
+// eslint-disable-next-line react/prop-types
+function PostScreen({ match }) {
     return (
         <React.Fragment>
-            <div>Working</div>
+            {/* eslint-disable-next-line react/prop-types */}
+            <PostDetail id={match.params.id}/>
         </React.Fragment>
     );
 }

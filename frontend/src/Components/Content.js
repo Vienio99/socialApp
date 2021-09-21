@@ -1,6 +1,6 @@
 import React from 'react';
 import PostForm from './PostForm';
-import Post from './Post.js';
+import PostList from './PostList.js';
 import Footer from "./Footer";
 
 function Content() {
@@ -34,7 +34,7 @@ function Content() {
                                     {/*START DAY*/}
                                     <div className="day" data-social="day">
                                         <PostForm />
-                                        <Post />
+                                        <PostList />
                                     </div>
                                 </div>
                             </div>

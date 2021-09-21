@@ -388,7 +388,7 @@
 
         stopEventPropagation(e);
         $targetElement.focus();
-        setFocusStyle($targetElement, params.confirmButtonColor); // TODO
+        setFocusStyle($targetElement, params.confirmButtonColor); // TODODO
 
       } else {
         if (keyCode === 13 || keyCode === 32) {

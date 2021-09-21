@@ -4,7 +4,7 @@ nv.models.indentedTree = function() {
   // Public Variables with Default Settings
   //------------------------------------------------------------
 
-  var margin = {top: 0, right: 0, bottom: 0, left: 0} //TODO: implement, maybe as margin on the containing div
+  var margin = {top: 0, right: 0, bottom: 0, left: 0} //TODODO: implement, maybe as margin on the containing div
     , width = 960
     , height = 500
     , color = nv.utils.defaultColor()
@@ -13,9 +13,9 @@ nv.models.indentedTree = function() {
     , filterZero = false
     , noData = "No Data Available."
     , childIndent = 20
-    , columns = [{key:'key', label: 'Name', type:'text'}] //TODO: consider functions like chart.addColumn, chart.removeColumn, instead of a block like this
+    , columns = [{key:'key', label: 'Name', type:'text'}] //TODODO: consider functions like chart.addColumn, chart.removeColumn, instead of a block like this
     , tableClass = null
-    , iconOpen = 'images/grey-plus.png' //TODO: consider removing this and replacing with a '+' or '-' unless user defines images
+    , iconOpen = 'images/grey-plus.png' //TODODO: consider removing this and replacing with a '+' or '-' unless user defines images
     , iconClose = 'images/grey-minus.png'
     , dispatch = d3.dispatch('elementClick', 'elementDblclick', 'elementMouseover', 'elementMouseout')
     , getUrl = function(d) { return d.url }

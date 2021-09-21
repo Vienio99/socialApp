@@ -1342,7 +1342,7 @@
         return parseInt(p / 100 * 360);
     }
 
-    // TODO: Add API to change size, stroke width, color
+    // TODODO: Add API to change size, stroke width, color
 
 })(window.jQuery);
 
@@ -1498,7 +1498,7 @@
 
     Notification.prototype.show = function() {
 
-        // TODO: add fadeOut animation on show as option
+        // TODODO: add fadeOut animation on show as option
         this.wrapper.prepend(this.notification);
 
         this.options.onShown();
@@ -1957,7 +1957,7 @@
         this.$element = $(element);
         this.options = $.extend(true, {}, $.fn.parallax.defaults, options);
         this.$coverPhoto = this.$element.find('.cover-photo');
-        // TODO: rename .inner to .page-cover-content
+        // TODODO: rename .inner to .page-cover-content
         this.$content = this.$element.find('.inner');
 
         // if cover photo img is found make it a background-image

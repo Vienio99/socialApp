@@ -29,7 +29,7 @@
 
 			var _this = this;
 
-			// TODO: transition disabled for mobile (animation starts after touch end)
+			// TODODO: transition disabled for mobile (animation starts after touch end)
 	
 			// Dependency: stepsForm 
 			if (typeof stepsForm != 'undefined') {
