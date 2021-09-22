@@ -5791,7 +5791,7 @@
 
     _proto.setElementContent = function setElementContent($element, content) {
       if (typeof content === 'object' && (content.nodeType || content.jquery)) {
-        // Content is a DOM node or a jQuery
+        // Main is a DOM node or a jQuery
         if (this.config.html) {
           if (!$(content).parent().is($element)) {
             $element.empty().append(content);

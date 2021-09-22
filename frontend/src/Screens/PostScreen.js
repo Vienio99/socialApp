@@ -1,5 +1,6 @@
 import React from "react";
 import PostDetail from "../Components/PostDetail";
+import Main from "../Components/Main";
 
 //TO-DO - define prop types and read about it
 
@@ -8,7 +9,7 @@ function PostScreen({ match }) {
     return (
         <React.Fragment>
             {/* eslint-disable-next-line react/prop-types */}
-            <PostDetail id={match.params.id}/>
+            <Main content={<PostDetail id={match.params.id}/>} />
         </React.Fragment>
     );
 }

@@ -1,10 +1,18 @@
 import React from "react";
-import Content from "../Components/Content";
+import Main from "../Components/Main";
+import PostForm from "../Components/PostForm";
+import PostList from "../Components/PostList";
 
 function HomeScreen() {
+
+    const content = <React.Fragment>
+                        <PostForm/>
+                        <PostList/>
+                    </React.Fragment>;
+
     return (
         <React.Fragment>
-            <Content/>
+            <Main content={content}/>
         </React.Fragment>
     );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
-import PostForm from './PostForm';
-import PostList from './PostList.js';
 import Footer from "./Footer";
 
-function Content() {
+// eslint-disable-next-line react/prop-types
+function Main({ content }) {
+
     return (
         <div className="page-container ">
             {/*START PAGE CONTENT WRAPPER*/}
@@ -33,8 +33,7 @@ function Content() {
                                 <div className="feed">
                                     {/*START DAY*/}
                                     <div className="day" data-social="day">
-                                        <PostForm />
-                                        <PostList />
+                                        {content}
                                     </div>
                                 </div>
                             </div>
@@ -47,4 +46,4 @@ function Content() {
     );
 }
 
-export default Content;
+export default Main;

@@ -140,7 +140,7 @@ body.menu-pin .overlay .overlay-brand {
 }
 
 .page-container .page-content-wrapper .content {
-  /* Content holder */
+  /* Main holder */
   z-index: 10;
   padding-top: 60px;
   padding-bottom: 69px;
