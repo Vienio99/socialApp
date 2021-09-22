@@ -6,6 +6,9 @@ from .serializer import UserSerializer
 User = get_user_model()
 
 
+# TO-DO - change to viewsets
+# TO-DO - maybe change the way it parses data for user detail for perfomamnce boost?
+
 class UserList(ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -13,8 +16,8 @@ class UserList(ListCreateAPIView):
 
 
 class UserDetail(RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    lookup_field = 'username'
 
-    def get_queryset(self):
-        return User.objects.filter(id=self.kwargs.get('pk', None))

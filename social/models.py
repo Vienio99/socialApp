@@ -7,6 +7,7 @@ from users.models import CustomUser
 # Create your models here.
 
 # TO-DO - delete title field
+# TO-DO - make slugs for post field and use them as a link in react
 
 class Post(models.Model):
     author = models.ForeignKey(
