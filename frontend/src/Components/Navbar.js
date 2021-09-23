@@ -1,8 +1,5 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
 
@@ -17,22 +14,22 @@ export default function Navbar() {
                     <Link to="/">Dashboard</Link>
                 </li>
                 <li className=" active">
-                    <Link href="social.html">
+                    <Link to="/" href="social.html">
                         <span className="title">Newest</span>
                     </Link>
                 </li>
                 <li>
-                    <Link href="javascript:">
+                    <Link to="/" href="javascript:">
                         <span className="title">Hottest</span>
                     </Link>
                 </li>
                 <li>
-                    <Link href="javascript:">
+                    <Link to="/" href="javascript:">
                         <span className="title">Favorites</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="">
+                    <Link to="/">
                         <span className="title">Settings</span>
                     </Link>
                 </li>
@@ -41,31 +38,31 @@ export default function Navbar() {
                         <span className=" arrow"/></a>
                     <ul className="">
                         <li className="">
-                            <Link href="invoice.html">Invoice</Link>
+                            <Link to="/" href="invoice.html">Invoice</Link>
                         </li>
                         <li className="">
-                            <Link href="404.html">404 Page</Link>
+                            <Link to="/" href="404.html">404 Page</Link>
                         </li>
                         <li className="">
-                            <Link href="500.html">500 Page</Link>
+                            <Link to="/" href="500.html">500 Page</Link>
                         </li>
                         <li className="">
-                            <Link href="blank_template.html">Blank Page</Link>
+                            <Link to="/" href="blank_template.html">Blank Page</Link>
                         </li>
                         <li className="">
-                            <Link href="login.html">Login</Link>
+                            <Link to="/" href="login.html">Login</Link>
                         </li>
                         <li className="">
-                            <Link href="register.html">Register</Link>
+                            <Link to="/" href="register.html">Register</Link>
                         </li>
                         <li className="">
-                            <Link href="lock_screen.html">Lockscreen</Link>
+                            <Link to="/" href="lock_screen.html">Lockscreen</Link>
                         </li>
                         <li className="">
-                            <Link href="gallery.html">Gallery</Link>
+                            <Link to="/" href="gallery.html">Gallery</Link>
                         </li>
                         <li className="">
-                            <Link href="timeline.html">Timeline</Link>
+                            <Link to="/" href="timeline.html">Timeline</Link>
                         </li>
                     </ul>
                 </li>

@@ -1,18 +1,24 @@
 import React from "react";
 import Main from "../Components/Main";
 import UserDetail from "../Components/UserDetail";
+import PropTypes from 'prop-types';
 
-//TO-DO - define prop types and read about it
-//TO-DO - destructure 'match' more
 
-// eslint-disable-next-line react/prop-types
 function UserScreen({ match }) {
+    const { username } = match.params;
     return (
         <React.Fragment>
-            {/* eslint-disable-next-line react/prop-types */}
-            <Main content={<UserDetail username={match.params.username}/>} />
+            <Main content={<UserDetail username={username}/>} />
         </React.Fragment>
     );
 }
+
+UserScreen.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            username: PropTypes.string
+        })
+    })
+};
 
 export default UserScreen;

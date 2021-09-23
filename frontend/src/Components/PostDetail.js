@@ -2,15 +2,9 @@ import {useEffect, useState} from 'react';
 import React from "react";
 import axios from 'axios';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
-
-//TO-DO - ESLint: React Hook useEffect has a missing dependency: 'props.id'.
-// Either include it or remove the dependency array.(react-hooks/exhaustive-deps)
-// What does that mean????
+import PropTypes from "prop-types";
 
 function PostDetail(props) {
     const [post, setPost] = useState([]);
@@ -25,7 +19,7 @@ function PostDetail(props) {
         };
         fetchPost();
         // eslint-disable-next-line react/prop-types
-    }, []);
+    }, [props.id]);
     return (
         <React.Fragment>
             <div className="card social-card share share-other col1" data-social="item" key={post.id}>
@@ -71,5 +65,12 @@ function PostDetail(props) {
         </React.Fragment>
     );
 }
+
+
+PostDetail.propTypes = {
+    props: PropTypes.shape({
+        id: PropTypes.string
+    })
+};
 
 export default PostDetail;

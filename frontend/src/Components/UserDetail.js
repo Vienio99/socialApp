@@ -1,16 +1,7 @@
 import {useEffect, useState} from 'react';
 import React from "react";
 import axios from 'axios';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-
-//TO-DO - ESLint: React Hook useEffect has a missing dependency: 'props.id'.
-// Either include it or remove the dependency array.(react-hooks/exhaustive-deps)
-// What does that mean????
+import PropTypes from "prop-types";
 
 function UserDetail(props) {
     const [user, setUser] = useState([]);
@@ -25,12 +16,17 @@ function UserDetail(props) {
         };
         fetchUser();
         // eslint-disable-next-line react/prop-types
-    }, []);
+    }, [props.username]);
 
-    // eslint-disable-next-line react/prop-types
     return (
         <h1>{user.username}</h1>
     );
 }
+
+UserDetail.propTypes = {
+    props: PropTypes.shape({
+        username: PropTypes.object
+    })
+};
 
 export default UserDetail;
