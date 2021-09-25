@@ -6,7 +6,6 @@ from users.models import CustomUser
 
 # Create your models here.
 
-# TO-DO - delete title field
 # TO-DO - make slugs for post field and use them as a link in react
 
 class Post(models.Model):
@@ -14,12 +13,16 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    title = models.CharField(max_length=30)
     text = models.TextField()
-    pub_date = models.DateTimeField(default=timezone.now)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
+    tags = models.ManyToManyField(
+        'Tag',
+        blank=True
+    )
 
     def __str__(self):
-        return self.title
+        return self.text[:10]
 
 
 class Comment(models.Model):
@@ -27,17 +30,20 @@ class Comment(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    text = models.TextField()
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
     )
-    pub_date = models.DateTimeField(default=timezone.now)
+    text = models.TextField()
+    pub_date = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
 
-# TO-DO - make hashtags like on wykop
-# class Tag(models.Model):
-#     post = models.ForeignKey(
-#         PostList,
-#         on_delete=models.CASCADE,
-#     )
-#     title = models.CharField(max_length=30)
+    def __str__(self):
+        return self.text[:10]
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name

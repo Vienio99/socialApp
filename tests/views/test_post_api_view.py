@@ -13,14 +13,8 @@ class PostListApiViewTest(APITestCase):
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
         cls.notAuthor = User.objects.create_user(username='notAuthor', password='123')
-        cls.post = Post.objects.create(title='Fancy title for my post',
-                                       author=cls.user,
-                                       text='Hello guys',
-                                       )
-        cls.post2 = Post.objects.create(title='No title',
-                                        author=cls.user,
-                                        text='Hello girls',
-                                        )
+        cls.post = Post.objects.create(author=cls.user, text='Hello guys')
+        cls.post2 = Post.objects.create(author=cls.user, text='Hello girls',)
 
     def test_can_browse_all_posts(self):
         response = self.client.get('/api/v1/post/')
@@ -45,10 +39,7 @@ class PostDetailApiViewTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
-        cls.post = Post.objects.create(title='Fancy title for my post',
-                                       author=cls.user,
-                                       text='Hello guys',
-                                       )
+        cls.post = Post.objects.create(author=cls.user, text='Hello guys',)
 
     def test_can_read_a_specific_post(self):
         response = self.client.get(f'/api/v1/post/{self.post.pk}')
@@ -65,18 +56,16 @@ class PostDetailApiViewTest(APITestCase):
 
     def test_user_can_update_his_post(self):
         self.client.login(username='user1', password='secret')
-        response = self.client.put(f'/api/v1/post/{self.post.pk}', {'title': 'New fancy title',
-                                                                    'author': self.user.pk,
-                                                                    'text': 'Not hello'})
+        response = self.client.put(f'/api/v1/post/{self.post.pk}', {'author': self.user.pk,
+                                                                    'text': 'New fancy text'})
         self.assertEqual(response.status_code, 200)
         # Additional check if the post is really updated
-        updatedPost = Post.objects.get(title='New fancy title')
-        self.assertEqual(updatedPost.text, 'Not hello')
+        updatedPost = Post.objects.get(text='New fancy text')
+        self.assertEqual(updatedPost.text, 'New fancy text')
 
     def test_only_author_can_update_his_post(self):
         self.client.login(username='notAuthor', password='123')
-        response = self.client.put(f'/api/v1/post/{self.post.pk}', {'title': 'New fancy title',
-                                                                    'author': self.user.pk,
+        response = self.client.put(f'/api/v1/post/{self.post.pk}', {'author': self.user.pk,
                                                                     'text': 'Not hello'})
         self.assertEqual(response.status_code, 403)
 
@@ -87,25 +76,23 @@ class PostDetailApiViewTest(APITestCase):
 
     def test_can_create_new_post(self):
         data = {
-            'title': 'Hello not world',
             'author': self.user.pk,
             'text': 'Hello boys'
         }
         self.client.post('/api/v1/post/', data)
-        newPost = Post.objects.get(title='Hello not world')
+        newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data['title'], 'Hello not world')
+        self.assertEqual(response.data['text'], 'Hello boys')
 
     def test_created_post_has_proper_data(self):
         data = {
-            'title': 'Not world',
             'author': self.user.pk,
             'text': 'Hello boys'
         }
         self.client.post('/api/v1/post/', data)
-        newPost = Post.objects.get(title='Not world')
+        newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
 
-        self.assertEqual(response.data['title'], 'Not world')
+        self.assertEqual(response.data['text'], 'Hello boys')

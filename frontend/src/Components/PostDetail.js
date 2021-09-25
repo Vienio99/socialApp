@@ -12,13 +12,11 @@ function PostDetail(props) {
     useEffect(() => {
         const fetchPost = async () => {
             const response = await axios(
-                // eslint-disable-next-line react/prop-types
                 `http://127.0.0.1:8000/api/v1/post/${props.id}`
             );
             setPost(response.data);
         };
         fetchPost();
-        // eslint-disable-next-line react/prop-types
     }, [props.id]);
     return (
         <React.Fragment>
@@ -38,22 +36,20 @@ function PostDetail(props) {
                     {/*</ul>*/}
                     {/*<img alt="Quote" src="../assets/img/social/quote.jpg"/>*/}
                 </div>
-                <Link to={`/post/${post.id}`}>
-                    <div className="card-description">
-                        <p>{post.text}</p>
-                    </div>
-                    <div className="card-footer clearfix">
-                        <div className="time">Posted {post.pub_date} hours ago</div>
-                        <ul className="reactions">
-                            <li><a href="#" className="d-flex align-items-center">23 <i
-                                className="pg-icon">like</i></a>
-                            </li>
-                            <li><a href="#" className="d-flex align-items-center">2<i
-                                className="pg-icon">comment</i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </Link>
+                <div className="card-description">
+                    <p>{post.text}</p>
+                </div>
+                <div className="card-footer clearfix">
+                    <div className="time">Posted {post.pub_date} hours ago</div>
+                    <ul className="reactions">
+                        <li><a href="#" className="d-flex align-items-center">23 <i
+                            className="pg-icon">like</i></a>
+                        </li>
+                        <li><a href="#" className="d-flex align-items-center">2<i
+                            className="pg-icon">comment</i></a>
+                        </li>
+                    </ul>
+                </div>
                 <Link to={`/user/${post.author}`} className="card-header clearfix last">
                     {/*<div className="user-pic">*/}
                     {/*    <img alt="Profile Image" width="33" height="33" data-src-retina="assets/img/profiles/7x.jpg"*/}
@@ -68,9 +64,7 @@ function PostDetail(props) {
 
 
 PostDetail.propTypes = {
-    props: PropTypes.shape({
-        id: PropTypes.string
-    })
+    id: PropTypes.string
 };
 
 export default PostDetail;

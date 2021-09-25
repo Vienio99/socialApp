@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from social.models import Post, Comment
+from social.models import Post, Comment, Tag
 from django.utils import timezone
 
 User = get_user_model()
@@ -13,10 +13,10 @@ class PostModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create(username='user1')
-        cls.post = Post.objects.create(title='Fancy title for my post', author=cls.user, text='Hello guys', )
+        cls.post = Post.objects.create(author=cls.user, text='Hello guys', likes=4)
 
-    def test_post_has_proper_title(self):
-        self.assertEqual(self.post.title, 'Fancy title for my post')
+    def test_post_has_proper_amount_of_likes(self):
+        self.assertEqual(self.post.likes, 4)
 
     def test_post_has_proper_author(self):
         self.assertEqual(self.post.author.username, 'user1')
@@ -36,10 +36,7 @@ class CommentModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create(username='user1')
-        cls.post = Post.objects.create(title='Fancy title for my post',
-                                       author=cls.user,
-                                       text='Hello guys',
-                                       )
+        cls.post = Post.objects.create(author=cls.user, text='Hello guys')
         cls.comment = Comment.objects.create(author=cls.user, text='Hello', post=cls.post)
 
     def test_comment_has_proper_text(self):
@@ -67,3 +64,9 @@ class UserModelTest(TestCase):
 
     def test_user_has_proper_hobby(self):
         self.assertEqual(self.user.hobby, 'tennis')
+
+class TagModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.tag = Tag.objects.create()

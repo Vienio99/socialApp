@@ -13,10 +13,7 @@ class CommentListApiViewTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
-        cls.post = Post.objects.create(title='Fancy title for my post',
-                                       author=cls.user,
-                                       text='Hello guys',
-                                       )
+        cls.post = Post.objects.create(author=cls.user,text='Hello guys')
         cls.notAuthor = User.objects.create_user(username='notAuthor', password='123')
         Comment.objects.create(author=cls.user, text='Hello', post=cls.post)
         Comment.objects.create(author=cls.user, text='Not world', post=cls.post)
@@ -41,10 +38,7 @@ class CommentDetailApiViewTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
-        cls.post = Post.objects.create(title='Fancy title for my post',
-                                       author=cls.user,
-                                       text='Hello guys',
-                                       )
+        cls.post = Post.objects.create(author=cls.user, text='Hello guys')
         cls.comment = Comment.objects.create(author=cls.user, text='Hello', post=cls.post)
 
     def test_can_read_a_specific_comment(self):
