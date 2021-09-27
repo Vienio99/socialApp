@@ -3,6 +3,8 @@ from rest_framework import serializers
 from social.models import Post
 
 
+# TO-DO - change that pub_date display
+
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post

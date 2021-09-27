@@ -39,7 +39,7 @@ class PostDetailApiViewTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
-        cls.post = Post.objects.create(author=cls.user, text='Hello guys',)
+        cls.post = Post.objects.create(author=cls.user, text='Hello guys')
 
     def test_can_read_a_specific_post(self):
         response = self.client.get(f'/api/v1/post/{self.post.pk}')

@@ -1,7 +1,5 @@
 from django.db import models
-from django.utils import timezone
 from social_project import settings
-from users.models import CustomUser
 
 
 # Create your models here.

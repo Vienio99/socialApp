@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from social.models import Tag
 
 
-# Create your models here.
-
-# TO-DO - delete hobby field and add tags instead
 class CustomUser(AbstractUser):
+    img = models.ImageField(null=True, blank=True)
     age = models.PositiveIntegerField(null=True, blank=True)
-    hobby = models.CharField(blank=True, max_length=50)
+    tags = models.ManyToManyField(
+        Tag,
+        blank=True
+    )
