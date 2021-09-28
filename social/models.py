@@ -4,7 +4,7 @@ from social_project import settings
 
 # Create your models here.
 
-# TO-DO - make slugs for post field and use them as a link in react
+# TO-DO: make slugs for post field and use them as a link in react
 
 class Post(models.Model):
     author = models.ForeignKey(
@@ -13,7 +13,7 @@ class Post(models.Model):
     )
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0, blank=True, null=True)
     tags = models.ManyToManyField(
         'Tag',
         blank=True
@@ -34,7 +34,7 @@ class Comment(models.Model):
     )
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0, blank=True, null=True)
 
     def __str__(self):
         return self.text[:10]

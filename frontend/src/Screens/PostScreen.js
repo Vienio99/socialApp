@@ -1,17 +1,24 @@
 import React from "react";
 import PostDetail from "../Components/PostDetail";
 import Main from "../Components/Main";
+import PropTypes from "prop-types";
 
-//TO-DO - define prop types and read about it
 
-// eslint-disable-next-line react/prop-types
 function PostScreen({ match }) {
+    const { id } = match.params;
     return (
         <React.Fragment>
-            {/* eslint-disable-next-line react/prop-types */}
-            <Main content={<PostDetail id={match.params.id}/>} />
+            <Main content={<PostDetail id={id}/>} />
         </React.Fragment>
     );
 }
+
+PostScreen.propTypes = {
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.number
+        })
+    })
+};
 
 export default PostScreen;

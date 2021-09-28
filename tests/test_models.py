@@ -63,16 +63,20 @@ class CommentModelTest(TestCase):
 
 class UserModelTest(TestCase):
 
+    tag = None
+    user = None
+
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create(username='user1', age=10)
+        cls.tag = Tag.objects.create(name='#hiking')
+        cls.user.tags.set([cls.tag])
 
     def test_user_has_proper_age(self):
         self.assertEqual(self.user.age, 10)
 
-    # TO-DO - make tests for tags
-    # def test_user_has_proper_tags(self):
-    #     self.assertEqual(, 'tennis')
+    def test_user_has_proper_tags(self):
+        self.assertEqual(self.user.tags.get(pk=self.tag.pk).name, '#hiking')
 
 
 class TagModelTest(TestCase):

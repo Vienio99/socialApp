@@ -93,7 +93,6 @@ DATABASES = {
         'TEST': {
             'NAME': 'mytestdatabase',
         },
-        'DISABLE_SERVER_SIDE_CURSORS': True,
     }
 }
 
@@ -147,4 +146,3 @@ AUTH_USER_MODEL = 'users.CustomUser'
 REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
-

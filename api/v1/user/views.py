@@ -6,8 +6,8 @@ from .serializer import UserSerializer
 User = get_user_model()
 
 
-# TO-DO - change to viewsets
-# TO-DO - maybe change the way it parses data for user detail for perfomamnce boost?
+# TO-DO: change to viewsets
+# TO-DO: maybe change the way it parses data for user detail for perfomamnce boost?
 
 class UserList(ListCreateAPIView):
     queryset = User.objects.all()

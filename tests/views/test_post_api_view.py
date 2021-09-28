@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework.test import APITestCase
 from api.v1.post.serializer import PostSerializer
-from social.models import Post
+from social.models import Post, Tag
 
 User = get_user_model()
 
@@ -14,7 +14,7 @@ class PostListApiViewTest(APITestCase):
         cls.user = User.objects.create_user(username='user1', password='secret')
         cls.notAuthor = User.objects.create_user(username='notAuthor', password='123')
         cls.post = Post.objects.create(author=cls.user, text='Hello guys')
-        cls.post2 = Post.objects.create(author=cls.user, text='Hello girls',)
+        cls.post2 = Post.objects.create(author=cls.user, text='Hello girls')
 
     def test_can_browse_all_posts(self):
         response = self.client.get('/api/v1/post/')
@@ -40,6 +40,7 @@ class PostDetailApiViewTest(APITestCase):
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
         cls.post = Post.objects.create(author=cls.user, text='Hello guys')
+        cls.tag = Tag.objects.create(name='#hiking')
 
     def test_can_read_a_specific_post(self):
         response = self.client.get(f'/api/v1/post/{self.post.pk}')
@@ -77,7 +78,8 @@ class PostDetailApiViewTest(APITestCase):
     def test_can_create_new_post(self):
         data = {
             'author': self.user.pk,
-            'text': 'Hello boys'
+            'text': 'Hello boys',
+            'tags': ['#hiking']
         }
         self.client.post('/api/v1/post/', data)
         newPost = Post.objects.get(text='Hello boys')
@@ -89,7 +91,8 @@ class PostDetailApiViewTest(APITestCase):
     def test_created_post_has_proper_data(self):
         data = {
             'author': self.user.pk,
-            'text': 'Hello boys'
+            'text': 'Hello boys',
+            'tags': [self.tag.pk]
         }
         self.client.post('/api/v1/post/', data)
         newPost = Post.objects.get(text='Hello boys')
