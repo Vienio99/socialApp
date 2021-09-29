@@ -79,7 +79,7 @@ class PostDetailApiViewTest(APITestCase):
         data = {
             'author': self.user.pk,
             'text': 'Hello boys',
-            'tags': ['#hiking']
+            'tags': [{'name': '#hiking'}]
         }
         self.client.post('/api/v1/post/', data)
         newPost = Post.objects.get(text='Hello boys')

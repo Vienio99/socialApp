@@ -7,6 +7,7 @@ from social.models import Post, Tag
 # TO-DO: change that pub_date display
 # TO-DO: change to viewsets
 # TO-DO: fix the issue with making post request
+# TO-DO: if statement to check if there is already tag with that name
 
 class PostSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True)
@@ -17,9 +18,11 @@ class PostSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         tags_data = validated_data.pop('tags')
-        post = Post.objects.create(**validated_data)
+        post = Post.objects.create(text=validated_data['text'], author=validated_data['author'])
         for tag_data in tags_data:
-            Tag.objects.create(**tag_data)
+            if not Tag.objects.filter(name=tag_data['name']):
+                tag = Tag.objects.create(name=tag_data['name'])
+                post.tags.add(tag)
         return post
 
     def to_representation(self, instance):
