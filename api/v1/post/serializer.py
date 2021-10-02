@@ -8,6 +8,7 @@ from social.models import Post, Tag
 # TO-DO: change to viewsets
 # TO-DO: fix the issue with making post request
 # TO-DO: if statement to check if there is already tag with that name
+# TO-DO: update function so user can use put method
 
 class PostSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True)
@@ -22,7 +23,10 @@ class PostSerializer(serializers.ModelSerializer):
         for tag_data in tags_data:
             if not Tag.objects.filter(name=tag_data['name']):
                 tag = Tag.objects.create(name=tag_data['name'])
-                post.tags.add(tag)
+                post.tags.set(tag)
+            else:
+                tag = Tag.objects.filter(name=tag_data['name'])
+                post.tags.set(tag)
         return post
 
     def to_representation(self, instance):

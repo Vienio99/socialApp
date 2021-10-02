@@ -7,13 +7,17 @@ User = get_user_model()
 
 
 class PostListApiViewTest(APITestCase):
+    post = None
+    tag = None
     user = None
 
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
         cls.notAuthor = User.objects.create_user(username='notAuthor', password='123')
+        cls.tag = Tag.objects.create(name='#running')
         cls.post = Post.objects.create(author=cls.user, text='Hello guys')
+        cls.post.tags.set([cls.tag])
         cls.post2 = Post.objects.create(author=cls.user, text='Hello girls')
 
     def test_can_browse_all_posts(self):
@@ -57,8 +61,11 @@ class PostDetailApiViewTest(APITestCase):
 
     def test_user_can_update_his_post(self):
         self.client.login(username='user1', password='secret')
+
         response = self.client.put(f'/api/v1/post/{self.post.pk}', {'author': self.user.pk,
-                                                                    'text': 'New fancy text'})
+                                                                    'text': 'New fancy text',
+                                                                    'tags': [{'name': '#hiking'}]})
+        print(response.content)
         self.assertEqual(response.status_code, 200)
         # Additional check if the post is really updated
         updatedPost = Post.objects.get(text='New fancy text')
@@ -92,10 +99,11 @@ class PostDetailApiViewTest(APITestCase):
         data = {
             'author': self.user.pk,
             'text': 'Hello boys',
-            'tags': [self.tag.pk]
+            'tags': [{'name': self.tag.name}]
         }
         self.client.post('/api/v1/post/', data)
         newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
 
         self.assertEqual(response.data['text'], 'Hello boys')
+        self.assertEqual(response.data['tags'][0]['name'], self.tag.name)
