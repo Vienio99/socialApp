@@ -64,12 +64,15 @@ class PostDetailApiViewTest(APITestCase):
 
         response = self.client.put(f'/api/v1/post/{self.post.pk}', {'author': self.user.pk,
                                                                     'text': 'New fancy text',
-                                                                    'tags': [{'name': '#hiking'}]})
-        print(response.content)
+                                                                    'tags': [{'name': '#hiking'}, {'name': '#driving'}]
+                                                                    })
         self.assertEqual(response.status_code, 200)
         # Additional check if the post is really updated
         updatedPost = Post.objects.get(text='New fancy text')
-        self.assertEqual(updatedPost.text, 'New fancy text')
+        updatedPostGetRequest = self.client.get(f'/api/v1/post/{updatedPost.pk}')
+        self.assertEqual(updatedPostGetRequest.data['text'], 'New fancy text')
+        self.assertEqual(updatedPostGetRequest.data['tags'][0]['name'], '#hiking')
+        self.assertEqual(updatedPostGetRequest.data['tags'][1]['name'], '#driving')
 
     def test_only_author_can_update_his_post(self):
         self.client.login(username='notAuthor', password='123')
@@ -86,7 +89,7 @@ class PostDetailApiViewTest(APITestCase):
         data = {
             'author': self.user.pk,
             'text': 'Hello boys',
-            'tags': [{'name': '#hiking'}]
+            'tags': [{'name': '#walking'}, {'name': '#football'}]
         }
         self.client.post('/api/v1/post/', data)
         newPost = Post.objects.get(text='Hello boys')
@@ -99,11 +102,12 @@ class PostDetailApiViewTest(APITestCase):
         data = {
             'author': self.user.pk,
             'text': 'Hello boys',
-            'tags': [{'name': self.tag.name}]
+            'tags': [{'name': '#walking'}, {'name': '#football'}]
         }
         self.client.post('/api/v1/post/', data)
         newPost = Post.objects.get(text='Hello boys')
-        response = self.client.get(f'/api/v1/post/{newPost.pk}')
+        newPostGetRequest = self.client.get(f'/api/v1/post/{newPost.pk}')
 
-        self.assertEqual(response.data['text'], 'Hello boys')
-        self.assertEqual(response.data['tags'][0]['name'], self.tag.name)
+        self.assertEqual(newPostGetRequest.data['text'], 'Hello boys')
+        self.assertEqual(newPostGetRequest.data['tags'][0]['name'], '#walking')
+        self.assertEqual(newPostGetRequest.data['tags'][1]['name'], '#football')

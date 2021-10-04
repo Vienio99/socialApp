@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from social.models import Tag
 
 
-# TO-DO: make images work
+# TO-DO - make images work
 class CustomUser(AbstractUser):
     img = models.ImageField(null=True, blank=True)
     age = models.PositiveIntegerField(null=True, blank=True)

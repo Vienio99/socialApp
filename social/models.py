@@ -4,7 +4,7 @@ from social_project import settings
 
 # Create your models here.
 
-# TO-DO: make slugs for post field and use them as a link in react
+# TO-DO - make slugs for post field and use them as a link in react
 
 class Post(models.Model):
     author = models.ForeignKey(
