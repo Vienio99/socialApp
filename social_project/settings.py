@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social.apps.SocialConfig',
     'corsheaders',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

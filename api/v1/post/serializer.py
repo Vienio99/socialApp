@@ -1,4 +1,4 @@
-from django.utils import timezone
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from api.v1.tag.serializer import TagSerializer
 from social.models import Post, Tag
@@ -44,5 +44,5 @@ class PostSerializer(serializers.ModelSerializer):
         rep['author'] = instance.author.username
 
         # Display date in hours
-        rep['pub_date'] = round((((timezone.now() - instance.pub_date).seconds / 24) / 24))
+        rep['pub_date'] = naturaltime(instance.pub_date)
         return rep

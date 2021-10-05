@@ -1,4 +1,8 @@
+import datetime
+from time import sleep
+
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from rest_framework.test import APITestCase
 from api.v1.post.serializer import PostSerializer
 from social.models import Post, Tag
@@ -35,10 +39,7 @@ class PostListApiViewTest(APITestCase):
 
 class PostDetailApiViewTest(APITestCase):
     user = None
-
-    def __init__(self, methodName: str = ...):
-        super().__init__(methodName)
-        self.post2 = None
+    post2 = None
 
     @classmethod
     def setUpTestData(cls):
@@ -93,21 +94,13 @@ class PostDetailApiViewTest(APITestCase):
         }
         self.client.post('/api/v1/post/', data)
         newPost = Post.objects.get(text='Hello boys')
-        response = self.client.get(f'/api/v1/post/{newPost.pk}')
+        newPostGetResponse = self.client.get(f'/api/v1/post/{newPost.pk}')
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data['text'], 'Hello boys')
+        self.assertEqual(newPostGetResponse.status_code, 200)
+        self.assertEqual(newPostGetResponse.data['text'], 'Hello boys')
+        self.assertEqual(newPostGetResponse.data['tags'][0]['name'], '#walking')
+        self.assertEqual(newPostGetResponse.data['tags'][1]['name'], '#football')
 
-    def test_created_post_has_proper_data(self):
-        data = {
-            'author': self.user.pk,
-            'text': 'Hello boys',
-            'tags': [{'name': '#walking'}, {'name': '#football'}]
-        }
-        self.client.post('/api/v1/post/', data)
-        newPost = Post.objects.get(text='Hello boys')
-        newPostGetRequest = self.client.get(f'/api/v1/post/{newPost.pk}')
-
-        self.assertEqual(newPostGetRequest.data['text'], 'Hello boys')
-        self.assertEqual(newPostGetRequest.data['tags'][0]['name'], '#walking')
-        self.assertEqual(newPostGetRequest.data['tags'][1]['name'], '#football')
+    def test_created_post_has_proper_pub_date(self):
+        response = self.client.get(f'/api/v1/post/{self.post.pk}')
+        self.assertEqual(response.data['pub_date'], 'now')

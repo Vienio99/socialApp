@@ -45,7 +45,7 @@ function PostList(props) {
                             <p>{post.text}</p>
                         </div>
                         <div className="card-footer clearfix">
-                            <div className="time">Posted {post.pub_date} hours ago</div>
+                            <div className="time">Posted {post.pub_date}</div>
                             <ul className="reactions">
                                 <li><a href="#" className="d-flex align-items-center">23 <i
                                     className="pg-icon">like</i></a>
