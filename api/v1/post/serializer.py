@@ -21,26 +21,19 @@ class PostSerializer(serializers.ModelSerializer):
         post = Post.objects.create(text=validated_data['text'], author=validated_data['author'])
         for tag_data in tags_data:
             if not Tag.objects.filter(name=tag_data['name']):
-                new_tag = Tag.objects.create(name=tag_data['name'])
-                tag = Tag.objects.get(name=new_tag)
-                post.tags.add(tag.id)
-            else:
-                tag = Tag.objects.get(name=tag_data['name'])
-                post.tags.add(tag.id)
+                Tag.objects.create(name=tag_data['name'])
+            tag = Tag.objects.get(name=tag_data['name'])
+            post.tags.add(tag.id)
+
         return post
 
     def update(self, instance, validated_data):
-
         tags_data = validated_data.pop('tags')
-
         for tag_data in tags_data:
             if not Tag.objects.filter(name=tag_data['name']):
-                new_tag = Tag.objects.create(name=tag_data['name'])
-                tag = Tag.objects.get(name=new_tag)
-                instance.tags.add(tag.id)
-            else:
-                tag = Tag.objects.get(name=tag_data['name'])
-                instance.tags.add(tag.id)
+                Tag.objects.create(name=tag_data['name'])
+            tag = Tag.objects.get(name=tag_data['name'])
+            instance.tags.add(tag.id)
         instance.text = validated_data.get('text', instance.text)
         instance.save()
 
