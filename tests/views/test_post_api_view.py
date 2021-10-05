@@ -1,8 +1,4 @@
-import datetime
-from time import sleep
-
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 from rest_framework.test import APITestCase
 from api.v1.post.serializer import PostSerializer
 from social.models import Post, Tag

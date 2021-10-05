@@ -42,7 +42,7 @@ function PostDetail(props) {
                 <div className="card-footer clearfix">
                     <div className="time">Posted {post.pub_date}</div>
                     <ul className="reactions">
-                        <li><a href="#" className="d-flex align-items-center">23 <i
+                        <li><a href="#" className="d-flex align-items-center">{post.likes} <i
                             className="pg-icon">like</i></a>
                         </li>
                         <li><a href="#" className="d-flex align-items-center">2<i
