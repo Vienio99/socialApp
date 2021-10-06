@@ -11,3 +11,4 @@ class CustomUser(AbstractUser):
         Tag,
         blank=True
     )
+    created_at = models.DateTimeField(auto_now_add=True)

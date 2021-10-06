@@ -11,6 +11,7 @@ import {
 
 function PostList(props) {
     const [posts, setPosts] = useState([]);
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -19,8 +20,18 @@ function PostList(props) {
             );
             setPosts(response.data);
         };
+
+        const fetchComments = async() => {
+            const response = await axios(
+                'http://127.0.0.1:8000/api/v1/comment/'
+            );
+            setComments(response.data);
+        };
         fetchPosts();
+        fetchComments();
     }, []);
+
+    console.log("Comments: " + comments);
     return (
         <React.Fragment>
             {posts.map(post => (

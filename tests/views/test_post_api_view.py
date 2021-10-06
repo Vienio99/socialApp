@@ -5,6 +5,8 @@ from social.models import Post, Tag
 
 User = get_user_model()
 
+# TO-DO - divide tests
+
 
 class PostListApiViewTest(APITestCase):
     post = None
@@ -100,3 +102,24 @@ class PostDetailApiViewTest(APITestCase):
     def test_created_post_has_proper_pub_date(self):
         response = self.client.get(f'/api/v1/post/{self.post.pk}')
         self.assertEqual(response.data['pub_date'], 'now')
+
+    def test_post_has_proper_amount_of_likes(self):
+        data = {
+            'author': self.user.pk,
+            'text': 'Hello boys',
+            'tags': [{'name': '#walking'}, {'name': '#football'}]
+        }
+        self.client.post('/api/v1/post/', data)
+        newPost = Post.objects.get(text='Hello boys')
+        newPostGetResponse = self.client.get(f'/api/v1/post/{newPost.pk}')
+        self.assertEqual(newPostGetResponse.data['likes'], 0)
+
+    def test_post_does_not_require_tags(self):
+        data = {
+            'author': self.user.pk,
+            'text': 'Hello boys',
+            'tags': []
+        }
+        response = self.client.post('/api/v1/post/', data)
+        self.assertEqual(response.status_code, 201)
+
