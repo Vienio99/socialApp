@@ -61,19 +61,30 @@ function PostList(props) {
                                 <li><a href="#" className="d-flex align-items-center">{post.likes} <i
                                     className="pg-icon">like</i></a>
                                 </li>
-                                <li><a href="#" className="d-flex align-items-center">2<i
-                                    className="pg-icon">comment</i></a>
+                                <li><a href="#" className="d-flex align-items-center">
+                                    {comments.filter(comment => comment.post === post.id).length}
+                                    <i className="pg-icon">comment</i>
+                                    </a>
                                 </li>
-                            </ul>
+                            </ul><br />
+
                         </div>
                     </Link>
-                    <Link to={`/user/${post.author}`} className="card-header clearfix last">
-                        {/*<div className="user-pic">*/}
-                        {/*    <img alt="Profile Image" width="33" height="33" data-src-retina="assets/img/profiles/7x.jpg"*/}
-                        {/*         data-src="assets/img/profiles/7.jpg" src="../assets/img/profiles/7x.jpg"/>*/}
-                        {/*</div>*/}
-                        <h5>{post.author}</h5>
-                    </Link>
+                                                <Link to={`/user/${post.author}`} className="card-header clearfix last">
+                                <div className="user-pic">
+                                    <img alt="Profile Image" width="33" height="33"
+                                         data-src-retina="/executive/assets/img/profiles/7x.jpg"
+                                         data-src="/executive/assets/img/profiles/7x.jpg"
+                                         src="/executive/assets/img/profiles/7x.jpg"/>
+                                </div>
+                                <h5>{post.author}</h5>
+                            </Link>
+                    {comments.filter(comment => comment.post === post.id).map(comment => (
+                        <div className="card-header clearfix last" key={comment.id}>
+                            {comment.text}<br /><br />
+                            <h5>{comment.author}</h5>
+                        </div>
+                    ))}
                 </div>
             ))}
         </React.Fragment>

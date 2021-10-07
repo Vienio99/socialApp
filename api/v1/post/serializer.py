@@ -15,8 +15,6 @@ class PostSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def create(self, validated_data):
-        # if 'likes' not in validated_data:
-        #     validated_data['likes'] = 0
         post = Post.objects.create(text=validated_data['text'],
                                    author=validated_data['author'])
         tags_data = validated_data.pop('tags')

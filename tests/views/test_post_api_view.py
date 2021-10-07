@@ -96,23 +96,13 @@ class PostDetailApiViewTest(APITestCase):
 
         self.assertEqual(newPostGetResponse.status_code, 200)
         self.assertEqual(newPostGetResponse.data['text'], 'Hello boys')
+        self.assertEqual(newPostGetResponse.data['likes'], 0)
         self.assertEqual(newPostGetResponse.data['tags'][0]['name'], '#walking')
         self.assertEqual(newPostGetResponse.data['tags'][1]['name'], '#football')
 
     def test_created_post_has_proper_pub_date(self):
         response = self.client.get(f'/api/v1/post/{self.post.pk}')
         self.assertEqual(response.data['pub_date'], 'now')
-
-    def test_post_has_proper_amount_of_likes(self):
-        data = {
-            'author': self.user.pk,
-            'text': 'Hello boys',
-            'tags': [{'name': '#walking'}, {'name': '#football'}]
-        }
-        self.client.post('/api/v1/post/', data)
-        newPost = Post.objects.get(text='Hello boys')
-        newPostGetResponse = self.client.get(f'/api/v1/post/{newPost.pk}')
-        self.assertEqual(newPostGetResponse.data['likes'], 0)
 
     def test_post_does_not_require_tags(self):
         data = {
@@ -122,4 +112,7 @@ class PostDetailApiViewTest(APITestCase):
         }
         response = self.client.post('/api/v1/post/', data)
         self.assertEqual(response.status_code, 201)
+    #
+    # def test_authenticated_users_can_like_post(self):
+
 
