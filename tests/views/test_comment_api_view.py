@@ -92,6 +92,6 @@ class CommentDetailApiViewTest(APITestCase):
             'post': self.post.pk,
         }
         response = self.client.post('/api/v1/comment/', data)
-        self.assertEqual(response.data['author'], self.user.pk)
+        self.assertEqual(response.data['author'], self.user.username)
         self.assertEqual(response.data['text'], 'Fancy text')
         self.assertEqual(response.data['post'], self.post.pk)

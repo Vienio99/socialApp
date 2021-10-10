@@ -38,7 +38,7 @@
 									_this.$status.find('.status-form-inner').addClass('hide');
 									// form.submit()
 									// show success message
-									_this.$status.find('.final-message').html('<i class="pg-icon m-r-5">tick_circle</i> Status updated').addClass('d-flex visible')
+									_this.$status.find('.final-message').html('<i class="pg-icon m-r-5">tick_circle</i> Posted!').addClass('d-flex visible')
 							}
 					});
 

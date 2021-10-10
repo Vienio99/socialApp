@@ -31,7 +31,6 @@ function PostList(props) {
         fetchComments();
     }, []);
 
-    console.log("Comments: " + comments);
     return (
         <React.Fragment>
             {posts.map(post => (
