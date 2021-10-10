@@ -1,7 +1,7 @@
 import React from "react";
 import Main from "../Components/Main";
-import PostForm from "../Components/PostForm";
-import PostList from "../Components/PostList";
+import PostForm from "../Components/Post/PostForm";
+import PostList from "../Components/Post/PostList";
 
 function HomeScreen() {
 

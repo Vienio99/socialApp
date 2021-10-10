@@ -1,5 +1,5 @@
 import React from "react";
-import PostDetail from "../Components/PostDetail";
+import PostDetail from "../Components/Post/PostDetail";
 import Main from "../Components/Main";
 import PropTypes from "prop-types";
 

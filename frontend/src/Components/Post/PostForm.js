@@ -13,6 +13,10 @@ function PostForm() {
                               <label htmlFor="status-q1">What's on your mind?</label>
                           </span>
                         <input id="status-q1" name="q1" type="text"/>
+                        <span>
+                            <label htmlFor="tags">Tags</label>
+                        </span>
+                        <input id="tags" name="tags" type="text"/>
                     </li>
                 </ol>
                 {/*/questions*/}
