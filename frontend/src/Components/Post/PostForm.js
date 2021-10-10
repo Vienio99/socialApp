@@ -3,15 +3,24 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 
 //TO-DO - handle improper tags f.e. without hash-tags etc.
+//TO-DO - fix problem with controls classname
+//TO-DO - display error message below input fields
 
 function PostForm() {
     const [text, setText] = useState('');
     const [tags, setTags] = useState('');
 
-    console.log(text);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(e);
+        axios.post('http://127.0.0.1:8000/api/v1/post/',
+                    { author: 1, text: text, tags: tags },
+                    {  }).then(response => {console.log(response);});
+    };
+
     return (
     <div className="card social-card col2 padding-20" data-social="item">
-        <form className="simform no-margin" autoComplete="off" data-social="status">
+        <form className="simform no-margin" autoComplete="off" data-social="status" onSubmit={e => handleSubmit(e)}>
             <div className="status-form-inner">
                 <ol className="questions">
                     <li className="current">
@@ -28,15 +37,15 @@ function PostForm() {
                 </ol>
                 {/*/questions*/}
                 <button aria-label="" className="submit" type="submit">Send answers</button>
-                <div className="controls">
-                    <button aria-label="" className="next"/>
-                    <div className="progress"/>
-                    <span className="number">
-                        <span className="number-current"/>
-                                <span className="number-total"/>
-                        </span>
-                    <span className="error-message"/>
-                </div>
+                {/*<div className="controls">*/}
+                {/*    <button aria-label="" className="next"/>*/}
+                {/*    <div className="progress"/>*/}
+                {/*    <span className="number">*/}
+                {/*        <span className="number-current"/>*/}
+                {/*                <span className="number-total"/>*/}
+                {/*        </span>*/}
+                {/*    <span className="error-message"/>*/}
+                {/*</div>*/}
             </div>
             {/*simform-inner*/}
             <span className="final-message"/>
