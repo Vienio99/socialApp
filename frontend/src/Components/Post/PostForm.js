@@ -14,7 +14,7 @@ function PostForm() {
         e.preventDefault();
         console.log(e);
         axios.post('http://127.0.0.1:8000/api/v1/post/',
-                    { author: 1, text: text, tags: tags },
+                    { author: 1, text: text, tags: [] },
                     {  }).then(response => {console.log(response);});
     };
 
@@ -36,16 +36,16 @@ function PostForm() {
                     </li>
                 </ol>
                 {/*/questions*/}
-                <button aria-label="" className="submit" type="submit">Send answers</button>
-                {/*<div className="controls">*/}
-                {/*    <button aria-label="" className="next"/>*/}
-                {/*    <div className="progress"/>*/}
-                {/*    <span className="number">*/}
-                {/*        <span className="number-current"/>*/}
-                {/*                <span className="number-total"/>*/}
-                {/*        </span>*/}
-                {/*    <span className="error-message"/>*/}
-                {/*</div>*/}
+                <button aria-label="" type="submit">Send answers</button>
+                <div className="controls">
+                    <button aria-label="" className="next"/>
+                    <div className="progress"/>
+                    <span className="number">
+                        <span className="number-current"/>
+                                <span className="number-total"/>
+                        </span>
+                    <span className="error-message"/>
+                </div>
             </div>
             {/*simform-inner*/}
             <span className="final-message"/>

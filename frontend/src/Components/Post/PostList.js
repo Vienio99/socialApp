@@ -53,6 +53,9 @@ function PostList(props) {
                     <Link to={`/post/${post.id}`}>
                         <div className="card-description">
                             <p>{post.text}</p>
+                            <p>{post.tags.map(tag => (
+                                <p key={tag.id}><strong>{tag.name}</strong></p>
+                            ))}</p>
                         </div>
                         <div className="card-footer clearfix">
                             <div className="time">Posted {post.pub_date}</div>
