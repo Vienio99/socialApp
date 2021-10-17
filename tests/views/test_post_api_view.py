@@ -90,7 +90,8 @@ class PostDetailApiViewTest(APITestCase):
             'text': 'Hello boys',
             'tags': [{'name': '#walking'}, {'name': '#football'}]
         }
-        self.client.post('/api/v1/post/', data)
+        response = self.client.post('/api/v1/post/', data)
+        print(response.content)
         newPost = Post.objects.get(text='Hello boys')
         newPostGetResponse = self.client.get(f'/api/v1/post/{newPost.pk}')
 

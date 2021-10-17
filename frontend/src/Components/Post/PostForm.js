@@ -1,5 +1,4 @@
-import React from "react";
-import {useEffect, useState} from 'react';
+import React, {useState} from "react";
 import axios from 'axios';
 
 //TO-DO - handle improper tags f.e. without hash-tags etc.
@@ -10,13 +9,23 @@ function PostForm() {
     const [text, setText] = useState('');
     const [tags, setTags] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(e);
+    const handleSubmit = () => {
+        const tidyTags = prepareTags();
         axios.post('http://127.0.0.1:8000/api/v1/post/',
-                    { author: 1, text: text, tags: [] },
-                    {  }).then(response => {console.log(response);});
+                    { author: 1, text: text, tags: tidyTags })
+                    .then(function (response) {
+                    console.log(response);
+                  }).catch(function (error) {
+                    console.log(error);
+                  });
     };
+
+    function prepareTags() {
+      const tidyTags = tags.split(' ');
+      return tidyTags.map(tag => {
+        return {'name': tag};
+      });
+}
 
     return (
     <div className="card social-card col2 padding-20" data-social="item">
