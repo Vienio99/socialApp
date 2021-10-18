@@ -76,6 +76,11 @@ class CommentDetailApiViewTest(APITestCase):
         response = self.client.delete(f'/api/v1/comment/{self.comment.pk}')
         self.assertEqual(response.status_code, 204)
 
+    def test_only_author_can_delete_his_comment(self):
+        self.client.login(username='notAuthor', password='123')
+        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}')
+        self.assertEqual(response.status_code, 403)
+
     def test_can_create_new_comment(self):
         data = {
             'author': self.user.pk,
