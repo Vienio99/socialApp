@@ -4,12 +4,14 @@ import axios from 'axios';
 //TO-DO - handle improper tags f.e. without hash-tags etc.
 //TO-DO - fix problem with controls classname
 //TO-DO - display error message below input fields
+//TO-DO - move prepareTags logic to backend
 
 function PostForm() {
     const [text, setText] = useState('');
     const [tags, setTags] = useState('');
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const tidyTags = prepareTags();
         axios.post('http://127.0.0.1:8000/api/v1/post/',
                     { author: 1, text: text, tags: tidyTags })
@@ -23,7 +25,10 @@ function PostForm() {
     function prepareTags() {
       const tidyTags = tags.split(' ');
       return tidyTags.map(tag => {
-        return {'name': tag};
+            if (!tag.startsWith('#')) {
+                tag = '#' + tag;
+            }
+            return {'name': tag};
       });
 }
 
