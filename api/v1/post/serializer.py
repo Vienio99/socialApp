@@ -14,6 +14,7 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = "__all__"
 
+    # Iterate over tags and add them to post
     def create(self, validated_data):
         post = Post.objects.create(text=validated_data['text'],
                                    author=validated_data['author'])
@@ -26,6 +27,7 @@ class PostSerializer(serializers.ModelSerializer):
 
         return post
 
+    # Iterate over tags and add them to post
     def update(self, instance, validated_data):
         tags_data = validated_data.pop('tags')
         for tag_data in tags_data:
