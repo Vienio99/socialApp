@@ -48,6 +48,18 @@ class PostDetailApiViewTest(APITestCase):
         cls.post = Post.objects.create(author=cls.user, text='Hello guys')
         cls.tag = Tag.objects.create(name='#hiking')
 
+        cls.data = {
+            'author': cls.user.pk,
+            'text': 'Hello boys',
+            'tags': [{'name': '#walking'}, {'name': '#football'}]
+        }
+
+        cls.data2 = {
+            'author': cls.user.pk,
+            'text': 'New fancy text',
+            'tags': [{'name': '#hiking'}, {'name': '#driving'}]
+        }
+
     def test_can_read_a_specific_post(self):
         response = self.client.get(f'/api/v1/post/{self.post.pk}')
         self.assertEqual(response.status_code, 200)
@@ -64,19 +76,13 @@ class PostDetailApiViewTest(APITestCase):
     def test_user_can_update_his_post(self):
         self.client.login(username='user1', password='secret')
 
-        response = self.client.put(f'/api/v1/post/{self.post.pk}', {'author': self.user.pk,
-                                                                    'text': 'New fancy text',
-                                                                    'tags': [{'name': '#hiking'}, {'name': '#driving'}]
-                                                                    })
+        response = self.client.put(f'/api/v1/post/{self.post.pk}', self.data2)
         self.assertEqual(response.status_code, 200)
 
     def test_updated_post_has_proper_data(self):
         self.client.login(username='user1', password='secret')
 
-        self.client.put(f'/api/v1/post/{self.post.pk}', {'author': self.user.pk,
-                                                         'text': 'New fancy text',
-                                                         'tags': [{'name': '#hiking'}, {'name': '#driving'}]
-                                                         })
+        self.client.put(f'/api/v1/post/{self.post.pk}', self.data2)
         updatedPost = Post.objects.get(text='New fancy text')
         response = self.client.get(f'/api/v1/post/{updatedPost.pk}')
         self.assertEqual(response.data['text'], 'New fancy text')
@@ -100,24 +106,14 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_can_create_new_post(self):
-        data = {
-            'author': self.user.pk,
-            'text': 'Hello boys',
-            'tags': [{'name': '#walking'}, {'name': '#football'}]
-        }
-        self.client.post('/api/v1/post/', data)
+        self.client.post('/api/v1/post/', self.data)
         newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
 
         self.assertEqual(response.status_code, 200)
 
     def test_created_post_has_proper_data(self):
-        data = {
-            'author': self.user.pk,
-            'text': 'Hello boys',
-            'tags': [{'name': '#walking'}, {'name': '#football'}]
-        }
-        self.client.post('/api/v1/post/', data)
+        self.client.post('/api/v1/post/', self.data)
         newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
         self.assertEqual(response.data['text'], 'Hello boys')

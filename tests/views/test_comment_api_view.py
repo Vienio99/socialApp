@@ -41,6 +41,18 @@ class CommentDetailApiViewTest(APITestCase):
         cls.post = Post.objects.create(author=cls.user, text='Hello guys')
         cls.comment = Comment.objects.create(author=cls.user, text='Hello', post=cls.post)
 
+        cls.data = {
+            'author': cls.user.pk,
+            'text': 'Definitely not hello world',
+            'post': cls.post.pk
+        }
+
+        cls.data2 = {
+            'author': cls.user.pk,
+            'text': 'My new comment',
+            'post': cls.post.pk,
+        }
+
     def test_can_read_a_specific_comment(self):
         response = self.client.get(f'/api/v1/comment/{self.comment.pk}')
         self.assertEqual(response.status_code, 200)
@@ -56,9 +68,7 @@ class CommentDetailApiViewTest(APITestCase):
 
     def test_user_can_update_his_comment(self):
         self.client.login(username='user1', password='secret')
-        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', {'author': self.user.pk,
-                                                                          'text': 'Definitely not hello world',
-                                                                          'post': self.post.pk})
+        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', self.data)
         self.assertEqual(response.status_code, 200)
         # Additional check if the comment is really updated
         updatedComment = Comment.objects.get(text='Definitely not hello world')
@@ -66,9 +76,7 @@ class CommentDetailApiViewTest(APITestCase):
 
     def test_only_author_can_update_his_comment(self):
         self.client.login(username='notAuthor', passwrd='123')
-        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', {'author': self.user.pk,
-                                                                          'text': 'Definitely not hello world',
-                                                                          'post': self.post.pk})
+        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', self.data)
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_comment(self):
@@ -82,21 +90,11 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_can_create_new_comment(self):
-        data = {
-            'author': self.user.pk,
-            'text': 'My new comment',
-            'post': self.post.pk,
-        }
-        response = self.client.post('/api/v1/comment/', data)
+        response = self.client.post('/api/v1/comment/', self.data2)
         self.assertEqual(response.status_code, 201)
 
     def test_created_comment_has_proper_data(self):
-        data = {
-            'author': self.user.pk,
-            'text': 'Fancy text',
-            'post': self.post.pk,
-        }
-        response = self.client.post('/api/v1/comment/', data)
+        response = self.client.post('/api/v1/comment/', self.data2)
         self.assertEqual(response.data['author'], self.user.username)
-        self.assertEqual(response.data['text'], 'Fancy text')
+        self.assertEqual(response.data['text'], 'My new comment')
         self.assertEqual(response.data['post'], self.post.pk)

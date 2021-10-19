@@ -48,6 +48,5 @@ class PostSerializerTest(TestCase):
 
     def test_tags_field_content(self):
         data = self.serializer.data
-        print(data['tags'])
 
         self.assertEqual(data['tags'][0]['name'], self.tag.name)
