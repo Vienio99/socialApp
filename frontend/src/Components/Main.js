@@ -21,7 +21,6 @@ function Main({ content }) {
                                 <div className="container container-fixed-lg sm-p-l-0 sm-p-r-0">
                                     <div className="inner">
                                         <div className="pull-bottom bottom-left m-b-40 sm-p-l-15">
-                                            <h5 className="text-white no-margin">welcome to social app</h5>
                                             <h1 className="text-white no-margin"><span
                                                 className="semi-bold">social</span> app</h1>
                                         </div>

@@ -72,7 +72,7 @@ function PostList(props) {
 
                         </div>
                     </Link>
-                                                <Link to={`/user/${post.author}`} className="card-header clearfix last">
+                            <Link to={`/user/${post.author}`} className="card-header clearfix last">
                                 <div className="user-pic">
                                     <img alt="Profile Image" width="33" height="33"
                                          data-src-retina="/executive/assets/img/profiles/7x.jpg"

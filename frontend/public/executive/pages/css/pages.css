@@ -13706,7 +13706,7 @@ input.list-view-search {
 ------------------------------------
 */
 .social-wrapper .social .jumbotron {
-  height: 20vh;
+  height: 13vh;
   padding-top: 0;
 }
 
@@ -13721,7 +13721,7 @@ input.list-view-search {
   background-repeat: repeat-x;
   bottom: 0;
   content: " ";
-  height: 270px;
+  height: 220px;
   left: 0;
   position: absolute;
   right: 0;

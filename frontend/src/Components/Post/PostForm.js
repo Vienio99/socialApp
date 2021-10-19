@@ -50,7 +50,10 @@ function PostForm() {
                     </li>
                 </ol>
                 {/*/questions*/}
-                <button aria-label="" type="submit">Send answers</button>
+                {/*<button aria-label="" type="submit">Send answers</button>*/}
+                <button aria-label="" type="submit" className="btn btn-success btn-cons">
+                    <span>Send</span>
+                </button>
                 <div className="controls">
                     <button aria-label="" className="next"/>
                     <div className="progress"/>
