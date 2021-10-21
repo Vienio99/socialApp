@@ -10,7 +10,11 @@ function UserDetail(props) {
         const fetchUser = async () => {
             const response = await axios(
                 `http://127.0.0.1:8000/api/v1/user/${props.username}`
-            );
+            ).then(function (response) {
+                    console.log(response);
+                  }).catch(function (error) {
+                    console.log(error);
+                  });
             setUser(response.data);
         };
         fetchUser();

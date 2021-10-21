@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 
 
 
@@ -46,10 +47,10 @@ export default function UserInfo() {
             :
             <div className="d-flex align-items-center">
                 <button aria-label="" className="btn btn-success btn-cons">
-                    <span>Log In</span>
+                    <span><Link to="/login">Login</Link></span>
                 </button>
                 <button aria-label="" className="btn btn-success btn-cons">
-                    <span>Sign In</span>
+                    <span>Sign Up</span>
                 </button>
             </div>
     );

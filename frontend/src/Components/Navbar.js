@@ -50,7 +50,7 @@ export default function Navbar() {
                             <Link to="/" href="blank_template.html">Blank Page</Link>
                         </li>
                         <li className="">
-                            <Link to="/" href="login.html">Login</Link>
+                            <Link to="/login">Login</Link>
                         </li>
                         <li className="">
                             <Link to="/" href="register.html">Register</Link>
