@@ -1,6 +1,8 @@
 import React from 'react';
 import Footer from "./Footer";
 
+//TO-DO - move feed class only to PostList container instead of wrapping f. e. LoginScreen
+
 // eslint-disable-next-line react/prop-types
 function Main({ content }) {
 

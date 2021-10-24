@@ -46,9 +46,11 @@ export default function UserInfo() {
             </div>
             :
             <div className="d-flex align-items-center">
-                <button aria-label="" className="btn btn-success btn-cons">
-                    <span><Link to="/login">Login</Link></span>
-                </button>
+                <Link to="/login">
+                    <button aria-label="" className="btn btn-success btn-cons">
+                        <span>Login</span>
+                    </button>
+                </Link>
                 <button aria-label="" className="btn btn-success btn-cons">
                     <span>Sign Up</span>
                 </button>
