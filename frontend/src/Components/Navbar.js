@@ -7,9 +7,9 @@ export default function Navbar() {
     return (
 
     //    navbar goes here
-        <div className="py-32">
-            <h2 className="font-extrabold text-6x1">ok</h2>
-        </div>
+    <nav>
+        <div className="text-center font-bold">nav</div>
+    </nav>
     //    logo
 
     //    primary nav
@@ -19,6 +19,9 @@ export default function Navbar() {
     //    mobile menu
 
     //    content goes here
+    //     <div className="py-32 text-center">
+    //         <h2 className="font-extrabold text-6x1">Navbar</h2>
+    //     </div>
 
     );
 }

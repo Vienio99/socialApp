@@ -6,9 +6,7 @@ import NotificationDropdown from "./NotificationDropdown";
 
 function Header(props) {
     return (
-        <div className="header-2">
-            okoko
-        </div>
+        <div className="ml-0"></div>
     );
 }
 

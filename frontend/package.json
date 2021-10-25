@@ -25,7 +25,8 @@
     "extends": [
       "react-app/jest",
       "plugin:react-hooks/recommended",
-      "plugin:react/recommended"
+      "plugin:react/recommended",
+      "plugin:tailwind/recommended"
     ],
     "rules": {
       "semi": [
@@ -59,6 +60,7 @@
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-tailwind": "^0.2.1",
     "postcss": "^8.3.11",
     "postcss-cli": "^9.0.1"
   }
