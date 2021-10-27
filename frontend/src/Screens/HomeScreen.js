@@ -12,7 +12,7 @@ function HomeScreen() {
 
     return (
         <React.Fragment>
-            <Main content={content}/>
+            <div>okokokok</div>
         </React.Fragment>
     );
 }

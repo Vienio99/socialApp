@@ -16,15 +16,15 @@ import Navbar from "./Navbar";
 function App() {
     return (
         <div className="App">
-            <Navbar/>
-            {/*<Router>*/}
-                {/*<Switch>*/}
-                {/*    <Route path="/" exact component={HomeScreen} />*/}
-                {/*    <Route path="/post/:id" component={PostScreen} />*/}
-                {/*    <Route path="/user/:username" component={UserScreen} />*/}
-                {/*    <Route path="/login/" component={LoginScreen} />*/}
-                {/*</Switch>*/}
-            {/*</Router>*/}
+            <Router>
+                <Switch>
+                    <Navbar/>
+                    <Route path="/" exact component={HomeScreen}/>
+                    <Route path="/post/:id" component={PostScreen}/>
+                    <Route path="/user/:username" component={UserScreen}/>
+                    <Route path="/login/" component={LoginScreen}/>
+                </Switch>
+            </Router>
         </div>
     );
 }
