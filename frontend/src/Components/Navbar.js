@@ -13,7 +13,7 @@ export default function Navbar() {
                     <div className="flex space-x-4">
                         {/* Logo */}
                         <div>
-                            <a href="#" className="flex items-center px-3 py-7 hover:text-gray-900">
+                            <a href="#" className="flex items-center px-3 py-6 hover:text-gray-900">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 text-purple-600 w-7 h-7"
                                      fill="none"
                                      viewBox="0 0 24 24" stroke="currentColor">
