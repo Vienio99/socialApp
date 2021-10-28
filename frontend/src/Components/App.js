@@ -7,6 +7,7 @@ import UserScreen from "../Screens/UserScreen";
 import LoginScreen from "../Screens/LoginScreen";
 import '../styles/output.css';
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 //TO-DO - make routes to every post and display it on the page
 //TO-DO - make routes to every user and display his info and posts on the page
@@ -15,15 +16,16 @@ import Navbar from "./Navbar";
 
 function App() {
     return (
-        <div className="App">
+        <div className="flex flex-col">
             <Router>
+                <Navbar/>
                 <Switch>
-                    <Navbar/>
                     <Route path="/" exact component={HomeScreen}/>
                     <Route path="/post/:id" component={PostScreen}/>
                     <Route path="/user/:username" component={UserScreen}/>
                     <Route path="/login/" component={LoginScreen}/>
                 </Switch>
+                <Footer/>
             </Router>
         </div>
     );
