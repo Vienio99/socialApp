@@ -4,7 +4,7 @@ import React from "react";
 function Footer() {
     return (
         // Footer
-        <footer className="fixed bottom-0 inset-x-0 bg-gray-100 pt-8 pb-6 text-gray-700">
+        <footer className="bg-gray-100 pt-8 pb-6 text-gray-700">
             <div className="container mx-auto px-4">
                 <div className="flex flex-wrap text-left lg:text-left">
                     {/* Left text and github icon*/}

@@ -7,7 +7,7 @@ import Footer from "./Footer";
 export default function Navbar() {
     return (
         //Navbar
-        <nav className="text-gray-700 bg-gray-100 sticky mb-10">
+        <nav className="fixed top-0 text-gray-700 bg-gray-100 sticky mb-10">
             <div className="container mx-auto text-center max-w-6-xl px-4">
                 <div className="flex justify-between">
                     <div className="flex space-x-4">
