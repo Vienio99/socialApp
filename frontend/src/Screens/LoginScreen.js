@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "../Components/Main";
-import LoginForm from "../Components/LoginForm";
+import LoginForm from "../Components/Forms/LoginForm";
 
 function LoginScreen() {
 

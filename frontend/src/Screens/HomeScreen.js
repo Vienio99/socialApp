@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "../Components/Main";
-import PostForm from "../Components/Post/PostForm";
+import PostForm from "../Components/Forms/PostForm";
 import PostList from "../Components/Post/PostList";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";

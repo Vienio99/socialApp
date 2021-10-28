@@ -1,4 +1,4 @@
-import PostForm from './Components/Post/PostForm';
+import PostForm from './Components/Forms/PostForm';
 
 // function prepareData(data) {
 //   const tags = data.split(' ');
