@@ -27,10 +27,12 @@ DEBUG = True
 
 # Allow cors headers for consuming API
 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-)
+# TO-DO - uncomment corse whitelist
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:3000',
+# )
 
 # Application definition
 

@@ -4,6 +4,7 @@ import PostForm from "../Components/Forms/PostForm";
 import PostList from "../Components/Post/PostList";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import PostCard from "../Components/Post/PostCard";
 
 function HomeScreen() {
 
@@ -13,10 +14,7 @@ function HomeScreen() {
     //                 </React.Fragment>;
 
     return (
-        <div className="">
-            {/*<Navbar/>*/}
-            {/*<Footer/>*/}
-        </div>
+        <PostList />
 );
 }
 

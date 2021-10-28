@@ -6,6 +6,7 @@ from social_project import settings
 
 # TO-DO - make slugs for post field and use them as a link in react
 # TO-DO - make tags field optional
+# TO-DO - make minimum length of text field of 150 characters
 
 class Post(models.Model):
     author = models.ForeignKey(

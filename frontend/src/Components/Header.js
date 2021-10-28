@@ -1,7 +1,6 @@
 import React from "react";
 import UserInfo from './User/UserInfo';
 import Navbar from "./Navbar";
-import NotificationDropdown from "./NotificationDropdown";
 
 
 function Header(props) {
