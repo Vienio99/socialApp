@@ -33,12 +33,12 @@ function PostList(props) {
     }, []);
     console.log("posts" + posts);
     return (
-        <React.Fragment>
+        <div className="flex flex-col space-y-10">
             {posts.map(post => (
                 // eslint-disable-next-line react/jsx-key
                 <PostCard post={post} />
             ))}
-        </React.Fragment>
+        </div>
     );
 }
 export default PostList;

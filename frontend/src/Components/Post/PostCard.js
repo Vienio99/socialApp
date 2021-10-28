@@ -8,16 +8,20 @@ import PropTypes from "prop-types";
 
 function PostCard(props) {
 
-    const { post } = props;
-    console.log("this is post " + post);
+    const {post} = props;
+
 
     return (
         // Card
         <div className="flex justify-center" key={post.id}>
             <div className="bg-white rounded-lg shadow-2xl w-1/2">
                 <header className="bg-gray-300 rounded-t-lg py-3 px-8 flex justify-between items-center">
-                    <p className="font-bold text-xl">Header</p>
-                    <p className="text-sm text-gray-500">Posted 3 hours ago </p>
+                    <div className="flex space-x-3">
+                        {post.tags.map(tag => (
+                            <p className="font-bold text-sm" key={post.id}>{tag.name}</p>
+                        ))}
+                    </div>
+                    <p className="text-sm text-gray-500">{post.pub_date} </p>
                 </header>
                 <div className="px-8 py-4">
                     <p>{post.text}</p>
