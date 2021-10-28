@@ -7,9 +7,7 @@ import PropTypes from "prop-types";
 function PostScreen({ match }) {
     const { id } = match.params;
     return (
-        <React.Fragment>
-            <Main content={<PostDetail id={id}/>} />
-        </React.Fragment>
+        <PostDetail id={id}/>
     );
 }
 

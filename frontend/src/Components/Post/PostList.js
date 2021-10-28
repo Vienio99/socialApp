@@ -31,7 +31,6 @@ function PostList(props) {
         fetchPosts();
         fetchComments();
     }, []);
-    console.log("posts" + posts);
     return (
         <div className="flex flex-col space-y-10">
             {posts.map(post => (

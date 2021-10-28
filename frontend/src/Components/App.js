@@ -16,7 +16,7 @@ import Footer from "./Footer";
 
 function App() {
     return (
-        <div className="">
+        <div className="flex flex-col h-screen">
             <Router>
                 <Navbar/>
                 <Switch>
