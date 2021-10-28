@@ -6,9 +6,11 @@ import {
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import PostCard from "./PostCard";
+import Loading from "../Loading";
 
 function PostDetail(props) {
     const [post, setPost] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -16,12 +18,14 @@ function PostDetail(props) {
                 `http://127.0.0.1:8000/api/v1/post/${props.id}`
             );
             setPost(response.data);
+            setIsLoading(false);
         };
-        fetchPost().finally();
+        fetchPost();
     }, [props.id]);
 
     return (
         <div className="flex-grow">
+            {isLoading && <Loading />}
             <PostCard post={post}/>
         </div>
     );

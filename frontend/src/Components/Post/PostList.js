@@ -8,11 +8,13 @@ import {
     Link
 } from "react-router-dom";
 import PostCard from "./PostCard";
+import Loading from "../Loading";
 
 
 function PostList(props) {
     const [posts, setPosts] = useState([]);
     const [comments, setComments] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -20,6 +22,7 @@ function PostList(props) {
                 'http://127.0.0.1:8000/api/v1/post/'
             );
             setPosts(response.data);
+            setIsLoading(false);
         };
 
         const fetchComments = async() => {
@@ -32,7 +35,8 @@ function PostList(props) {
         fetchComments();
     }, []);
     return (
-        <div className="flex flex-col space-y-10">
+        <div className="flex flex-col space-y-10 flex-grow">
+            {isLoading && <Loading />}
             {posts.map(post => (
                 // eslint-disable-next-line react/jsx-key
                 <PostCard post={post} />
