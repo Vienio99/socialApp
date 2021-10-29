@@ -5,17 +5,22 @@ import {
     Link
 } from "react-router-dom";
 import PropTypes from "prop-types";
+import CommentUnderPost from "./CommentUnderPost";
 
 function PostCard(props) {
+    const [showComments, setShowComments] = useState(false);
 
     const {post} = props;
 
     return (
         // Card
+        <div className="flex flex-col ">
+
+
         <div className="flex justify-center" key={post.id}>
-            <div className="bg-white rounded-lg shadow-2xl w-1/2 border border-gray-300">
+            <div className="bg-white rounded-md shadow-2xl w-1/2 border border-gray-200">
                 {/* Header */}
-                <header className="bg-gray-300 rounded-t-lg py-3 px-8 flex justify-between items-center">
+                <header className="bg-gray-300 rounded-t-md py-1 px-4 flex justify-between">
                     <div>
                         <p className="font-bold text-lg">{post.author}</p>
                         <div className="flex space-x-3">
@@ -24,7 +29,7 @@ function PostCard(props) {
                             ))}
                         </div>
                     </div>
-                    <p className="text-sm text-gray-500">{post.pub_date} </p>
+                    <p className="text-sm text-gray-500 py-1">Posted {post.pub_date} </p>
                 </header>
                 {/* Text */}
                 <Link to={`/post/${post.id}`}>
@@ -33,16 +38,7 @@ function PostCard(props) {
                     </div>
                 </Link>
                 {/* Footer */}
-                <footer
-                    className="bg-gray-100 rounded-b-lg py-1 px-8 text-sm text-gray-500 flex justify-between items-center">
-                    <button className="flex items-center">
-                        <p>Show/hide comments</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                  d="M16 17l-4 4m0 0l-4-4m4 4V3"/>
-                        </svg>
-                    </button>
+                <footer className="bg-gray-100 py-1 px-8 text-sm text-gray-500 flex justify-between items-center rounded-b-md">
                     <div className="flex space-x-5">
                         <button className="flex items-center space-x-1 hover:text-gray-900">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="rgba(251, 191, 36)"
@@ -63,9 +59,29 @@ function PostCard(props) {
                             <p>0 Comments</p>
                         </button>
                     </div>
+                    <button className="flex items-center" onClick={() => setShowComments(!showComments)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                  d="M16 17l-4 4m0 0l-4-4m4 4V3"/>
+                        </svg>
+                        <p>Show/hide comments</p>
+                    </button>
                 </footer>
+
             </div>
+
         </div>
+                                        {/* Comments for post*/}
+                {showComments &&
+                    <div className="w-1/2 mx-auto">
+                        <div className="flex flex-col w-3/4 ml-auto">
+                            <CommentUnderPost/>
+                            <CommentUnderPost/>
+                        </div>
+                    </div>
+                }
+                    </div>
     );
 }
 
