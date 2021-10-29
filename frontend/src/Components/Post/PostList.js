@@ -38,8 +38,7 @@ function PostList(props) {
         <div className="flex flex-col space-y-10 flex-grow">
             {isLoading && <Loading />}
             {posts.map(post => (
-                // eslint-disable-next-line react/jsx-key
-                <PostCard post={post} />
+                <PostCard post={post} comments={comments} key={post.id}/>
             ))}
         </div>
     );
