@@ -11,7 +11,7 @@ function CommentUnderPost(props) {
     return (
         // Card
         <div className="flex justify-center">
-            <div className="bg-white  rounded-b-md shadow-2xl w-full">
+            <div className="bg-white  rounded-b-md shadow-md w-full">
                 {/* Header */}
                 <header className="bg-gray-200 py-2 px-4 flex justify-between items-center">
                     <div>

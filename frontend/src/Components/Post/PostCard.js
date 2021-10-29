@@ -13,13 +13,15 @@ function PostCard(props) {
     const {post} = props;
     const {comments} = props;
 
+    console.log('comment here' + comments);
+
     return (
         // Card
         <div className="flex flex-col ">
             <div className="flex justify-center" key={post.id}>
-                <div className="bg-white rounded-md shadow-2xl w-1/2 border border-gray-200">
+                <div className="bg-white rounded-md shadow-md w-1/2">
                     {/* Header */}
-                    <header className="bg-gray-200 rounded-t-md py-1 px-4 flex justify-between">
+                    <header className="border-b border-gray-200 rounded-t-md py-1 px-4 flex justify-between">
                         <div>
                             <p className="font-bold text-lg">{post.author}</p>
                             <div className="flex space-x-3">
@@ -75,7 +77,7 @@ function PostCard(props) {
             {showComments &&
             <div className="w-1/2 mx-auto">
                 <div className="flex flex-col w-3/4 ml-auto">
-                    {comments.filter(comment => comment.post === post.id).map(comment => {
+                    {comments && comments.filter(comment => comment.post === post.id).map(comment => {
                         return <CommentUnderPost comment={comment} key={comment.id}/>;
                         })
                     }

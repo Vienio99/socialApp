@@ -10,6 +10,7 @@ import Loading from "../Loading";
 
 function PostDetail(props) {
     const [post, setPost] = useState([]);
+    const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -20,13 +21,21 @@ function PostDetail(props) {
             setPost(response.data);
             setIsLoading(false);
         };
+
+        const fetchComments = async () => {
+            const response = await axios(
+                'http://127.0.0.1:8000/api/v1/comment/'
+            );
+            setComments(response.data);
+        };
         fetchPost();
+        fetchComments();
     }, [props.id]);
 
     return (
         <div className="flex-grow">
-            {isLoading && <Loading />}
-            <PostCard post={post}/>
+            {isLoading && <Loading/>}
+            <PostCard post={post} comments={comments}/>
         </div>
     );
 }
@@ -37,3 +46,27 @@ PostDetail.propTypes = {
 };
 
 export default PostDetail;
+
+
+// const [post, setPost] = useState([]);
+// const [isLoading, setIsLoading] = useState(true);
+// const [comments, setComments] = useState([]);
+//
+// useEffect(() => {
+//     const fetchPost = async () => {
+//         const response = await axios(
+//             `http://127.0.0.1:8000/api/v1/post/${post.id}`
+//         );
+//         setPost(response.data);
+//         setIsLoading(false);
+//     };
+//
+//     const fetchComments = async() => {
+//         const response = await axios(
+//             'http://127.0.0.1:8000/api/v1/comment/'
+//         );
+//         setComments(response.data);
+//     };
+//     fetchPost();
+//     fetchComments();
+// }, [post.id]);
