@@ -4,13 +4,7 @@ module.exports = {
     mode: 'jit',
     purge: [
         './public/*.html',
-        './src/*.{js,jsx,ts,tsx,}',
-        './src/Components/*.{js,jsx,ts,tsx,}',
-        './src/Components/Comment/*.{js,jsx,ts,tsx,}',
-        './src/Components/Forms/*.{js,jsx,ts,tsx,}',
-        './src/Components/Post/*.{js,jsx,ts,tsx,}',
-        './src/Components/User/*.{js,jsx,ts,tsx,}',
-        './src/Components/Screens/*.{js,jsx,ts,tsx,}',
+        './src/**/*.{js,jsx,ts,tsx,}',
     ],
     presets: [],
     darkMode: false, // or 'media' or 'class'
