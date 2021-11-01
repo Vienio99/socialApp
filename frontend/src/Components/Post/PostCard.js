@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import CommentUnderPost from "./CommentUnderPost";
+import dog from "../../download.jpg";
 
 function PostCard(props) {
     const [showComments, setShowComments] = useState(false);
@@ -21,26 +22,29 @@ function PostCard(props) {
             <div className="flex justify-center" key={post.id}>
                 <div className="bg-white rounded-md shadow-md w-1/2">
                     {/* Header */}
-                    <header className="border-b border-gray-200 rounded-t-md py-1 px-4 flex justify-between">
+                    <header className="bg-gray-300 rounded-t-md py-1 px-4 flex justify-between">
                         <div>
-                            <p className="font-bold text-lg">{post.author}</p>
-                            <div className="flex space-x-3">
-                                {post.tags && post.tags.map(tag => (
-                                    <p className="text-sm" key={post.id}>{tag.name}</p>
-                                ))}
+                            <div className="flex items-center mb-2">
+                                <img src={dog} width="50px" alt=""/>
+                                <p className="font-bold text-lg">{post.author}</p>
                             </div>
                         </div>
                         <p className="text-sm text-gray-500 py-1">Posted {post.pub_date} </p>
                     </header>
                     {/* Text */}
                     <Link to={`/post/${post.id}`}>
-                        <div className="px-8 py-4">
+                        <div className="px-4 py-4">
                             <p>{post.text}</p>
+                        </div>
+                        <div className="flex space-x-3 font-bold mb-2 px-4">
+                            {post.tags && post.tags.map(tag => (
+                                <p className="text-sm" key={post.id}>{tag.name}</p>
+                            ))}
                         </div>
                     </Link>
                     {/* Footer */}
                     <footer
-                        className="bg-gray-100 py-1 px-8 text-sm text-gray-500 flex justify-between items-center rounded-b-md">
+                        className="bg-gray-100 py-1 px-4 text-sm text-gray-500 flex justify-between items-center rounded-b-md">
                         <div className="flex space-x-5">
                             <button className="flex items-center space-x-1 hover:text-gray-900">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="rgba(251, 191, 36)"
@@ -61,7 +65,8 @@ function PostCard(props) {
                                 <p>0 Comments</p>
                             </button>
                         </div>
-                        <button className="flex items-center hover:text-gray-900" onClick={() => setShowComments(!showComments)}>
+                        <button className="flex items-center hover:text-gray-900"
+                                onClick={() => setShowComments(!showComments)}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -79,7 +84,7 @@ function PostCard(props) {
                 <div className="flex flex-col w-3/4 ml-auto">
                     {comments && comments.filter(comment => comment.post === post.id).map(comment => {
                         return <CommentUnderPost comment={comment} key={comment.id}/>;
-                        })
+                    })
                     }
                 </div>
             </div>

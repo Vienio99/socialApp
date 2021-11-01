@@ -5,6 +5,7 @@ import {
     Link
 } from "react-router-dom";
 import PropTypes from "prop-types";
+import dog from "../../download.jpg";
 
 function CommentUnderPost(props) {
     const {comment} = props;
@@ -15,16 +16,19 @@ function CommentUnderPost(props) {
                 {/* Header */}
                 <header className="bg-gray-200 py-2 px-4 flex justify-between items-center">
                     <div>
-                        <p className="font-bold text-sm">{comment.author}</p>
+                            <div className="flex items-center mb-2">
+                                <img src={dog} width="30px" alt=""/>
+                                <p className="font-bold text-sm">{comment.author}</p>
+                            </div>
                     </div>
                     <p className="text-sm text-gray-500">Posted {comment.pub_date} </p>
                 </header>
                 {/* Text */}
-                <div className="px-8 py-2 text-sm">
+                <div className="px-4 py-2 text-sm">
                     <p>{comment.text}</p>
                 </div>
                 {/* Footer */}
-                <footer className="bg-gray-100 py-1 px-8 text-sm text-gray-500 flex justify-between items-center rounded-b-md">
+                <footer className="bg-gray-100 py-1 px-4 text-sm text-gray-500 flex justify-between items-center rounded-b-md">
                     <div className="flex space-x-5">
                         <button className="flex items-center space-x-1 hover:text-gray-900">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="rgba(251, 191, 36)"
