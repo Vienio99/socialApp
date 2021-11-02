@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import PostCard from "./PostCard";
 import Loading from "../Loading";
+import PostForm from "../Forms/PostForm";
 
 
 function PostList(props) {
@@ -36,6 +37,7 @@ function PostList(props) {
     }, []);
     return (
         <div className="flex flex-col space-y-10 flex-grow">
+            <PostForm />
             {isLoading && <Loading />}
             {posts.map(post => (
                 <PostCard post={post} comments={comments} key={post.id}/>
