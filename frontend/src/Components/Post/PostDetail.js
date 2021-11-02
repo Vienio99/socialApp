@@ -11,10 +11,11 @@ import Loader from "../Loader";
 function PostDetail(props) {
     const [post, setPost] = useState([]);
     const [comments, setComments] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchPost = async () => {
+            setIsLoading(true);
             const response = await axios(
                 `http://127.0.0.1:8000/api/v1/post/${props.id}`
             );
