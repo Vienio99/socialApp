@@ -7,7 +7,7 @@ import Footer from "./Footer";
 export default function Navbar() {
     return (
         //Navbar
-        <nav className="fixed top-0 text-gray-700 bg-gray-100 sticky mb-10">
+        <nav className="fixed top-0 text-gray-700 bg-gray-300 sticky mb-10">
             <div className="container mx-auto text-center max-w-6-xl px-4">
                 <div className="flex justify-between">
                     <div className="flex space-x-4">
@@ -43,7 +43,7 @@ export default function Navbar() {
                     {/* User info / Login signup */}
                     <div className="flex items-center hidden md:flex space-x-1">
                         <Link to="/login" className="px-4 py-6 hover:text-gray-900">Login</Link>
-                        <Link to="#"
+                        <Link to="/signup"
                               className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">SignUp</Link>
                     </div>
                     {/* Hamburger icon */}

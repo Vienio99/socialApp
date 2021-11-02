@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // TO-DO - change form so it looks properly
 
-function LoginForm() {
+function SignupForm() {
 
     const [user, setUser] = useState([]);
 
@@ -30,7 +30,7 @@ function LoginForm() {
                     Username
                 </label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" id="username"
-                       type="text" placeholder="Username" />
+                       type="text" placeholder="Username"/>
             </div>
             <div className="mb-6">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -38,20 +38,31 @@ function LoginForm() {
                 </label>
                 <input
                     className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"
-                    id="password" type="password" placeholder="**********" />
-                    <p className="text-red text-xs italic">Please input a password.</p>
+                    id="password" type="password" placeholder="**********"/>
+                <p className="text-red text-xs italic">Please input a password.</p>
+            </div>
+            <div className="mb-6">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                    Repeat password
+                </label>
+                <input
+                    className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"
+                    id="repeatPassword" type="repeatPassword" placeholder="**********"/>
+                <p className="text-red text-xs italic">Please repeat a password.</p>
             </div>
             <div className="flex items-center justify-between">
-                <button className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300" type="button">
-                    Sign In
+                <button
+                    className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
+                    type="button">
+                    Sign Up
                 </button>
                 <a className="inline-block align-baseline font-bold text-sm text-gray-700 hover:text-gray-900" href="#">
                     Forgot Password?
                 </a>
             </div>
         </div>
-);
+    );
 }
 
-export default LoginForm;
+export default SignupForm;
 
