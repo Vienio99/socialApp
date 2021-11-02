@@ -16,9 +16,9 @@ function CommentUnderPost(props) {
                 {/* Header */}
                 <header className="bg-gray-200 py-2 px-4 flex justify-between items-center">
                     <div>
-                            <div className="flex items-center mb-2">
+                            <div className="flex items-center">
                                 <img src={dog} width="30px" alt=""/>
-                                <p className="font-bold text-sm">{comment.author}</p>
+                                <p className="font-bold text-sm ml-2">{comment.author}</p>
                             </div>
                     </div>
                     <p className="text-sm text-gray-500">Posted {comment.pub_date} </p>

@@ -42,7 +42,7 @@ export default function Navbar() {
                     {/*</div>*/}
                     {/* User info / Login signup */}
                     <div className="flex items-center hidden md:flex space-x-1">
-                        <Link to="#" className="px-4 py-6 hover:text-gray-900">Login</Link>
+                        <Link to="/login" className="px-4 py-6 hover:text-gray-900">Login</Link>
                         <Link to="#"
                               className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">SignUp</Link>
                     </div>

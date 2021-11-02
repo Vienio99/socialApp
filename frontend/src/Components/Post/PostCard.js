@@ -24,9 +24,9 @@ function PostCard(props) {
                     {/* Header */}
                     <header className="bg-gray-300 rounded-t-md py-1 px-4 flex justify-between">
                         <div>
-                            <div className="flex items-center mb-2">
+                            <div className="flex items-center">
                                 <img src={dog} width="50px" alt=""/>
-                                <p className="font-bold text-lg">{post.author}</p>
+                                <p className="font-bold text-lg ml-2">{post.author}</p>
                             </div>
                         </div>
                         <p className="text-sm text-gray-500 py-1">Posted {post.pub_date} </p>

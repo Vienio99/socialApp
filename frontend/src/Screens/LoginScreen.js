@@ -1,17 +1,13 @@
 import React from "react";
-import Main from "../Components/Main";
 import LoginForm from "../Components/Forms/LoginForm";
+import Main from "../Components/Main";
 
 function LoginScreen() {
 
-    const content = <React.Fragment>
-                        <LoginForm/>
-                    </React.Fragment>;
+    const content = <LoginForm/>;
 
     return (
-        <React.Fragment>
-            <Main content={content}/>
-        </React.Fragment>
+        <Main content={<LoginForm/>} />
     );
 }
 

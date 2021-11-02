@@ -23,7 +23,7 @@ function App() {
                     <Route path="/" exact component={HomeScreen}/>
                     <Route path="/post/:id" component={PostScreen}/>
                     <Route path="/user/:username" component={UserScreen}/>
-                    <Route path="/login/" component={LoginScreen}/>
+                    <Route path="/login" component={LoginScreen}/>
                 </Switch>
                 <Footer/>
             </Router>
