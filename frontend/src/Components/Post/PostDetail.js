@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import PostCard from "./PostCard";
-import Loading from "../Loading";
+import Loader from "../Loader";
 
 function PostDetail(props) {
     const [post, setPost] = useState([]);
@@ -34,7 +34,7 @@ function PostDetail(props) {
 
     return (
         <div className="flex-grow">
-            {isLoading && <Loading/>}
+            {isLoading && <Loader/>}
             <PostCard post={post} comments={comments}/>
         </div>
     );

@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function Loading() {
+function Loader() {
     return (
         <div className="spinner">
             <div className="rect1"/>
@@ -14,4 +14,4 @@ function Loading() {
 }
 
 
-export default Loading;
+export default Loader;
