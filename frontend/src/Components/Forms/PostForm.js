@@ -39,14 +39,18 @@ function PostForm() {
         // Card
         <div className="flex flex-col ">
             <div className="flex justify-center">
-                <div className="bg-gray-300 rounded-md shadow-md w-1/2 px-8 pt-6 pb-8 mb-4 flex flex-col">
+                <div className="bg-gray-300 rounded-md shadow-md w-1/2 px-6 py-6 mb-4 flex flex-col">
+                    <form onSubmit={e => handleSubmit(e)}>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="text">
                                 Text
                             </label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                                    id="text"
-                                   type="text" placeholder="Text"/>
+                                   type="text" placeholder="Text"
+                                   onChange={e => setText(e.target.value)}
+                                   value={text}
+                            />
                         </div>
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tags">
@@ -54,17 +58,21 @@ function PostForm() {
                             </label>
                             <input
                                 className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"
-                                id="tags" type="tags" placeholder="Tags"/>
+                                id="tags" type="tags" placeholder="Tags"
+                                onChange={e => setTags(e.target.value)}
+                                value={tags}
+                            />
                         </div>
                         <div className="flex items-center justify-end">
                             <button
                                 className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
-                                type="button">
-                                Post
+                                type="submit">
+                                Send
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
+            </div>
         </div>
     );
 }

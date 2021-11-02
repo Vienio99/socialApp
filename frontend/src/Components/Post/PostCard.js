@@ -14,8 +14,6 @@ function PostCard(props) {
     const {post} = props;
     const {comments} = props;
 
-    console.log('comment here' + comments);
-
     return (
         // Card
         <div className="flex flex-col ">
