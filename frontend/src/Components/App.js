@@ -4,7 +4,7 @@ import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
 import PostScreen from "../Screens/PostScreen";
 import UserScreen from "../Screens/UserScreen";
 import LoginScreen from "../Screens/LoginScreen";
-import '../styles/output.css';
+import '../index.css';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import SignupScreen from "../Screens/SignupScreen";
