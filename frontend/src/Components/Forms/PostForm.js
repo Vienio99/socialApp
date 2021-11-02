@@ -1,8 +1,5 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import dog from "../../download.jpg";
-import {Link} from "react-router-dom";
-import CommentUnderPost from "../Post/CommentUnderPost";
 
 //TO-DO - handle improper tags f.e. without hash-tags etc.
 //TO-DO - fix problem with controls classname
@@ -42,7 +39,7 @@ function PostForm() {
                 <div className="bg-gray-300 rounded-md shadow-md w-1/2 px-6 py-6 mb-4 flex flex-col">
                     <form onSubmit={e => handleSubmit(e)}>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="text">
+                            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="text">
                                 Text
                             </label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
@@ -53,12 +50,12 @@ function PostForm() {
                             />
                         </div>
                         <div className="mb-6">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tags">
+                            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="tags">
                                 Tags
                             </label>
                             <input
-                                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"
-                                id="tags" type="tags" placeholder="Tags"
+                                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700"
+                                id="tags" type="tags" placeholder="#tags"
                                 onChange={e => setTags(e.target.value)}
                                 value={tags}
                             />
@@ -78,41 +75,3 @@ function PostForm() {
 }
 
 export default PostForm;
-
-
-// <div className="card social-card col2 padding-20" data-social="item">
-//     <form className="simform no-margin" autoComplete="off" data-social="status" onSubmit={e => handleSubmit(e)}>
-//         <div className="status-form-inner">
-//             <ol className="questions">
-//                 <li className="current">
-//                     <span>
-//                       {/* eslint-disable-next-line react/no-unescaped-entities */}
-//                       <label htmlFor="status-q1">What's on your mind?</label>
-//                     </span>
-//                     <input id="status-q1" name="q1" onChange={e => setText(e.target.value)} value={text} type="text"/>
-//                     <span>
-//                         <label htmlFor="tags">Tags</label>
-//                     </span>
-//                     <input id="tags" name="tags" onChange={e => setTags(e.target.value)} value={tags} type="text"/>
-//                 </li>
-//             </ol>
-//             {/*/questions*/}
-//             {/*<button aria-label="" type="submit">Send answers</button>*/}
-//             <button aria-label="" type="submit" className="btn btn-success btn-cons">
-//                 <span>Send</span>
-//             </button>
-//             <div className="controls">
-//                 <button aria-label="" className="next"/>
-//                 <div className="progress"/>
-//                 <span className="number">
-//                     <span className="number-current"/>
-//                             <span className="number-total"/>
-//                     </span>
-//                 <span className="error-message"/>
-//             </div>
-//         </div>
-//         {/*simform-inner*/}
-//         <span className="final-message"/>
-//     </form>
-//     {/*simform*/}
-// </div>
