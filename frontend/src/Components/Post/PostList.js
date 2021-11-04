@@ -20,39 +20,42 @@ function PostList(props) {
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
     useEffect(() => {
-        const fetchPosts = async () => {
+        // let didCancel = false;
+        const fetchData = async () => {
             setIsLoading(true);
             const response = await axios(
                 'http://127.0.0.1:8000/api/v1/post/'
             );
+            const response2 = await axios(
+                'http://127.0.0.1:8000/api/v1/comment/'
+            );
             setPosts(response.data);
+            setComments(response2.data);
             setIsLoading(false);
         };
 
-        const fetchComments = async() => {
-            const response = await axios(
-                'http://127.0.0.1:8000/api/v1/comment/'
-            );
-            setComments(response.data);
-        };
-        fetchPosts();
-        fetchComments();
+        fetchData();
+
+
+        // return () => {
+        //     didCancel = true;
+        // };
     }, []);
 
     //Change page
-
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
 
     return (
         <div className="flex flex-col space-y-10 flex-grow">
-            <PostForm />
-            {isLoading && <Loader />}
+            <PostForm/>
+            {isLoading && <Loader/>}
             {currentPosts.map(post => (
                 <PostCard post={post} comments={comments} key={post.id}/>
             ))}
-            <PaginationBar postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} currentPage={currentPage}/>
+            <PaginationBar postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}
+                           currentPage={currentPage}/>
         </div>
     );
 }
+
 export default PostList;
