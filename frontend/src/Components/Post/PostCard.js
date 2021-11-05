@@ -16,8 +16,8 @@ function PostCard(props) {
 
     return (
         // Card
-        <div className="flex flex-col ">
-            <div className="flex justify-center" key={post.id}>
+        <div className="flex flex-col">
+            <div className="flex justify-center">
                 <div className="bg-white rounded-md shadow-md w-1/2">
                     {/* Header */}
                     <header className="bg-gray-300 rounded-t-md py-1 px-4 flex justify-between">
@@ -36,7 +36,7 @@ function PostCard(props) {
                         </div>
                         <div className="flex space-x-3 font-bold mb-2 px-4">
                             {post.tags && post.tags.map(tag => (
-                                <p className="text-sm" key={post.id}>{tag.name}</p>
+                                <p className="text-sm" key={tag.id}>{tag.name}</p>
                             ))}
                         </div>
                     </Link>
@@ -94,7 +94,7 @@ function PostCard(props) {
 
 PostCard.propTypes = {
     post: PropTypes.object,
-    comments: PropTypes.object
+    comments: PropTypes.array
 };
 
 

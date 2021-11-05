@@ -20,7 +20,6 @@ function PostList(props) {
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
     useEffect(() => {
-        // let didCancel = false;
         const fetchData = async () => {
             setIsLoading(true);
             const response = await axios(
@@ -36,10 +35,6 @@ function PostList(props) {
 
         fetchData();
 
-
-        // return () => {
-        //     didCancel = true;
-        // };
     }, []);
 
     //Change page
