@@ -44,9 +44,11 @@ function PostList(props) {
         <div className="flex flex-col space-y-10 flex-grow">
             <PostForm/>
             {isLoading && <Loader/>}
-            {currentPosts.map(post => (
-                <PostCard post={post} comments={comments} key={post.id}/>
-            ))}
+            <ul className="flex flex-col space-y-10">
+                {currentPosts.map(post => (
+                    <PostCard post={post} comments={comments} key={post.id}/>
+                ))}
+            </ul>
             <PaginationBar postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}
                            currentPage={currentPage}/>
         </div>

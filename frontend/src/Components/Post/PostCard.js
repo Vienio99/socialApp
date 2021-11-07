@@ -16,14 +16,14 @@ function PostCard(props) {
 
     return (
         // Card
-        <div className="flex flex-col">
+        <li className="flex flex-col">
             <div className="flex justify-center">
                 <div className="bg-white rounded-md shadow-md w-1/2">
                     {/* Header */}
                     <header className="bg-gray-300 rounded-t-md py-1 px-4 flex justify-between">
                         <div>
                             <div className="flex items-center">
-                                <img src={dog} width="50px" alt=""/>
+                                <img src={dog} width="50px" alt="profile-picture"/>
                                 <p className="font-bold text-lg ml-2">{post.author}</p>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ function PostCard(props) {
                 </div>
             </div>
             }
-        </div>
+        </li>
     );
 }
 
