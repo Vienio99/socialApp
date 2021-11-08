@@ -34,7 +34,7 @@ function PostForm() {
 
     return (
         // Card
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
             <div className="flex justify-center">
                 <div className="bg-gray-300 rounded-md shadow-md w-1/2 px-6 py-6 mb-4 flex flex-col">
                     <form onSubmit={e => handleSubmit(e)}>
