@@ -41,7 +41,7 @@ class UserDetailApiViewTest(APITestCase):
         newUser = User.objects.get(username='user')
         response = self.client.get(f'/api/v1/user/{newUser.username}')
         self.assertEqual(response.data['username'], 'user')
-        self.assertEqual(response.data['password'], 'secret')
+        self.assertEqual(newUser.check_password('secret'), True)
 
 
 class TokenUrlTest(APITestCase):
