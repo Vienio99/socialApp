@@ -20,6 +20,7 @@ class UserListApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 201)
 
 
+
 class UserDetailApiViewTest(APITestCase):
 
     @classmethod
@@ -43,3 +44,15 @@ class UserDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['password'], 'secret')
 
 
+class TokenUrlTest(APITestCase):
+    @classmethod
+    def setUpTestData(cls):
+        User.objects.create_user(username='goofy', password='secret')
+        cls.data = {
+            'username': 'goofy',
+            'password': 'secret'
+        }
+
+    def test_can_get_token(self):
+        response = self.client.post('/api/v1/token/', self.data)
+        self.assertEqual(response.status_code, 200)
