@@ -47,12 +47,13 @@ class UserDetailApiViewTest(APITestCase):
 class TokenUrlTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
-        User.objects.create_user(username='goofy', password='secret')
         cls.data = {
             'username': 'goofy',
             'password': 'secret'
         }
 
     def test_can_get_token(self):
+        self.client.post('/api/v1/user/', self.data)
         response = self.client.post('/api/v1/token/', self.data)
         self.assertEqual(response.status_code, 200)
+
