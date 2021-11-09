@@ -1,12 +1,9 @@
 import {useEffect, useState} from 'react';
 import React from "react";
-import axios from 'axios';
-import {
-    Link
-} from "react-router-dom";
 import PropTypes from "prop-types";
 import PostCard from "./PostCard";
 import Loader from "../Loader";
+import axiosInstance from "../../axios";
 
 function PostDetail(props) {
     const [post, setPost] = useState([]);
@@ -14,23 +11,15 @@ function PostDetail(props) {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const fetchPost = async () => {
+        const fetchData = async () => {
             setIsLoading(true);
-            const response = await axios(
-                `http://127.0.0.1:8000/api/v1/post/${props.id}`
-            );
+            const response = await axiosInstance.get(`post/${props.id}`);
+            const response2 = await axiosInstance.get('comment/');
             setPost(response.data);
+            setComments(response2.data);
             setIsLoading(false);
         };
-
-        const fetchComments = async () => {
-            const response = await axios(
-                'http://127.0.0.1:8000/api/v1/comment/'
-            );
-            setComments(response.data);
-        };
-        fetchPost();
-        fetchComments();
+        fetchData();
     }, [props.id]);
 
     return (

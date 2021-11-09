@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import axiosInstance from '../../axios';
 
-// TO-DO - change form so it looks properly
 
 function SignupForm() {
     const history = useHistory();
@@ -12,18 +11,16 @@ function SignupForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e);
         axiosInstance
             .post('user/', {
                 username: username,
                 password: password
             })
-            .then((res) => {
+            .then((response) => {
                 history.push('/login');
-                console.log(res);
-                console.log(res.data);
+                console.log(response);
+                console.log(response.data);
             });
-
     };
 
     return (

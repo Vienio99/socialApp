@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import axios from 'axios';
 import axiosInstance from '../../axios';
 
 //TO-DO - handle improper tags f.e. without hash-tags etc.
@@ -13,13 +12,17 @@ function PostForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const tidyTags = prepareTags();
-        axios.post('http://127.0.0.1:8000/api/v1/post/',
-            {author: 1, text: text, tags: tidyTags})
-            .then(function (response) {
+
+        axiosInstance
+            .post('post/', {
+                author: 1,
+                text: text,
+                tags: tidyTags
+            })
+            .then((response) => {
                 console.log(response);
-            }).catch(function (error) {
-            console.log(error);
-        });
+                console.log(response.data);
+            });
     };
 
     function prepareTags() {

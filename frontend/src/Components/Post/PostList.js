@@ -5,6 +5,7 @@ import PostCard from "./PostCard";
 import Loader from "../Loader";
 import PostForm from "../Forms/PostForm";
 import PaginationBar from "../PaginationBar";
+import axiosInstance from "../../axios";
 
 
 function PostList(props) {
@@ -22,17 +23,12 @@ function PostList(props) {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const response = await axios(
-                'http://127.0.0.1:8000/api/v1/post/'
-            );
-            const response2 = await axios(
-                'http://127.0.0.1:8000/api/v1/comment/'
-            );
+            const response = await axiosInstance.get('post/');
+            const response2 = await axiosInstance.get('comment/');
             setPosts(response.data);
             setComments(response2.data);
             setIsLoading(false);
         };
-
         fetchData();
 
     }, []);
