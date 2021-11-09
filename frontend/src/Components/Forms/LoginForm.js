@@ -1,30 +1,30 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
+import {useLocation} from "react-router-dom";
+import SuccessModal from "./SuccessModal";
+import Loader from "../Loader";
+import axiosInstance from "../../axios";
 
 // TO-DO - change form so it looks properly
 
-function LoginForm() {
+function LoginForm(props) {
+    // Use location to show modal after redirecting from signup page
+    const location = useLocation();
+    const [showModal, setShowModal] = useState(false);
 
     const [user, setUser] = useState([]);
 
     useEffect(() => {
-        const fetchUser = async () => {
-            const response = await axios(
-                'http://127.0.0.1:8000/api/v1/user/'
-            );
-            setUser(response.data);
-        };
-        fetchUser();
+        try {
+           setShowModal(location.state.showModal);
+        } catch (error) {
+           setShowModal(false);
+        }
     }, []);
-
-    //send token
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/v1/user/');
-    };
 
     return (
         <div className="flex-grow mx-auto">
+            {showModal && <SuccessModal />}
             <form className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col max-w-4xl">
                 <h1 className="text-2xl font-bold text-center mb-5 text-gray-700">Login</h1>
                 <div className="mb-4">

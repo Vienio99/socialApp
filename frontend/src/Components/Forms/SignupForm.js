@@ -18,7 +18,10 @@ function SignupForm() {
                 password: password
             })
             .then((response) => {
-                history.push('/login');
+                history.push(
+                    '/login',
+                    { showModal: true }
+                );
                 console.log(response);
                 console.log(response.data);
             });
