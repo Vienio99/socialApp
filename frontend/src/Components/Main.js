@@ -10,7 +10,6 @@ function Main({content}) {
         <div className="flex-grow mx-auto">
             {content}
         </div>
-
     );
 }
 

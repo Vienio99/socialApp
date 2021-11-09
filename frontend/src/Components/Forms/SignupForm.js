@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import axiosInstance from '../../axios';
+import SuccessModal from "./SuccessModal";
 
 
 function SignupForm() {
@@ -27,6 +28,7 @@ function SignupForm() {
         <div className="flex-grow mx-auto">
             <form className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col max-w-4xl"
                   onSubmit={e => handleSubmit(e)}>
+                <h1 className="text-2xl font-bold text-center mb-5 text-gray-700">SignUp</h1>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                         Username
@@ -51,15 +53,15 @@ function SignupForm() {
                         value={password}/>
                     <p className="text-red text-xs italic">Please input a password.</p>
                 </div>
-                <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                        Repeat password
-                    </label>
-                    <input
-                        className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"
-                        id="repeatPassword" type="repeatPassword" placeholder="**********"/>
-                    <p className="text-red text-xs italic">Please repeat a password.</p>
-                </div>
+                {/*<div className="mb-6">*/}
+                {/*    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">*/}
+                {/*        Repeat password*/}
+                {/*    </label>*/}
+                {/*    <input*/}
+                {/*        className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"*/}
+                {/*        id="repeatPassword" type="repeatPassword" placeholder="**********"/>*/}
+                {/*    <p className="text-red text-xs italic">Please repeat a password.</p>*/}
+                {/*</div>*/}
                 <div className="flex items-center justify-between">
                     <button
                         className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
