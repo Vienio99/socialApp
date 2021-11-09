@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import axios from 'axios';
+import axiosInstance from '../../axios';
 
 //TO-DO - handle improper tags f.e. without hash-tags etc.
-//TO-DO - fix problem with controls classname
 //TO-DO - display error message below input fields
 //TO-DO - move prepareTags logic to backend
 
