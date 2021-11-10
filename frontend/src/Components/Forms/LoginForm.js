@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from 'axios';
-import {useLocation} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import SuccessModal from "./SuccessModal";
 import Loader from "../Loader";
 import axiosInstance from "../../axios";
@@ -10,13 +9,12 @@ import axiosInstance from "../../axios";
 function LoginForm(props) {
     // TO-DO - Use location to show modal after redirecting from signup page
     const location = useLocation();
+    const history = useHistory();
     const [showModal, setShowModal] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const [user, setUser] = useState([]);
-
-        const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         axiosInstance
             .post('token/', {
@@ -25,7 +23,7 @@ function LoginForm(props) {
             })
             .then((response) => {
                 history.push(
-                    '/home',
+                    '/',
                 );
                 console.log(response);
                 console.log(response.data);
@@ -44,7 +42,8 @@ function LoginForm(props) {
 
     return (
         <div className="flex-grow mx-auto">
-            <form className="flex flex-col max-w-4xl px-8 pt-6 pb-8 mb-4 bg-gray-200 rounded shadow-md">
+            <form className="flex flex-col max-w-4xl px-8 pt-6 pb-8 mb-4 bg-gray-200 rounded shadow-md"
+                  onSubmit={e => handleSubmit(e)}>
                 <h1 className="text-2xl font-bold text-center mb-5 text-gray-700">Login</h1>
                 {/*{showModal && <SuccessModal/>}*/}
                 <div className="mb-4">
@@ -74,7 +73,7 @@ function LoginForm(props) {
                 <div className="flex items-center justify-between">
                     <button
                         className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
-                        type="button">
+                        type="submit">
                         Sign In
                     </button>
                     <a className="inline-block align-baseline font-bold text-sm text-gray-700 hover:text-gray-900"
