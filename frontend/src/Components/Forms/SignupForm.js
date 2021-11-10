@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import axiosInstance from '../../axios';
-import SuccessModal from "./SuccessModal";
 
 
 function SignupForm() {
@@ -40,7 +39,7 @@ function SignupForm() {
                            id="username"
                            type="text"
                            placeholder="Username"
-                           onChange={e => setUsername(e.target.value)}
+                           onChange={e => setUsername(e.target.value.trim())}
                            value={username}/>
                 </div>
                 <div className="mb-6">

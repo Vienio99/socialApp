@@ -48,7 +48,7 @@ function PostForm() {
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                                    id="text"
                                    type="text" placeholder="Text"
-                                   onChange={e => setText(e.target.value)}
+                                   onChange={e => setText(e.target.value.trim())}
                                    value={text}
                             />
                         </div>

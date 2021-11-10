@@ -4,7 +4,7 @@ import React from "react";
 function SuccessModal() {
 
     return (
-        <div className=" p-5 mx-auto bg-white border shadow-lg top-20 w-96 rounded-md">
+        <div className="p-2 mx-auto bg-white border shadow-lg top-20 w-96 rounded-md">
             <div className="mt-3 text-center">
                 <div className="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
                     <svg
