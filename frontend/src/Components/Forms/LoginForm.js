@@ -4,7 +4,7 @@ import SuccessModal from "./SuccessModal";
 import Loader from "../Loader";
 import axiosInstance from "../../axios";
 
-// TO-DO - change form so it looks properly
+
 
 function LoginForm(props) {
     // TO-DO - Use location to show modal after redirecting from signup page
@@ -22,12 +22,11 @@ function LoginForm(props) {
                 'password': password
             })
             .then((response) => {
+                localStorage.setItem("access_token", response.data['access']);
+                localStorage.setItem("refresh_token", response.data['refresh']);
+                axiosInstance.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
                 history.push(
                     '/',
-                    {
-                        isAuthenticated: true,
-                        token: response.data
-                    }
                 );
             })
             .catch(response => console.log(response));
@@ -51,7 +50,7 @@ return (
             {/*{showModal && <SuccessModal/>}*/}
             <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                    Username
+                    Username *
                 </label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                        id="username"
@@ -62,7 +61,7 @@ return (
             </div>
             <div className="mb-6">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                    Password
+                    Password *
                 </label>
                 <input
                     className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"

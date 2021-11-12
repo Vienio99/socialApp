@@ -18,9 +18,9 @@ function PostDetail(props) {
                 axiosInstance.get(`post/${props.id}`),
                 axiosInstance.get('comment/')
             ])
-                .then(axios.spread((response, response2) => {
-                    setPost(response.data);
-                    setComments(response2.data);
+                .then(axios.spread((post, comments) => {
+                    setPost(post.data);
+                    setComments(comments.data);
                 }));
             setIsLoading(false);
         };

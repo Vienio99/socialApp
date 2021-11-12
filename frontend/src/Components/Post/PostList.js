@@ -8,6 +8,8 @@ import PaginationBar from "../PaginationBar";
 import axiosInstance from "../../axios";
 
 
+// TO-DO: when there is 404 error, forward user to 404 page
+
 function PostList(props) {
     const [posts, setPosts] = useState([]);
     const [comments, setComments] = useState([]);
@@ -27,9 +29,9 @@ function PostList(props) {
                 axiosInstance.get('post/'),
                 axiosInstance.get('comment/')
             ])
-                .then(axios.spread((response, response2) => {
-                    setPosts(response.data);
-                    setComments(response2.data);
+                .then(axios.spread((posts, comments) => {
+                    setPosts(posts.data);
+                    setComments(comments.data);
                 }));
             setIsLoading(false);
         };

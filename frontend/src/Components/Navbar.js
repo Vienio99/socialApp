@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Link
 } from "react-router-dom";
@@ -7,6 +7,14 @@ export default function Navbar() {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+    useEffect(() => {
+        if (localStorage.getItem('access_token')) {
+            setIsAuthenticated(true);
+        }
+    }, []);
+
+    console.log(localStorage.getItem('access_token'));
+    // localStorage.clear();
     return (
         //Navbar
         <nav className="fixed top-0 text-gray-700 bg-gray-300 sticky mb-10">
@@ -44,23 +52,23 @@ export default function Navbar() {
                     {/*</div>*/}
                     {/* User info / Login signup */}
                     <div className="flex items-center hidden md:flex space-x-1">
-                        {isAuthenticated ?  (
-                            <>
-                            <Link to="/" className="px-4 py-6 hover:text-gray-900">Hi!</Link>
-                            <Link to="/"
-                            className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
-                                Logout
-                            </Link>
-                            </>
+                        {isAuthenticated ? (
+                                <>
+                                    <Link to="/" className="px-4 py-6 hover:text-gray-900">Hi!</Link>
+                                    <Link to="/"
+                                          className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
+                                        Logout
+                                    </Link>
+                                </>
                             )
                             : (
-                            <>
-                            <Link to="/login" className="px-4 py-6 hover:text-gray-900">Login</Link>
-                            <Link to="/signup"
-                            className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
-                                SignUp
-                            </Link>
-                            </>
+                                <>
+                                    <Link to="/login" className="px-4 py-6 hover:text-gray-900">Login</Link>
+                                    <Link to="/signup"
+                                          className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
+                                        SignUp
+                                    </Link>
+                                </>
                             )}
 
                     </div>
