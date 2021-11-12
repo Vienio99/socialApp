@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import PostCard from "./PostCard";
 import Loader from "../Loader";
 import axiosInstance from "../../axios";
+import axios from "axios";
 
 function PostDetail(props) {
     const [post, setPost] = useState([]);
@@ -13,14 +14,19 @@ function PostDetail(props) {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const response = await axiosInstance.get(`post/${props.id}`);
-            const response2 = await axiosInstance.get('comment/');
-            setPost(response.data);
-            setComments(response2.data);
+            await axios.all([
+                axiosInstance.get(`post/${props.id}`),
+                axiosInstance.get('comment/')
+            ])
+                .then(axios.spread((response, response2) => {
+                    setPost(response.data);
+                    setComments(response2.data);
+                }));
             setIsLoading(false);
         };
         fetchData();
     }, [props.id]);
+
 
     return (
         <div className="flex-grow">

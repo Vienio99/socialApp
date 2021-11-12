@@ -22,7 +22,8 @@ function PostForm() {
             .then((response) => {
                 console.log(response);
                 console.log(response.data);
-            });
+            })
+            .catch(response => console.log(response));
     };
 
     function prepareTags() {

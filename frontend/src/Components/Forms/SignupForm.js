@@ -19,11 +19,10 @@ function SignupForm() {
             .then((response) => {
                 history.push(
                     '/login',
-                    { showModal: true }
+                    {showModal: true}
                 );
-                console.log(response);
-                console.log(response.data);
-            });
+            })
+            .catch(response => console.log(response));
     };
 
     return (

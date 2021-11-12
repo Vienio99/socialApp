@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Link
 } from "react-router-dom";
 
 export default function Navbar() {
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
     return (
         //Navbar
         <nav className="fixed top-0 text-gray-700 bg-gray-300 sticky mb-10">
@@ -13,8 +16,8 @@ export default function Navbar() {
                         {/* Logo */}
                         <div>
                             <a href="#" className="flex items-center px-3 py-6 hover:text-gray-900">
-                            <img src="https://img.icons8.com/doodle/50/000000/nintendo-switch-pro-controller.png"
-                                 width="35px" alt=""/>
+                                <img src="https://img.icons8.com/doodle/50/000000/nintendo-switch-pro-controller.png"
+                                     width="35px" alt=""/>
                                 <span className="font-bold">HobbyHub</span>
                             </a>
                         </div>
@@ -41,9 +44,25 @@ export default function Navbar() {
                     {/*</div>*/}
                     {/* User info / Login signup */}
                     <div className="flex items-center hidden md:flex space-x-1">
-                        <Link to="/login" className="px-4 py-6 hover:text-gray-900">Login</Link>
-                        <Link to="/signup"
-                              className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">SignUp</Link>
+                        {isAuthenticated ?  (
+                            <>
+                            <Link to="/" className="px-4 py-6 hover:text-gray-900">Hi!</Link>
+                            <Link to="/"
+                            className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
+                                Logout
+                            </Link>
+                            </>
+                            )
+                            : (
+                            <>
+                            <Link to="/login" className="px-4 py-6 hover:text-gray-900">Login</Link>
+                            <Link to="/signup"
+                            className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
+                                SignUp
+                            </Link>
+                            </>
+                            )}
+
                     </div>
                     {/* Hamburger icon */}
                     <div className="flex items-center md:hidden">

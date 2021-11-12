@@ -23,14 +23,17 @@ function PostList(props) {
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
-            const response = await axiosInstance.get('post/');
-            const response2 = await axiosInstance.get('comment/');
-            setPosts(response.data);
-            setComments(response2.data);
+            await axios.all([
+                axiosInstance.get('post/'),
+                axiosInstance.get('comment/')
+            ])
+                .then(axios.spread((response, response2) => {
+                    setPosts(response.data);
+                    setComments(response2.data);
+                }));
             setIsLoading(false);
         };
         fetchData();
-
     }, []);
 
     //Change page
