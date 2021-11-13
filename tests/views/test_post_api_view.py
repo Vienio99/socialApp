@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework.test import APITestCase
+from rest_framework.utils import json
+
 from api.v1.post.serializer import PostSerializer
 from social.models import Post, Tag
 
@@ -45,6 +47,7 @@ class PostDetailApiViewTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
+        cls.notAuthor = User.objects.create_user(username='notAuthor', password='secret')
         cls.post = Post.objects.create(author=cls.user, text='Hello guys')
         cls.tag = Tag.objects.create(name='#hiking')
 
@@ -80,9 +83,15 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_updated_post_has_proper_data(self):
-        self.client.login(username='user1', password='secret')
-
-        self.client.put(f'/api/v1/post/{self.post.pk}', self.data2)
+        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.put(f'/api/v1/post/{self.post.pk}',
+                                   {'text': 'New fancy text', 'tags': [{'name': '#hiking'}, {'name': '#driving'}]},
+                                   **headers)
+        print(response.content)
         updatedPost = Post.objects.get(text='New fancy text')
         response = self.client.get(f'/api/v1/post/{updatedPost.pk}')
         self.assertEqual(response.data['text'], 'New fancy text')
@@ -90,19 +99,35 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['tags'][1]['name'], '#driving')
 
     def test_only_author_can_update_his_post(self):
-        self.client.login(username='notAuthor', password='123')
-        response = self.client.put(f'/api/v1/post/{self.post.pk}', {'author': self.user.pk,
-                                                                    'text': 'Not hello'})
+        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.patch(f'/api/v1/post/{self.post.pk}',
+                                     {'text': 'Not hello'},
+                                     **headers)
+        print(response.content)
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_post(self):
-        self.client.login(username='user1', password='secret')
-        response = self.client.delete(f'/api/v1/post/{self.post.pk}')
+        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.delete(f'/api/v1/post/{self.post.pk}',
+                                      **headers)
+        print(response.content)
         self.assertEqual(response.status_code, 204)
 
     def test_only_author_can_delete_his_post(self):
-        self.client.login(username='notAuthor', password='123')
-        response = self.client.delete(f'/api/v1/post/{self.post.pk}')
+        response = self.client.post('/api/v1/token/', {'username': 'notAuthor', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.put(f'/api/v1/post/{self.post.pk}', **headers)
         self.assertEqual(response.status_code, 403)
 
     def test_can_create_new_post(self):

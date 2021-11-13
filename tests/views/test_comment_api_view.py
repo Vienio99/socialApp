@@ -70,21 +70,33 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_user_can_update_his_comment(self):
-        self.client.login(username='user1', password='secret')
-        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', self.data)
+        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', {'text': 'Definitely not hello world'}, **headers)
         self.assertEqual(response.status_code, 200)
         # Additional check if the comment is really updated
         updatedComment = Comment.objects.get(text='Definitely not hello world')
         self.assertEqual(updatedComment.text, 'Definitely not hello world')
 
     def test_only_author_can_update_his_comment(self):
-        self.client.login(username='notAuthor', passwrd='123')
-        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', self.data)
+        response = self.client.post('/api/v1/token/', {'username': 'notAuthor', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', {'text': 'whatever'}, **headers)
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_comment(self):
-        self.client.login(username='user1', password='secret')
-        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}')
+        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}', **headers)
         self.assertEqual(response.status_code, 204)
 
     def test_only_author_can_delete_his_comment(self):
