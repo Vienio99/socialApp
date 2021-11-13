@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework.test import APITestCase
+from rest_framework.utils import json
+
 from api.v1.comment.serializer import CommentSerializer
 from social.models import Comment, Post
 
@@ -38,6 +40,7 @@ class CommentDetailApiViewTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
+        cls.notAuthor = User.objects.create_user(username='notAuthor', password='secret')
         cls.post = Post.objects.create(author=cls.user, text='Hello guys')
         cls.comment = Comment.objects.create(author=cls.user, text='Hello', post=cls.post)
 
@@ -85,8 +88,12 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 204)
 
     def test_only_author_can_delete_his_comment(self):
-        self.client.login(username='notAuthor', password='123')
-        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}')
+        response = self.client.post('/api/v1/token/', {'username': 'notAuthor', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}', **headers)
         self.assertEqual(response.status_code, 403)
 
     def test_can_create_new_comment(self):

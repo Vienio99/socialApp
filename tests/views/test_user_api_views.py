@@ -20,7 +20,6 @@ class UserListApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 201)
 
 
-
 class UserDetailApiViewTest(APITestCase):
 
     @classmethod
@@ -41,7 +40,7 @@ class UserDetailApiViewTest(APITestCase):
         newUser = User.objects.get(username='user')
         response = self.client.get(f'/api/v1/user/{newUser.username}')
         self.assertEqual(response.data['username'], 'user')
-        self.assertEqual(newUser.check_password('secret'), True)
+        self.assertEqual(newUser.check_password("secret"), True)
 
 
 class TokenUrlTest(APITestCase):
@@ -52,8 +51,16 @@ class TokenUrlTest(APITestCase):
             'password': 'secret'
         }
 
+        cls.fakeData = {
+            'username': 'fake',
+            'password': 'secret'
+        }
+
     def test_can_get_token(self):
         self.client.post('/api/v1/user/', self.data)
         response = self.client.post('/api/v1/token/', self.data)
         self.assertEqual(response.status_code, 200)
 
+    def test_can_not_get_token_if_there_is_no_user_with_given_credentials(self):
+        response = self.client.post('/api/v1/token/', self.fakeData)
+        self.assertEqual(response.status_code, 401)

@@ -6,6 +6,7 @@ from social.models import Post, Tag
 
 # TO-DO - change to viewsets
 # TO-DO - refactor code
+# TO-DO - partial = true for partial updates
 
 class PostSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True)
@@ -41,6 +42,7 @@ class PostSerializer(serializers.ModelSerializer):
         return instance
 
     def to_representation(self, instance):
+        # View user instead of number
         rep = super(PostSerializer, self).to_representation(instance)
         rep['author'] = instance.author.username
 
