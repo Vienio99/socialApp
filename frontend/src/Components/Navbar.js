@@ -16,11 +16,14 @@ export default function Navbar() {
 
     console.log(localStorage.getItem('access_token'));
 
+    // Not sure if this function should reside in Navbar component?
     // Add token to Django's JWT token blacklist, remove tokens from local storage and redirect user to homepage
     const handleLogout = () => {
-        axiosInstance.post('token/blacklist/', {
-            refresh_token: localStorage.getItem('refresh_token'),
-        });
+        const response = axiosInstance.post('user/token/blacklist/', {
+            refresh: localStorage.getItem('refresh_token'),
+        })
+            .then();
+
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh_token');
         axiosInstance.defaults.headers['Authorization'] = null;

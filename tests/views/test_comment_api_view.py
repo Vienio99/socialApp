@@ -71,7 +71,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_user_can_update_his_comment(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -85,7 +85,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(updatedComment.text, 'Definitely not hello world')
 
     def test_updated_comment_has_proper_data(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -98,7 +98,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['text'], 'Definitely not hello world')
 
     def test_only_author_can_update_his_comment(self):
-        response = self.client.post('/api/v1/token/', {'username': 'notAuthor', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -107,7 +107,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_comment(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -116,7 +116,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 204)
 
     def test_only_author_can_delete_his_comment(self):
-        response = self.client.post('/api/v1/token/', {'username': 'notAuthor', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -125,7 +125,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_authenticated_user_can_create_new_comment(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -138,7 +138,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 401)
 
     def test_created_comment_has_proper_data(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']

@@ -77,13 +77,19 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_user_can_update_his_post(self):
-        self.client.login(username='user1', password='secret')
-
-        response = self.client.put(f'/api/v1/post/{self.post.pk}', self.data2)
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.patch(f'/api/v1/post/{self.post.pk}', {'text': 'Hello'}, **headers)
+        # Additional check if post got updated
+        updatedPost = Post.objects.get(text='Hello')
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(updatedPost.text, 'Hello')
 
     def test_updated_post_has_proper_data(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -98,7 +104,7 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['tags'][1]['name'], '#driving')
 
     def test_only_author_can_update_his_post(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -110,7 +116,7 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_post(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -121,7 +127,7 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 204)
 
     def test_only_author_can_delete_his_post(self):
-        response = self.client.post('/api/v1/token/', {'username': 'notAuthor', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -130,7 +136,7 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_authenticated_user_can_create_new_post(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -145,7 +151,7 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 401)
 
     def test_created_post_has_proper_data(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
@@ -160,7 +166,7 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['pub_date'], 'now')
 
     def test_post_does_not_require_tags(self):
-        response = self.client.post('/api/v1/token/', {'username': 'user1', 'password': 'secret'})
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']

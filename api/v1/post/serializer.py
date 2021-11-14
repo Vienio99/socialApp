@@ -7,9 +7,10 @@ from social.models import Post, Tag
 # TO-DO - change to viewsets
 # TO-DO - refactor code
 # TO-DO - partial = true for partial updates
+# TO-DO - validation
 
 class PostSerializer(serializers.ModelSerializer):
-    tags = TagSerializer(many=True)
+    tags = TagSerializer(many=True, required=False)
 
     class Meta:
         model = Post
@@ -30,12 +31,16 @@ class PostSerializer(serializers.ModelSerializer):
 
     # Iterate over tags and add them to post
     def update(self, instance, validated_data):
-        tags_data = validated_data.pop('tags')
-        for tag_data in tags_data:
-            if not Tag.objects.filter(name=tag_data['name']):
-                Tag.objects.create(name=tag_data['name'])
-            tag = Tag.objects.get(name=tag_data['name'])
-            instance.tags.add(tag.id)
+        # Try to update tags but if there is none in request, go on
+        try:
+            tags_data = validated_data.pop('tags')
+            for tag_data in tags_data:
+                if not Tag.objects.filter(name=tag_data['name']):
+                    Tag.objects.create(name=tag_data['name'])
+                tag = Tag.objects.get(name=tag_data['name'])
+                instance.tags.add(tag.id)
+        except KeyError:
+            pass
         instance.text = validated_data.get('text', instance.text)
         instance.save()
 

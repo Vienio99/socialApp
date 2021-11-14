@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'social.apps.SocialConfig',
     'corsheaders',
     'django.contrib.humanize',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [

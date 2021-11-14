@@ -17,7 +17,7 @@ function LoginForm(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         axiosInstance
-            .post('token/', {
+            .post('user/token/', {
                 'username': username,
                 'password': password
             })

@@ -58,9 +58,11 @@ class LoginTest(APITestCase):
 
     def test_can_get_token(self):
         self.client.post('/api/v1/user/', self.data)
-        response = self.client.post('/api/v1/token/', self.data)
+        response = self.client.post('/api/v1/user/token/', self.data)
         self.assertEqual(response.status_code, 200)
 
     def test_can_not_get_token_if_there_is_no_user_with_given_credentials(self):
-        response = self.client.post('/api/v1/token/', self.fakeData)
+        response = self.client.post('/api/v1/user/token/', self.fakeData)
         self.assertEqual(response.status_code, 401)
+
+    # def test_blacklist_token
