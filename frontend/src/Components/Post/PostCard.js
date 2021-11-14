@@ -1,6 +1,5 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import React from "react";
-import axios from 'axios';
 import {
     Link
 } from "react-router-dom";
@@ -18,23 +17,23 @@ function PostCard(props) {
         // Card
         <li className="flex flex-col">
             <div className="flex justify-center">
-                <div className="bg-white rounded-md shadow-md w-1/2">
+                <div className="w-1/2 bg-white shadow-md rounded-md">
                     {/* Header */}
-                    <header className="bg-gray-300 rounded-t-md py-1 px-4 flex justify-between">
+                    <header className="flex justify-between px-4 py-1 bg-gray-300 rounded-t-md">
                         <div>
                             <div className="flex items-center">
                                 <img src={dog} width="50px" alt="profile-picture"/>
-                                <p className="font-bold text-lg ml-2">{post.author}</p>
+                                <p className="ml-2 text-lg font-bold">{post.author}</p>
                             </div>
                         </div>
-                        <p className="text-sm text-gray-500 py-1">Posted {post.pub_date} </p>
+                        <p className="py-1 text-sm text-gray-500">Posted {post.pub_date} </p>
                     </header>
                     {/* Text */}
                     <Link to={`/post/${post.id}`}>
                         <div className="px-4 py-4">
                             <p>{post.text}</p>
                         </div>
-                        <div className="flex space-x-3 font-bold mb-2 px-4">
+                        <div className="flex px-4 mb-2 font-bold space-x-3">
                             {post.tags && post.tags.map(tag => (
                                 <p className="text-sm" key={tag.id}>{tag.name}</p>
                             ))}
@@ -42,10 +41,10 @@ function PostCard(props) {
                     </Link>
                     {/* Footer */}
                     <footer
-                        className="bg-gray-100 py-1 px-4 text-sm text-gray-500 flex justify-between items-center rounded-b-md">
+                        className="flex items-center justify-between px-4 py-1 text-sm text-gray-500 bg-gray-100 rounded-b-md">
                         <div className="flex space-x-5">
                             <button className="flex items-center space-x-1 hover:text-gray-900">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="rgba(251, 191, 36)"
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="rgba(251, 191, 36)"
                                      viewBox="0 0 24 24"
                                      stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -54,7 +53,7 @@ function PostCard(props) {
                                 <p>{post.likes} Likes</p>
                             </button>
                             <button className="flex items-center space-x-1 hover:text-gray-900">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="rgba(176, 196, 222)"
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="rgba(176, 196, 222)"
                                      viewBox="0 0 24 24"
                                      stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -65,7 +64,7 @@ function PostCard(props) {
                         </div>
                         <button className="flex items-center hover:text-gray-900"
                                 onClick={() => setShowComments(!showComments)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                       d="M16 17l-4 4m0 0l-4-4m4 4V3"/>

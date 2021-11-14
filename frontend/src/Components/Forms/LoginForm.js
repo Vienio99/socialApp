@@ -24,6 +24,7 @@ function LoginForm(props) {
             .then((response) => {
                 localStorage.setItem("access_token", response.data['access']);
                 localStorage.setItem("refresh_token", response.data['refresh']);
+                // update header in axios instance to new token
                 axiosInstance.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
                 history.push(
                     '/',

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {
-    Link
+    Link, useHistory
 } from "react-router-dom";
+import axiosInstance from "../axios";
 
 export default function Navbar() {
-
+    const history = useHistory();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
@@ -14,11 +15,22 @@ export default function Navbar() {
     }, []);
 
     console.log(localStorage.getItem('access_token'));
-    // localStorage.clear();
+
+    // Add token to Django's JWT token blacklist, remove tokens from local storage and redirect user to homepage
+    const handleLogout = () => {
+        axiosInstance.post('token/blacklist/', {
+            refresh_token: localStorage.getItem('refresh_token'),
+        });
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        axiosInstance.defaults.headers['Authorization'] = null;
+        history.push('/');
+    };
+
     return (
         //Navbar
-        <nav className="fixed top-0 text-gray-700 bg-gray-300 sticky mb-10">
-            <div className="container mx-auto text-center max-w-6-xl px-4">
+        <nav className="fixed sticky top-0 mb-10 text-gray-700 bg-gray-300">
+            <div className="container px-4 mx-auto text-center max-w-6-xl">
                 <div className="flex justify-between">
                     <div className="flex space-x-4">
                         {/* Logo */}
@@ -54,8 +66,8 @@ export default function Navbar() {
                     <div className="flex items-center hidden md:flex space-x-1">
                         {isAuthenticated ? (
                                 <>
-                                    <Link to="/" className="px-4 py-6 hover:text-gray-900">Hi!</Link>
-                                    <Link to="/"
+                                    <p className="px-4 py-6 hover:text-gray-900">Hi!</p>
+                                    <Link to="/" onClick={handleLogout}
                                           className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
                                         Logout
                                     </Link>
@@ -70,12 +82,11 @@ export default function Navbar() {
                                     </Link>
                                 </>
                             )}
-
                     </div>
                     {/* Hamburger icon */}
                     <div className="flex items-center md:hidden">
                         <button className="mobile-menu-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                       d="M4 6h16M4 12h16M4 18h16"/>

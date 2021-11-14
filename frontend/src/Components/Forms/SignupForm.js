@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 import axiosInstance from '../../axios';
 
@@ -17,7 +17,7 @@ function SignupForm() {
                 username: username,
                 password: password
             })
-            .then((response) => {
+            .then(() => {
                 history.push(
                     '/login',
                     {showModal: true}
@@ -28,14 +28,14 @@ function SignupForm() {
 
     return (
         <div className="flex-grow mx-auto">
-            <form className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col max-w-4xl"
+            <form className="flex flex-col max-w-4xl px-8 pt-6 pb-8 mb-4 bg-gray-200 rounded shadow-md"
                   onSubmit={e => handleSubmit(e)}>
-                <h1 className="text-2xl font-bold text-center mb-5 text-gray-700">SignUp</h1>
+                <h1 className="mb-5 text-2xl font-bold text-center text-gray-700">SignUp</h1>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
                         Username *
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+                    <input className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none"
                            id="username"
                            type="text"
                            placeholder="Username"
@@ -43,17 +43,17 @@ function SignupForm() {
                            value={username}/>
                 </div>
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">
                         Password *
                     </label>
                     <input
-                        className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"
+                        className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none border-red"
                         id="password"
                         type="password"
                         placeholder="**********"
                         onChange={e => setPassword(e.target.value)}
                         value={password}/>
-                    <p className="text-red text-xs italic">Please input a password.</p>
+                    <p className="text-xs italic text-red">Please input a password.</p>
                 </div>
                 {/*<div className="mb-6">*/}
                 {/*    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">*/}
@@ -70,7 +70,7 @@ function SignupForm() {
                         type="submit">
                         Sign Up
                     </button>
-                    <a className="inline-block align-baseline font-bold text-sm text-gray-700 hover:text-gray-900"
+                    <a className="inline-block text-sm font-bold text-gray-700 align-baseline hover:text-gray-900"
                        href="#">
                         Forgot Password?
                     </a>

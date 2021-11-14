@@ -4,19 +4,19 @@ import React from "react";
 function Footer() {
     return (
         // Footer
-        <footer className="bg-gray-300 pt-6 pb-6 text-gray-700">
-            <div className="container mx-auto px-4">
+        <footer className="pt-6 pb-6 text-gray-700 bg-gray-300">
+            <div className="container px-4 mx-auto">
                 <div className="flex flex-wrap text-left lg:text-left">
                     {/* Left text and github icon*/}
-                    <div className="w-full lg:w-6/12 px-4">
+                    <div className="w-full px-4 lg:w-6/12">
                         {/* eslint-disable-next-line react/no-unescaped-entities */}
-                        <h4 className="text-3xl fonat-semibold">Let's keep in touch!</h4>
-                        <h5 className="text-lg mt-0 mb-2">
+                        <h4 className="text-3xl font-semibold">Let's keep in touch!</h4>
+                        <h5 className="mt-0 mb-2 text-lg">
                             Find us on any of these platforms, we respond 1-2 business days.
                         </h5>
-                        <div className="mt-3 lg:mb-0 mb-6">
+                        <div className="mt-3 mb-6 lg:mb-0">
                             <button
-                                className="hover:bg-yellow-400 bg-white shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                className="items-center justify-center w-10 h-10 mr-2 font-normal bg-white rounded-full shadow-lg outline-none hover:bg-yellow-400 align-center focus:outline-none"
                                 type="button">
                                 <svg className="mx-auto pb-2.5" xmlns="http://www.w3.org/2000/svg" width="30" height="50"
                                      viewBox="0 0 24 24">
@@ -27,35 +27,35 @@ function Footer() {
                         </div>
                     </div>
                     {/* Text on the right - Useful links */}
-                    <div className="w-full lg:w-6/12 px-4">
-                        <div className="flex flex-wrap items-top mb-6">
-                            <div className="w-full lg:w-4/12 px-4 ml-auto">
-                                <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Useful Links</span>
+                    <div className="w-full px-4 lg:w-6/12">
+                        <div className="flex flex-wrap mb-6 items-top">
+                            <div className="w-full px-4 ml-auto lg:w-4/12">
+                                <span className="block mb-2 text-sm font-semibold uppercase text-blueGray-500">Useful Links</span>
                                 <ul className="list-unstyled">
                                     <li>
-                                        <a className="font-semibold block pb-2 text-sm hover:text-gray-900"
+                                        <a className="block pb-2 text-sm font-semibold hover:text-gray-900"
                                            href="">About Us</a>
                                     </li>
                                     <li>
-                                        <a className="font-semibold block pb-2 text-sm hover:text-gray-900"
+                                        <a className="block pb-2 text-sm font-semibold hover:text-gray-900"
                                            href="">Github</a>
                                     </li>
                                 </ul>
                             </div>
                             {/* Text on the right - Other resources */}
-                            <div className="w-full lg:w-4/12 px-4">
-                                <span className="block uppercase text-sm font-semibold mb-2">Other Resources</span>
+                            <div className="w-full px-4 lg:w-4/12">
+                                <span className="block mb-2 text-sm font-semibold uppercase">Other Resources</span>
                                 <ul className="list-unstyled">
                                     <li>
-                                        <a className="font-semibold block pb-2 text-sm hover:text-gray-900"
+                                        <a className="block pb-2 text-sm font-semibold hover:text-gray-900"
                                            href="">Terms &amp; Conditions</a>
                                     </li>
                                     <li>
-                                        <a className="font-semibold block pb-2 text-sm hover:text-gray-900"
+                                        <a className="block pb-2 text-sm font-semibold hover:text-gray-900"
                                            href="">Privacy Policy</a>
                                     </li>
                                     <li>
-                                        <a className="font-semibold block pb-2 text-sm hover:text-gray-900"
+                                        <a className="block pb-2 text-sm font-semibold hover:text-gray-900"
                                            href="">Contact Us</a>
                                     </li>
                                 </ul>
@@ -64,9 +64,9 @@ function Footer() {
                     </div>
                 </div>
                 {/* Bottom text */}
-                <div className="flex flex-wrap items-center md:justify-between justify-center">
-                    <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-                        <div className="text-sm text-blueGray-500 font-semibold py-1">
+                <div className="flex flex-wrap items-center justify-center md:justify-between">
+                    <div className="w-full px-4 mx-auto text-center md:w-4/12">
+                        <div className="py-1 text-sm font-semibold text-blueGray-500">
                             Copyright © <span id="get-current-year">2021</span><a
                             href="#"
                             className="text-blueGray-500 hover:text-gray-800" target="_blank"> by

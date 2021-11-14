@@ -40,13 +40,13 @@ function PostForm() {
         // Card
         <div className="flex flex-col">
             <div className="flex justify-center">
-                <div className="bg-gray-300 rounded-md shadow-md w-1/2 px-6 py-6 mb-4 flex flex-col">
+                <div className="flex flex-col w-1/2 px-6 py-6 mb-4 bg-gray-300 shadow-md rounded-md">
                     <form onSubmit={e => handleSubmit(e)}>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="text">
+                            <label className="block mb-2 font-bold text-gray-700 text-md" htmlFor="text">
                                 Text
                             </label>
-                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+                            <input className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none"
                                    id="text"
                                    type="text" placeholder="Text"
                                    onChange={e => setText(e.target.value)}
@@ -54,11 +54,11 @@ function PostForm() {
                             />
                         </div>
                         <div className="mb-6">
-                            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="tags">
+                            <label className="block mb-2 font-bold text-gray-700 text-md" htmlFor="tags">
                                 Tags
                             </label>
                             <input
-                                className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700"
+                                className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none border-red"
                                 id="tags" type="tags" placeholder="#tags"
                                 onChange={e => setTags(e.target.value)}
                                 value={tags}

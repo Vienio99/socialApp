@@ -1,9 +1,4 @@
-import {useEffect, useState} from 'react';
 import React from "react";
-import axios from 'axios';
-import {
-    Link
-} from "react-router-dom";
 import PropTypes from "prop-types";
 import dog from "../../download.jpg";
 
@@ -12,13 +7,13 @@ function CommentUnderPost(props) {
     return (
         // Card
         <div className="flex justify-center">
-            <div className="bg-white  rounded-b-md shadow-md w-full">
+            <div className="w-full bg-white shadow-md rounded-b-md">
                 {/* Header */}
-                <header className="bg-gray-200 py-2 px-4 flex justify-between items-center">
+                <header className="flex items-center justify-between px-4 py-2 bg-gray-200">
                     <div>
                             <div className="flex items-center">
                                 <img src={dog} width="30px" alt=""/>
-                                <p className="font-bold text-sm ml-2">{comment.author}</p>
+                                <p className="ml-2 text-sm font-bold">{comment.author}</p>
                             </div>
                     </div>
                     <p className="text-sm text-gray-500">Posted {comment.pub_date} </p>
@@ -28,10 +23,10 @@ function CommentUnderPost(props) {
                     <p>{comment.text}</p>
                 </div>
                 {/* Footer */}
-                <footer className="bg-gray-100 py-1 px-4 text-sm text-gray-500 flex justify-between items-center rounded-b-md">
+                <footer className="flex items-center justify-between px-4 py-1 text-sm text-gray-500 bg-gray-100 rounded-b-md">
                     <div className="flex space-x-5">
                         <button className="flex items-center space-x-1 hover:text-gray-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="rgba(251, 191, 36)"
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="rgba(251, 191, 36)"
                                  viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"

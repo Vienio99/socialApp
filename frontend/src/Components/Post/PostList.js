@@ -10,7 +10,7 @@ import axiosInstance from "../../axios";
 
 // TO-DO: when there is 404 error, forward user to 404 page
 
-function PostList(props) {
+function PostList() {
     const [posts, setPosts] = useState([]);
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +42,7 @@ function PostList(props) {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
-        <div className="flex flex-col space-y-10 flex-grow">
+        <div className="flex flex-col flex-grow space-y-10">
             <PostForm/>
             {isLoading && <Loader/>}
             <ul className="flex flex-col space-y-10">

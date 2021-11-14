@@ -43,7 +43,7 @@ class UserDetailApiViewTest(APITestCase):
         self.assertEqual(newUser.check_password("secret"), True)
 
 
-class TokenUrlTest(APITestCase):
+class LoginTest(APITestCase):
     @classmethod
     def setUpTestData(cls):
         cls.data = {
