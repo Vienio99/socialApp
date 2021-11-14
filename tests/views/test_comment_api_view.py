@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework.test import APITestCase
 from rest_framework.utils import json
-
 from api.v1.comment.serializer import CommentSerializer
 from social.models import Comment, Post
 
@@ -75,7 +74,9 @@ class CommentDetailApiViewTest(APITestCase):
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
         }
-        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', {'text': 'Definitely not hello world'}, **headers)
+        response = self.client.put(f'/api/v1/comment/{self.comment.pk}',
+                                   {'text': 'Definitely not hello world'},
+                                   **headers)
         self.assertEqual(response.status_code, 200)
         # Additional check if the comment is really updated
         updatedComment = Comment.objects.get(text='Definitely not hello world')

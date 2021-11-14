@@ -1,5 +1,5 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from social.models import Post
 from api.permissions import IsOwnerOrReadOnly
 from .serializer import PostSerializer
@@ -8,7 +8,7 @@ from .serializer import PostSerializer
 class PostList(ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class PostDetail(RetrieveUpdateDestroyAPIView):
