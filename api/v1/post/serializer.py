@@ -20,12 +20,15 @@ class PostSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         post = Post.objects.create(text=validated_data['text'],
                                    author=validated_data['author'])
-        tags_data = validated_data.pop('tags')
-        for tag_data in tags_data:
-            if not Tag.objects.filter(name=tag_data['name']):
-                Tag.objects.create(name=tag_data['name'])
-            tag = Tag.objects.get(name=tag_data['name'])
-            post.tags.add(tag.id)
+        try:
+            tags_data = validated_data.pop('tags')
+            for tag_data in tags_data:
+                if not Tag.objects.filter(name=tag_data['name']):
+                    Tag.objects.create(name=tag_data['name'])
+                tag = Tag.objects.get(name=tag_data['name'])
+                post.tags.add(tag.id)
+        except KeyError:
+            return 'No tags were provided'
 
         return post
 
