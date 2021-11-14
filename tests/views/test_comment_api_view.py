@@ -76,7 +76,7 @@ class CommentDetailApiViewTest(APITestCase):
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
         }
-        response = self.client.put(f'/api/v1/comment/{self.comment.pk}',
+        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
                                    {'text': 'Definitely not hello world'},
                                    **headers)
         self.assertEqual(response.status_code, 200)
@@ -90,9 +90,9 @@ class CommentDetailApiViewTest(APITestCase):
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
         }
-        self.client.put(f'/api/v1/comment/{self.comment.pk}',
-                        {'text': 'Definitely not hello world'},
-                        **headers)
+        self.client.patch(f'/api/v1/comment/{self.comment.pk}',
+                          {'text': 'Definitely not hello world'},
+                          **headers)
         updatedComment = Comment.objects.get(text='Definitely not hello world')
         response = self.client.get(f'/api/v1/comment/{updatedComment.pk}')
         self.assertEqual(response.data['text'], 'Definitely not hello world')
@@ -103,7 +103,7 @@ class CommentDetailApiViewTest(APITestCase):
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
         }
-        response = self.client.put(f'/api/v1/comment/{self.comment.pk}', {'text': 'whatever'}, **headers)
+        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}', {'text': 'whatever'}, **headers)
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_comment(self):
