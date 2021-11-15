@@ -8,13 +8,14 @@ import '../index.css';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import SignupScreen from "../Screens/SignupScreen";
+import {useSelector} from "react-redux";
 
-//TO-DO - make routes to every post and display it on the page
 //TO-DO - make routes to every user and display his info and posts on the page
 //TO-DO - make routes to every tag with appropriate posts that contain this tag
-//TO-DO - move footer here from Main.js component
 
 function App() {
+    const state = useSelector((state) => state);
+
     return (
         <div className="flex flex-col h-screen">
             <Router>
