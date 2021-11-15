@@ -3,6 +3,8 @@ from rest_framework import serializers
 
 User = get_user_model()
 
+# TO-DO: make validation if user exists, if so return the error to frontend
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

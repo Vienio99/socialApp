@@ -178,4 +178,3 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 201)
     #
     # def test_authenticated_users_can_like_post(self):
-    # def test_authenticated_users_can_make_comments(self):
