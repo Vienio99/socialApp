@@ -1,17 +1,20 @@
 const initialState = {
-    token: null,
+    accessToken: null,
+    refreshToken: null,
     error: null,
-    loading: false
+    isLoading: false,
+    isAuthenticated: null,
+    user: null
 };
 
 const reducer = (state=initialState, action) => {
     switch (action.type) {
         case "register":
-            return state + action.payload;
+            return state;
         case "login":
-            return state + action.payload;
+            return state;
         case "logout":
-            return state + action.payload;
+            return state;
         default:
             return state;
     }
