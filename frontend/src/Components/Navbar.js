@@ -3,16 +3,17 @@ import {
     Link, useHistory
 } from "react-router-dom";
 import axiosInstance from "../axios";
+import {useSelector} from "react-redux";
 
 export default function Navbar() {
     const history = useHistory();
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    useEffect(() => {
-        if (localStorage.getItem('access_token')) {
-            setIsAuthenticated(true);
-        }
-    }, []);
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    console.log(isAuthenticated);
+    // useEffect(() => {
+    //     if (localStorage.getItem('access_token')) {
+    //         setIsAuthenticated(true);
+    //     }
+    // }, []);
 
     console.log(localStorage.getItem('access_token'));
 
