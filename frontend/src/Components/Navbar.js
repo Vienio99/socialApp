@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import axiosInstance from "../axios";
 import {useSelector} from "react-redux";
+import {logout} from "../state/actions/auth";
 
 export default function Navbar() {
     const history = useHistory();
@@ -19,18 +20,9 @@ export default function Navbar() {
 
     // Not sure if this function should reside in Navbar component?
     // Add token to Django's JWT token blacklist, remove tokens from local storage and redirect user to homepage
-    const handleLogout = () => {
-        axiosInstance.post('user/token/blacklist/', {
-            access: localStorage.getItem('access_token'),
-            refresh: localStorage.getItem('refresh_token'),
-        })
-            .then(response => {
-                console.log(response);
-            });
-
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        axiosInstance.defaults.headers['Authorization'] = null;
+    const handleLogout = (e) => {
+        e.preventDefault();
+        logout();
         history.push('/');
     };
 
@@ -74,7 +66,7 @@ export default function Navbar() {
                         {isAuthenticated ? (
                                 <>
                                     <p className="px-4 py-6 hover:text-gray-900">Hi!</p>
-                                    <Link to="/" onClick={handleLogout}
+                                    <Link to="/" onClick={e => handleLogout(e)}
                                           className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
                                         Logout
                                     </Link>

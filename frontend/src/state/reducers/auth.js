@@ -21,7 +21,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-    const { payload } = action;
+    const {payload} = action;
     switch (action.type) {
         case LOGIN_SUCCESS:
             localStorage.setItem("access_token", payload['access']);
@@ -34,6 +34,20 @@ const reducer = (state = initialState, action) => {
                 accessToken: payload['access'],
                 refreshToken: payload['refresh'],
                 isAuthenticated: true,
+                // Get user either from the token itself or from payload
+                user: ''
+            };
+        case LOGOUT_SUCCESS:
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            axiosInstance.defaults.headers['Authorization'] = null;
+
+            return {
+                ...state,
+                accessToken: null,
+                refreshToken: null,
+                isAuthenticated: false,
+                user: null
             };
         default:
             return state;

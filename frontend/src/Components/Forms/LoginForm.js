@@ -13,12 +13,11 @@ function LoginForm(props) {
     // const [showModal, setShowModal] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const handleSubmit = (e) => {
+
+    const handleLogin = (e) => {
         e.preventDefault();
         login(username, password);
-        history.push(
-            '/',
-        );
+        history.push('/',);
     };
 
 // useEffect(() => {
@@ -34,7 +33,7 @@ function LoginForm(props) {
     return (
         <div className="flex-grow mx-auto">
             <form className="flex flex-col max-w-4xl px-8 pt-6 pb-8 mb-4 bg-gray-200 rounded shadow-md"
-                  onSubmit={e => handleSubmit(e)}>
+                  onSubmit={e => handleLogin(e)}>
                 <h1 className="mb-5 text-2xl font-bold text-center text-gray-700">Login</h1>
                 {/*{showModal && <SuccessModal/>}*/}
                 <div className="mb-4">
