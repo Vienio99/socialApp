@@ -9,19 +9,12 @@ import {logout} from "../state/actions/auth";
 export default function Navbar() {
     const history = useHistory();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    console.log(isAuthenticated);
-    // useEffect(() => {
-    //     if (localStorage.getItem('access_token')) {
-    //         setIsAuthenticated(true);
-    //     }
-    // }, []);
-
-    console.log(localStorage.getItem('access_token'));
 
     // Not sure if this function should reside in Navbar component?
     // Add token to Django's JWT token blacklist, remove tokens from local storage and redirect user to homepage
     const handleLogout = (e) => {
         e.preventDefault();
+        // Invoke redux action
         logout();
         history.push('/');
     };

@@ -35,9 +35,10 @@ const reducer = (state = initialState, action) => {
                 refreshToken: payload['refresh'],
                 isAuthenticated: true,
                 // Get user either from the token itself or from payload
-                user: ''
+                user: payload['username']
             };
         case LOGOUT_SUCCESS:
+        case LOGIN_FAIL:
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
             axiosInstance.defaults.headers['Authorization'] = null;

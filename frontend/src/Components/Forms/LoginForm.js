@@ -16,6 +16,7 @@ function LoginForm(props) {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        // Invoke redux action
         login(username, password);
         history.push('/',);
     };

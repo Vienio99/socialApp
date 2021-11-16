@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 import axiosInstance from '../../axios';
+import {register} from "../../state/actions/auth";
 
 // TO-DO - check if user exists
 
@@ -8,28 +9,23 @@ function SignupForm() {
     const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    // Add validation for the password, both in in React and Django
+    // const [password2, setPassword2] = useState('');
 
 
-    const handleSubmit = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
-        axiosInstance
-            .post('user/', {
-                username: username,
-                password: password
-            })
-            .then(() => {
-                history.push(
-                    '/login',
-                    {showModal: true}
-                );
-            })
-            .catch(response => console.log(response));
+        register(username, password);
+        history.push(
+            '/login',
+            {showModal: true}
+        );
     };
 
     return (
         <div className="flex-grow mx-auto">
             <form className="flex flex-col max-w-4xl px-8 pt-6 pb-8 mb-4 bg-gray-200 rounded shadow-md"
-                  onSubmit={e => handleSubmit(e)}>
+                  onSubmit={e => handleRegister(e)}>
                 <h1 className="mb-5 text-2xl font-bold text-center text-gray-700">SignUp</h1>
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
@@ -56,13 +52,17 @@ function SignupForm() {
                     <p className="text-xs italic text-red">Please input a password.</p>
                 </div>
                 {/*<div className="mb-6">*/}
-                {/*    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">*/}
-                {/*        Repeat password*/}
+                {/*    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password2">*/}
+                {/*        Repeat password **/}
                 {/*    </label>*/}
                 {/*    <input*/}
-                {/*        className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-700 mb-3"*/}
-                {/*        id="repeatPassword" type="repeatPassword" placeholder="**********"/>*/}
-                {/*    <p className="text-red text-xs italic">Please repeat a password.</p>*/}
+                {/*        className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none border-red"*/}
+                {/*        id="password2"*/}
+                {/*        type="password2"*/}
+                {/*        placeholder="**********"*/}
+                {/*        onChange={e => setPassword2(e.target.value)}*/}
+                {/*        value={password2}/>*/}
+                {/*    <p className="text-xs italic text-red">Please repeat a password.</p>*/}
                 {/*</div>*/}
                 <div className="flex items-center justify-between">
                     <button
