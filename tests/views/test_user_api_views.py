@@ -65,4 +65,9 @@ class LoginTest(APITestCase):
         response = self.client.post('/api/v1/user/token/', self.fakeData)
         self.assertEqual(response.status_code, 401)
 
+    # def test_user(self):
+    #     User.objects.create_user(username='vienio', password='vienio')
+    #     user = User.objects.get(username='vienio')
+    #     print(user.id)
+
     # def test_blacklist_token

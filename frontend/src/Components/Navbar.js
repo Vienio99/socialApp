@@ -9,7 +9,7 @@ import {logout} from "../state/actions/auth";
 export default function Navbar() {
     const history = useHistory();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
+    const username = useSelector((state) => state.auth.username);
     // Not sure if this function should reside in Navbar component?
     // Add token to Django's JWT token blacklist, remove tokens from local storage and redirect user to homepage
     const handleLogout = (e) => {
@@ -58,7 +58,7 @@ export default function Navbar() {
                     <div className="flex items-center hidden md:flex space-x-1">
                         {isAuthenticated ? (
                                 <>
-                                    <p className="px-4 py-6 hover:text-gray-900">Hi!</p>
+                                    <p className="px-4 py-6 hover:text-gray-900">Hi {username}!</p>
                                     <Link to="/" onClick={e => handleLogout(e)}
                                           className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
                                         Logout

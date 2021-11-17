@@ -30,11 +30,6 @@ const reducer = (state = initialState, action) => {
                 comments: payload['comments'],
                 isLoading: false,
             };
-        case ADD_POST:
-            return {
-                ...state,
-                posts: [...state.posts, payload],
-            };
         default:
             return state;
     }

@@ -17,7 +17,7 @@ const initialState = {
     error: null,
     isLoading: false,
     isAuthenticated: null,
-    user: null
+    username: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
                 refreshToken: payload['refresh'],
                 isAuthenticated: true,
                 // Get user either from the token itself or from payload
-                user: payload['username']
+                username: payload['username']
             };
         case LOGOUT_SUCCESS:
         case LOGIN_FAIL:
@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
                 accessToken: null,
                 refreshToken: null,
                 isAuthenticated: false,
-                user: null
+                username: null
             };
         default:
             return state;
@@ -56,29 +56,3 @@ const reducer = (state = initialState, action) => {
 };
 
 export default reducer;
-
-
-//
-// case USER_LOADING:
-//     return {
-//         ...state,
-//         isLoading: true
-//     };
-// case USER_LOADED:
-//     return {
-//         ...state,
-//         isAuthenticated: true,
-//         isLoading: false,
-//         user: action.payload
-//     };
-// case AUTH_ERROR:
-//     localStorage.removeItem('access_token');
-//     localStorage.removeItem('refresh_token');
-//     return {
-//         ...state,
-//         accessToken: null,
-//         refreshToken: null,
-//         user: null,
-//         isAuthenticated: false,
-//         isLoading: false,
-//     };

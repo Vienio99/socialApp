@@ -18,22 +18,24 @@ export const getPosts = () => {
                 type: POSTS_FETCHED,
                 payload: payload
             });
-        }));
+        }))
+        .catch(response => console.log(response));
 };
 
 
 export const addPost = (text, tidyTags) => {
     axiosInstance
         .post('post/', {
+            // TO-DO: change to real user - 1 is for tests only
             author: 1,
             text: text,
             tags: tidyTags
         })
         .then((response) => {
-            store.dispatch({
-                type: ADD_POST,
-                payload: response.data
-            });
+            console.log(response);
+            // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
+            // but it runs once anyway idk why
+            getPosts();
         })
         .catch(response => console.log(response));
 };

@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
 from api.v1.tag.serializer import TagSerializer
@@ -18,6 +19,9 @@ class PostSerializer(serializers.ModelSerializer):
 
     # Iterate over tags and add them to post
     def create(self, validated_data):
+        # Temporary
+        # User = get_user_model()
+        # author = User.objects.get(username=validated_data['author'])
         post = Post.objects.create(text=validated_data['text'],
                                    author=validated_data['author'])
         try:

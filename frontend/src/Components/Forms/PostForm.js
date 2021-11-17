@@ -15,6 +15,9 @@ function PostForm() {
         e.preventDefault();
         const tidyTags = prepareTags();
         addPost(text, tidyTags);
+        // Clear form after submitting
+        setText('');
+        setTags('');
     };
 
     function prepareTags() {
