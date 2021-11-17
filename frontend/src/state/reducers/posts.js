@@ -1,4 +1,12 @@
-import {GET_POSTS, GET_POST, LOGIN_SUCCESS, LOGOUT_SUCCESS, LOGIN_FAIL} from "../actions/types";
+import {
+    GET_POSTS,
+    GET_POST,
+    LOGIN_SUCCESS,
+    LOGOUT_SUCCESS,
+    LOGIN_FAIL,
+    POSTS_FETCHED,
+    POSTS_FETCH
+} from "../actions/types";
 
 const initialState = {
     posts: [],
@@ -9,11 +17,17 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     const {payload} = action;
     switch (action.type) {
-        case GET_POSTS:
+        case POSTS_FETCH:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case POSTS_FETCHED:
             return {
                 ...state,
                 posts: payload['posts'],
                 comments: payload['comments'],
+                isLoading: false,
             };
         default:
             return state;

@@ -14,7 +14,6 @@ import {useSelector} from "react-redux";
 //TO-DO - make routes to every tag with appropriate posts that contain this tag
 
 function App() {
-    const state = useSelector((state) => state);
     return (
         <div className="flex flex-col h-screen">
             <Router>

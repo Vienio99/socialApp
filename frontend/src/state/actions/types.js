@@ -1,5 +1,12 @@
 // Posts
 export const GET_POSTS = 'GET_POSTS';
+export const POSTS_FETCH = 'POSTS_FETCH';
+export const POSTS_FETCHED = 'POSTS_FETCHED';
+
+
+
+
+
 
 // Post
 export const ADD_POST = 'ADD_POST';

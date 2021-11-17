@@ -15,8 +15,9 @@ import {useSelector} from "react-redux";
 function PostList() {
     const posts = useSelector((state) => state.posts.posts);
     const comments = useSelector((state) => state.posts.comments);
-    const [isLoading, setIsLoading] = useState(false);
+    const isLoading = useSelector((state) => state.posts.isLoading);
 
+    // Pagination mechanism
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(20);
 
@@ -25,12 +26,7 @@ function PostList() {
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            await getPosts();
-            setIsLoading(false);
-        };
-        fetchData();
+        getPosts();
     }, []);
 
     //Change page
@@ -39,7 +35,7 @@ function PostList() {
     return (
         <div className="flex flex-col flex-grow space-y-10">
             <PostForm/>
-            {isLoading && <Loader/>}
+            {(isLoading && !posts.length) && <Loader/>}
             <ul className="flex flex-col space-y-10">
                 {currentPosts.map(post => (
                     <PostCard post={post} comments={comments} key={post.id}/>
