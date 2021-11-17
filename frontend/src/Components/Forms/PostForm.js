@@ -1,29 +1,20 @@
 import React, {useState} from "react";
 import axiosInstance from '../../axios';
+import {addPost} from "../../state/actions/posts";
 
 //TO-DO - handle improper tags f.e. without hash-tags etc.
 //TO-DO - display error message below input fields
 //TO-DO - move prepareTags logic to backend
 
 function PostForm() {
+    // Maybe move it to redux?
     const [text, setText] = useState('');
     const [tags, setTags] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const tidyTags = prepareTags();
-
-        axiosInstance
-            .post('post/', {
-                author: 1,
-                text: text,
-                tags: tidyTags
-            })
-            .then((response) => {
-                console.log(response);
-                console.log(response.data);
-            })
-            .catch(response => console.log(response));
+        addPost(text, tidyTags);
     };
 
     function prepareTags() {

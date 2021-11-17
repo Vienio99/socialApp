@@ -5,7 +5,8 @@ import {
     LOGOUT_SUCCESS,
     LOGIN_FAIL,
     POSTS_FETCHED,
-    POSTS_FETCH
+    POSTS_FETCH,
+    ADD_POST
 } from "../actions/types";
 
 const initialState = {
@@ -28,6 +29,11 @@ const reducer = (state = initialState, action) => {
                 posts: payload['posts'],
                 comments: payload['comments'],
                 isLoading: false,
+            };
+        case ADD_POST:
+            return {
+                ...state,
+                posts: [...state.posts, payload],
             };
         default:
             return state;

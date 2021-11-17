@@ -11,12 +11,12 @@ import {useSelector} from "react-redux";
 
 
 // TO-DO: when there is 404 error, forward user to 404 page
+// TO-DO: move pagination mechanism to redux
 
 function PostList() {
     const posts = useSelector((state) => state.posts.posts);
     const comments = useSelector((state) => state.posts.comments);
     const isLoading = useSelector((state) => state.posts.isLoading);
-
     // Pagination mechanism
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(20);

@@ -1,7 +1,7 @@
 import axiosInstance from "../../axios";
 import {store} from "../store";
 import axios from "axios";
-import {GET_POSTS, POSTS_FETCH, POSTS_FETCHED} from "./types";
+import {ADD_POST, GET_POSTS, POSTS_FETCH, POSTS_FETCHED} from "./types";
 
 
 export const getPosts = () => {
@@ -19,4 +19,21 @@ export const getPosts = () => {
                 payload: payload
             });
         }));
+};
+
+
+export const addPost = (text, tidyTags) => {
+    axiosInstance
+        .post('post/', {
+            author: 1,
+            text: text,
+            tags: tidyTags
+        })
+        .then((response) => {
+            store.dispatch({
+                type: ADD_POST,
+                payload: response.data
+            });
+        })
+        .catch(response => console.log(response));
 };
