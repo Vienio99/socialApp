@@ -5,7 +5,6 @@ from api.v1.tag.serializer import TagSerializer
 from social.models import Post, Tag
 
 
-# TO-DO - change to viewsets
 # TO-DO - refactor code
 # TO-DO - partial = true for partial updates
 # TO-DO - validation

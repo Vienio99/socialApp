@@ -10,10 +10,7 @@ import {
 } from "../actions/types";
 import axiosInstance from "../../axios";
 
-// TO-DO: does token need to be in the state if it's existing in localStorage?
 const initialState = {
-    accessToken: null,
-    refreshToken: null,
     error: null,
     isLoading: false,
     isAuthenticated: null,
@@ -31,8 +28,6 @@ const reducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                accessToken: payload['access'],
-                refreshToken: payload['refresh'],
                 isAuthenticated: true,
                 // Get user either from the token itself or from payload
                 username: payload['username']
@@ -45,8 +40,6 @@ const reducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                accessToken: null,
-                refreshToken: null,
                 isAuthenticated: false,
                 username: null
             };

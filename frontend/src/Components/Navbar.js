@@ -3,10 +3,11 @@ import {
     Link, useHistory
 } from "react-router-dom";
 import axiosInstance from "../axios";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../state/actions/auth";
 
 export default function Navbar() {
+    const dispatch = useDispatch();
     const history = useHistory();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const username = useSelector((state) => state.auth.username);
@@ -15,7 +16,7 @@ export default function Navbar() {
     const handleLogout = (e) => {
         e.preventDefault();
         // Invoke redux action
-        logout();
+        dispatch(logout());
         history.push('/');
     };
 

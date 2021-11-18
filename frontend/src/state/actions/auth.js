@@ -2,7 +2,7 @@ import axiosInstance from "../../axios";
 import {LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS} from "./types";
 
 
-// Login user
+// LOGIN USER
 export const login = (username, password) => {
     return function (dispatch) {
         axiosInstance
@@ -29,7 +29,7 @@ export const login = (username, password) => {
     };
 };
 
-// Logout user
+// LOGOUT USER
 export const logout = () => {
     return function(dispatch) {
             axiosInstance
@@ -47,7 +47,7 @@ export const logout = () => {
     };
 };
 
-// Register user
+// REGISTER USER
 export const register = (username, password) => {
     return function(dispatch) {
             axiosInstance
@@ -69,5 +69,21 @@ export const register = (username, password) => {
                 type: REGISTER_FAIL
             });
         });
+    };
+};
+
+// REFRESH TOKEN
+
+export const refreshToken = () => {
+    return function(dispatch) {
+        axiosInstance
+        .post('user/token/refresh/', {
+            refresh: localStorage.getItem('refresh_token'),
+        })
+        .then(response => {
+            localStorage.setItem('access_token', response.data);
+            console.log(response);
+        })
+        .catch(response => console.log(response));
     };
 };
