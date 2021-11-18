@@ -6,7 +6,7 @@ import {
     LOGIN_FAIL,
     POSTS_FETCHED,
     POSTS_FETCH,
-    ADD_POST
+    ADD_POST, POSTS_FETCH_SUCCESS
 } from "../actions/types";
 
 const initialState = {
@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: true
             };
-        case POSTS_FETCHED:
+        case POSTS_FETCH_SUCCESS:
             return {
                 ...state,
                 posts: payload['posts'],

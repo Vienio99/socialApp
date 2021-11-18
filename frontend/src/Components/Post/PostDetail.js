@@ -3,30 +3,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import PostCard from "./PostCard";
 import Loader from "../Loader";
-import axiosInstance from "../../axios";
-import axios from "axios";
+import {useSelector} from "react-redux";
 
 function PostDetail(props) {
-    const [post, setPost] = useState([]);
-    const [comments, setComments] = useState([]);
+    const posts = useSelector((state) => state.posts.posts);
+    const comments = useSelector((state) => state.posts.comments);
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            await axios.all([
-                axiosInstance.get(`post/${props.id}`),
-                axiosInstance.get('comment/')
-            ])
-                .then(axios.spread((post, comments) => {
-                    setPost(post.data);
-                    setComments(comments.data);
-                }));
-            setIsLoading(false);
-        };
-        fetchData();
-    }, [props.id]);
+    const [post, setPost] = useState({});
 
+    useEffect(() => {
+        setIsLoading(true);
+        setPost(posts.find(post => {
+            return post.id === parseInt(props.id);
+        }));
+        setIsLoading(false);
+    }, [props.id]);
 
     return (
         <div className="flex-grow">

@@ -7,27 +7,31 @@ import PostForm from "../Forms/PostForm";
 import PaginationBar from "../PaginationBar";
 import axiosInstance from "../../axios";
 import {getPosts} from "../../state/actions/posts";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 // TO-DO: when there is 404 error, forward user to 404 page
 // TO-DO: move pagination mechanism to redux
 
-function PostList() {
+function PostList(props) {
     const posts = useSelector((state) => state.posts.posts);
     const comments = useSelector((state) => state.posts.comments);
     const isLoading = useSelector((state) => state.posts.isLoading);
+
+    const dispatch = useDispatch();
+
     // Pagination mechanism
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(20);
+
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
     useEffect(() => {
-        getPosts();
-    }, []);
+        dispatch(getPosts());
+    }, [dispatch]);
 
     //Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);

@@ -1,10 +1,10 @@
 // Posts
 export const GET_POSTS = 'GET_POSTS';
 export const POSTS_FETCH = 'POSTS_FETCH';
-export const POSTS_FETCHED = 'POSTS_FETCHED';
+export const POSTS_FETCH_SUCCESS = 'POSTS_FETCH_SUCCESS';
+export const POSTS_FETCH_FAIL = 'POSTS_FETCH_FAIL';
 
-
-
+export const CREATE_ERROR_MESSAGE = 'CREATE_ERROR_MESSAGE';
 
 // Post
 export const ADD_POST = 'ADD_POST';
@@ -14,8 +14,6 @@ export const GET_POST = 'GET_POST';
 
 // export const GET_ERRORS = 'GET_ERRORS'; ??
 
-// Comments
-export const GET_COMMENTS = 'GET_COMMENTS';
 
 // Comment
 export const ADD_COMMENT = 'ADD_COMMENT';

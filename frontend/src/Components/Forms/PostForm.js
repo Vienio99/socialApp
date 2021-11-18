@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axiosInstance from '../../axios';
 import {addPost} from "../../state/actions/posts";
+import {useDispatch} from "react-redux";
 
 //TO-DO - handle improper tags f.e. without hash-tags etc.
 //TO-DO - display error message below input fields
@@ -11,10 +12,13 @@ function PostForm() {
     const [text, setText] = useState('');
     const [tags, setTags] = useState('');
 
+    const dispatch = useDispatch();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const tidyTags = prepareTags();
-        addPost(text, tidyTags);
+        dispatch(addPost(text, tidyTags));
+
         // Clear form after submitting
         setText('');
         setTags('');
