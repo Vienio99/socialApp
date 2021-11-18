@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework.test import APITestCase
+from rest_framework.utils import json
 
 User = get_user_model()
 
@@ -71,3 +72,15 @@ class LoginTest(APITestCase):
     #     print(user.id)
 
     # def test_blacklist_token
+
+    def test_can_get_new_access_token(self):
+        self.client.post('/api/v1/user/', self.data)
+        response = self.client.post('/api/v1/user/token/', self.data)
+        token = json.loads(response.content)
+        token = token['refresh']
+
+        response = self.client.post('/api/v1/user/token/refresh/', {'refresh': token})
+
+        newToken = json.loads(response.content)
+        print(newToken['access'])
+        self.assertEqual(response.status_code, 200)

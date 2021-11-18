@@ -21,13 +21,16 @@ export default function Navbar() {
         history.push('/');
     };
 
+
     useEffect(() => {
-        if (isAuthenticated) {
-            setInterval(() => {
+        const interval = setInterval(() => {
+            if (isAuthenticated) {
                 dispatch(refreshToken());
-            }, 4000);
-        }
-    }, [dispatch]);
+            }
+        }, 240000);
+        return () => clearInterval(interval);
+
+    }, [dispatch, isAuthenticated]);
 
     return (
         //Navbar

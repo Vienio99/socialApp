@@ -1,6 +1,37 @@
 import axiosInstance from "../../axios";
 import {LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS} from "./types";
 
+// LOAD USER AFTER PAGE REFRESH ETC.
+
+// export const loadUser = () => (dispatch, getState) => {
+//     return function (dispatch) {
+//         axiosInstance
+//             .post('user/token/', {
+//                 username: username,
+//                 password: password
+//             })
+//             .then((response) => {
+//                 console.log(response);
+//                 // Add username to response for reducer
+//                 response.data['username'] = username;
+//                 dispatch({
+//                     type: LOGIN_SUCCESS,
+//                     payload: response.data
+//                 });
+//             })
+//             .catch((response) => {
+//                 // send response to error reducer
+//                 console.log(response);
+//                 dispatch({
+//                     type: LOGIN_FAIL
+//                 });
+//             });
+//     };
+// };
+
+
+
+
 
 // LOGIN USER
 export const login = (username, password) => {
@@ -79,12 +110,10 @@ export const refreshToken = () => {
         console.log('Refreshing token!');
         axiosInstance
         .post('user/token/refresh/', {
-            refresh: localStorage.getItem('refresh_token'),
+            'refresh': localStorage.getItem('refresh_token'),
         })
         .then(response => {
             localStorage.setItem('access_token', response.data['access']);
-            localStorage.setItem('refresh_token', response.data['refresh']);
-            console.log(response);
         })
         .catch(response => console.log(response));
     };

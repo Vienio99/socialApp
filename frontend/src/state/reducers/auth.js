@@ -11,6 +11,8 @@ import {
 import axiosInstance from "../../axios";
 
 const initialState = {
+    access: localStorage.getItem('access_token'),
+    refresh: localStorage.getItem('refresh_token'),
     isLoading: false,
     isAuthenticated: null,
     username: null,
