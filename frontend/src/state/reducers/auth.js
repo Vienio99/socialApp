@@ -11,10 +11,10 @@ import {
 import axiosInstance from "../../axios";
 
 const initialState = {
-    error: null,
     isLoading: false,
     isAuthenticated: null,
-    username: null
+    username: null,
+    error: null
 };
 
 const reducer = (state = initialState, action) => {

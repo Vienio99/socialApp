@@ -76,12 +76,14 @@ export const register = (username, password) => {
 
 export const refreshToken = () => {
     return function(dispatch) {
+        console.log('Refreshing token!');
         axiosInstance
         .post('user/token/refresh/', {
             refresh: localStorage.getItem('refresh_token'),
         })
         .then(response => {
-            localStorage.setItem('access_token', response.data);
+            localStorage.setItem('access_token', response.data['access']);
+            localStorage.setItem('refresh_token', response.data['refresh']);
             console.log(response);
         })
         .catch(response => console.log(response));
