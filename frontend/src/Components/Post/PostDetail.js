@@ -8,21 +8,19 @@ import {useSelector} from "react-redux";
 function PostDetail(props) {
     const posts = useSelector((state) => state.posts.posts);
     const comments = useSelector((state) => state.posts.comments);
-    const [isLoading, setIsLoading] = useState(false);
 
     const [post, setPost] = useState({});
 
     useEffect(() => {
-        setIsLoading(true);
         setPost(posts.find(post => {
             return post.id === parseInt(props.id);
         }));
-        setIsLoading(false);
+        // TO-DO: change it
+        // eslint-disable-next-line
     }, [props.id]);
 
     return (
         <div className="flex-grow">
-            {isLoading && <Loader/>}
             <PostCard post={post} comments={comments}/>
         </div>
     );
