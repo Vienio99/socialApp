@@ -6,8 +6,11 @@ import {
 import PropTypes from "prop-types";
 import CommentUnderPost from "./CommentUnderPost";
 import dog from "../../download.jpg";
+import {useSelector} from "react-redux";
 
 function PostCard(props) {
+    // TO-DO: Display edit or bin buttons only if user is authenticated
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const [showComments, setShowComments] = useState(false);
 
     const {post} = props;

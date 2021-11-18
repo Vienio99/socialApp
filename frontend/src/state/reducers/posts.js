@@ -1,12 +1,6 @@
 import {
-    GET_POSTS,
-    GET_POST,
-    LOGIN_SUCCESS,
-    LOGOUT_SUCCESS,
-    LOGIN_FAIL,
-    POSTS_FETCHED,
     POSTS_FETCH,
-    ADD_POST, POSTS_FETCH_SUCCESS
+    ADD_POST, POSTS_FETCH_SUCCESS, DELETE_POST, EDIT_POST
 } from "../actions/types";
 
 const initialState = {
@@ -30,6 +24,10 @@ const reducer = (state = initialState, action) => {
                 comments: payload['comments'],
                 isLoading: false,
             };
+        case ADD_POST:
+        case DELETE_POST:
+        case EDIT_POST:
+            return state;
         default:
             return state;
     }

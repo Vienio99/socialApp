@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 import axiosInstance from '../../axios';
 import {register} from "../../state/actions/auth";
+import {useDispatch} from "react-redux";
 
 // TO-DO - check if user exists
 
 function SignupForm() {
     const history = useHistory();
+    const dispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     // Add validation for the password, both in in React and Django
@@ -15,7 +17,7 @@ function SignupForm() {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        register(username, password);
+        dispatch(register(username, password));
         history.push(
             '/login',
             {showModal: true}

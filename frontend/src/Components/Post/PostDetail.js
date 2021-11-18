@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import React from "react";
 import PropTypes from "prop-types";
 import PostCard from "./PostCard";
-import Loader from "../Loader";
 import {useSelector} from "react-redux";
 
 function PostDetail(props) {
@@ -12,6 +11,7 @@ function PostDetail(props) {
     const [post, setPost] = useState({});
 
     useEffect(() => {
+        // Find correct post to display
         setPost(posts.find(post => {
             return post.id === parseInt(props.id);
         }));

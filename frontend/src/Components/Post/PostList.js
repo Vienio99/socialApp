@@ -1,17 +1,14 @@
 import {useEffect, useState} from 'react';
 import React from "react";
-import axios from 'axios';
 import PostCard from "./PostCard";
 import Loader from "../Loader";
 import PostForm from "../Forms/PostForm";
 import PaginationBar from "../PaginationBar";
-import axiosInstance from "../../axios";
 import {getPosts} from "../../state/actions/posts";
 import {useDispatch, useSelector} from "react-redux";
 
 
 // TO-DO: when there is 404 error, forward user to 404 page
-// TO-DO: move pagination mechanism to redux
 
 function PostList(props) {
     const posts = useSelector((state) => state.posts.posts);
@@ -22,19 +19,18 @@ function PostList(props) {
 
     // Pagination mechanism
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(20);
-
+    const [postsPerPage] = useState(10);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    //Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     useEffect(() => {
         dispatch(getPosts());
     }, [dispatch]);
 
-    //Change page
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className="flex flex-col flex-grow space-y-10">
@@ -42,10 +38,14 @@ function PostList(props) {
             {(isLoading && !posts.length) && <Loader/>}
             <ul className="flex flex-col space-y-10">
                 {currentPosts.map(post => (
-                    <PostCard post={post} comments={comments} key={post.id}/>
+                    <PostCard key={post.id}
+                              post={post}
+                              comments={comments}/>
                 ))}
             </ul>
-            <PaginationBar postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}
+            <PaginationBar postsPerPage={postsPerPage}
+                           totalPosts={posts.length}
+                           paginate={paginate}
                            currentPage={currentPage}/>
         </div>
     );

@@ -4,10 +4,12 @@ import SuccessModal from "./SuccessModal";
 import Loader from "../Loader";
 import axiosInstance from "../../axios";
 import {login} from "../../state/actions/auth";
+import {useDispatch} from "react-redux";
 
 
 function LoginForm(props) {
     // TO-DO - Use location to show modal after redirecting from signup page
+    const dispatch = useDispatch();
     const location = useLocation();
     const history = useHistory();
     // const [showModal, setShowModal] = useState(false);
@@ -17,7 +19,7 @@ function LoginForm(props) {
     const handleLogin = (e) => {
         e.preventDefault();
         // Invoke redux action
-        login(username, password);
+        dispatch(login(username, password));
         history.push('/',);
     };
 
