@@ -9,7 +9,6 @@ import {
 } from "./types";
 
 // LOAD USER AFTER PAGE REFRESH ETC.
-
 export const loadUser = () => {
     return function(dispatch) {
         console.log('Refreshing token!');
@@ -29,8 +28,6 @@ export const loadUser = () => {
 
 
 
-
-
 // LOGIN USER
 export const login = (username, password) => {
     return function (dispatch) {
@@ -41,8 +38,6 @@ export const login = (username, password) => {
             })
             .then((response) => {
                 console.log(response);
-                // Add username to response for reducer
-                response.data['username'] = username;
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: response.data
@@ -102,7 +97,6 @@ export const register = (username, password) => {
 };
 
 // REFRESH TOKEN
-
 export const refreshToken = () => {
     return function(dispatch) {
         console.log('Refreshing token!');

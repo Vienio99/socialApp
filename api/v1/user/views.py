@@ -1,7 +1,10 @@
 from django.contrib.auth import get_user_model
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
-from .serializer import UserSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from .serializer import UserSerializer, MyTokenObtainPairSerializer
+
 
 User = get_user_model()
 
@@ -21,3 +24,6 @@ class UserDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     lookup_field = 'username'
 
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer

@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
             localStorage.setItem("refresh_token", payload['refresh']);
             // update header in axios instance to new token
             axiosInstance.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
-
+            console.log(payload);
             return {
                 ...state,
                 isAuthenticated: true,
