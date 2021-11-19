@@ -1,6 +1,5 @@
 import {
-    USER_LOADING,
-    USER_LOADED,
+    USER_LOAD,
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
@@ -31,7 +30,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: true,
-                // Get user either from the token itself or from payload
+                // Get user from the token itself
                 username: payload['username']
             };
         case LOGOUT_SUCCESS:
@@ -43,6 +42,17 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: false,
+                username: null
+            };
+        case USER_LOAD:
+            localStorage.setItem("access_token", payload['access']);
+            // update header in axios instance to new token
+            axiosInstance.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
+
+            return {
+                ...state,
+                isAuthenticated: true,
+                // Get user from the token itself
                 username: null
             };
         default:

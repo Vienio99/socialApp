@@ -12,7 +12,7 @@ export default function Navbar() {
     const history = useHistory();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const username = useSelector((state) => state.auth.username);
-    // Not sure if this function should reside in Navbar component?
+
     // Add token to Django's JWT token blacklist, remove tokens from local storage and redirect user to homepage
     const handleLogout = (e) => {
         e.preventDefault();
@@ -20,17 +20,6 @@ export default function Navbar() {
         dispatch(logout());
         history.push('/');
     };
-
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (isAuthenticated) {
-                dispatch(refreshToken());
-            }
-        }, 240000);
-        return () => clearInterval(interval);
-
-    }, [dispatch, isAuthenticated]);
 
     return (
         //Navbar
