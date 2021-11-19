@@ -19,6 +19,7 @@ export default function Navbar() {
         // Invoke redux action
         dispatch(logout());
         history.push('/');
+        console.log('pushed to main page');
     };
 
     return (

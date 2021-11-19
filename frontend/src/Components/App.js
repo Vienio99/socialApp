@@ -20,7 +20,9 @@ function App() {
     const tokenRefresh = useSelector((state) => state.auth.refresh);
 
     useEffect(() => {
-        if (tokenRefresh) {
+        // Load user only in case if he refreshed the page
+        if (tokenRefresh && !isAuthenticated) {
+            console.log(tokenRefresh);
             dispatch(loadUser());
         }
 

@@ -31,7 +31,9 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isAuthenticated: true,
                 // Get user from the token itself
-                username: payload['username']
+                username: payload['username'],
+                access: payload['access'],
+                refresh: payload['refresh']
             };
         case LOGOUT_SUCCESS:
         case LOGIN_FAIL:
@@ -39,10 +41,15 @@ const reducer = (state = initialState, action) => {
             localStorage.removeItem('refresh_token');
             axiosInstance.defaults.headers['Authorization'] = null;
 
+            // Remove tokens from state as well because otherwise loadUser function in App
+            // could trigger faster than removing items from local storage
+
             return {
                 ...state,
                 isAuthenticated: false,
-                username: null
+                username: null,
+                access: null,
+                refresh: null,
             };
         case USER_LOAD:
             localStorage.setItem("access_token", payload['access']);
@@ -53,7 +60,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isAuthenticated: true,
                 // Get user from the token itself
-                username: null
+                username: payload['username']
             };
         default:
             return state;
