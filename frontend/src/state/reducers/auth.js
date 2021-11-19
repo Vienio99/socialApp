@@ -8,6 +8,7 @@ import {
     REGISTER_FAIL
 } from "../actions/types";
 import axiosInstance from "../../axios";
+import jwt_decode from "jwt-decode";
 
 const initialState = {
     access: localStorage.getItem('access_token'),
@@ -27,11 +28,13 @@ const reducer = (state = initialState, action) => {
             // update header in axios instance to new token
             axiosInstance.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
             console.log(payload);
+
+
             return {
                 ...state,
                 isAuthenticated: true,
-                // Get user from the token itself
-                username: payload['username'],
+                // Decode access token and use it to set username
+                username: jwt_decode(payload['access'])['username'],
                 access: payload['access'],
                 refresh: payload['refresh']
             };
@@ -55,12 +58,11 @@ const reducer = (state = initialState, action) => {
             localStorage.setItem("access_token", payload['access']);
             // update header in axios instance to new token
             axiosInstance.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
-
             return {
                 ...state,
                 isAuthenticated: true,
-                // Get user from the token itself
-                username: payload['username']
+                // Decode access token and use it to set username
+                username: jwt_decode(payload['access'])['username']
             };
         default:
             return state;
