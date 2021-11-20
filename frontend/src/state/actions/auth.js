@@ -32,6 +32,9 @@ export const loadUser = () => {
 // LOGIN USER
 export const login = (username, password) => {
     return function (dispatch) {
+        dispatch({
+            type: USER_LOADING
+        });
         axiosInstance
             .post('user/token/', {
                 username: username,

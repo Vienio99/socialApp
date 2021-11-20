@@ -2,10 +2,11 @@ import PostCard from "./PostCard";
 import {findAllByText, render, screen, waitFor, waitForElementToBeRemoved} from "@testing-library/react";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import {store} from "../../state/store";
 
 
-test('PostCard renders information properly', async () => {
-
+beforeEach(() => {
     const post = {
         'id': 1,
         'author': 'test',
@@ -15,18 +16,36 @@ test('PostCard renders information properly', async () => {
         'likes': 5,
     };
 
-    const comments = [];
+    const comments = [
+        {id: 1, text: 'I like hiking', author: 'test', pub_date: '2 seconds ago', likes: 5},
+        {id: 2, text: 'I love football', author: 'vienio', pub_date: '4 hours ago', likes: 2}
+    ];
 
-    render(<BrowserRouter>
-        <PostCard post={post} comments={comments} key={post.id}/>
-    </BrowserRouter>);
+    render(
+        <Provider store={store}>
+            <BrowserRouter>
+                <PostCard post={post} comments={comments} key={post.id}/>
+            </BrowserRouter>
+        </Provider>
+    );
+});
 
+test('PostCard renders information properly', async () => {
     const author = screen.getByText(/test/i);
+    const text = screen.getByText(/trying to learn rtl/i);
+    const tag1 = screen.getByText('#hiking');
+    const tag2 = screen.getByText('#running');
+    const likes = screen.getByText('5 Likes');
 
     expect(author).toBeInTheDocument();
-    // expect(spinner).toBeInTheDocument();
-    // await waitForElementToBeRemoved(
-    //     () => screen.getByTestId('spinner')
-    // );
-    // expect(spinner).not.toBeInTheDocument();
+    expect(text).toBeInTheDocument();
+    expect(tag1).toBeInTheDocument();
+    expect(tag2).toBeInTheDocument();
+    expect(likes).toBeInTheDocument();
+});
+
+test('PostCard renders comments properly', async () => {
+    const commentText = screen.getByText('I like hiking');
+
+    expect(commentText).toBeInTheDocument();
 });

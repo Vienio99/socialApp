@@ -1,16 +1,20 @@
 import PostList from "./PostList";
-import {findAllByText, render, screen, waitFor, waitForElementToBeRemoved} from "@testing-library/react";
+import {render, screen, waitFor, waitForElementToBeRemoved} from "@testing-library/react";
 import React from "react";
-import {configure} from '@testing-library/react';
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import {store} from "../../state/store";
 
 // Added class as testId attribute
 // configure({testIdAttribute: 'class'});
 
 test('Loader component disappears after fetching the data', async () => {
-    render(<BrowserRouter>
-        <PostList/>
-    </BrowserRouter>);
+    render(
+        <Provider store={store}>
+            <BrowserRouter>
+                <PostList/>
+            </BrowserRouter>
+        </Provider>);
     const spinner = screen.getByTestId('spinner');
     expect(spinner).toBeInTheDocument();
     await waitForElementToBeRemoved(
@@ -20,9 +24,12 @@ test('Loader component disappears after fetching the data', async () => {
 });
 
 test('There is appropriate amount of PostCards on one page', async () => {
-    render(<BrowserRouter>
-        <PostList/>
-    </BrowserRouter>);
+    render(
+        <Provider store={store}>
+            <BrowserRouter>
+                <PostList/>
+            </BrowserRouter>
+        </Provider>);
 
     await waitFor(() => {
         screen.getAllByRole('listitem');
@@ -30,8 +37,9 @@ test('There is appropriate amount of PostCards on one page', async () => {
 
     const posts = screen.getAllByRole('listitem');
 
-    expect(posts.length).toBe(20);
+    expect(posts.length).toBe(10);
 });
+
 
 // Given 100 posts, there is x pages
 

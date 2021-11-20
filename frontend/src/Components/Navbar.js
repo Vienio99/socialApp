@@ -6,11 +6,13 @@ import axiosInstance from "../axios";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../state/actions/auth";
 import {getPosts} from "../state/actions/posts";
+import Loader from "./Loader";
 
 export default function Navbar() {
     const dispatch = useDispatch();
     const history = useHistory();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const isLoading = useSelector((state) => state.auth.isLoading);
     const username = useSelector((state) => state.auth.username);
 
     // Add token to Django's JWT token blacklist, remove tokens from local storage and redirect user to homepage
@@ -18,7 +20,6 @@ export default function Navbar() {
         e.preventDefault();
         // Invoke redux action
         dispatch(logout());
-        history.push('/');
     };
 
     return (
@@ -61,20 +62,35 @@ export default function Navbar() {
                         {isAuthenticated ? (
                                 <>
                                     <p className="px-4 py-6 hover:text-gray-900">Hi {username}!</p>
-                                    <Link to="/" onClick={e => handleLogout(e)}
-                                          className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
-                                        Logout
+                                    <Link to="/">
+                                        <button onClick={e => handleLogout(e)}
+                                                className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
+                                            Logout
+                                        </button>
                                     </Link>
                                 </>
                             )
                             : (
                                 <>
-                                    <Link to="/login" className="px-4 py-6 hover:text-gray-900">Login</Link>
-                                    <Link to="/signup"
-                                          className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
-                                        SignUp
-                                    </Link>
+                                    {isLoading ? (
+                                        <Loader />
+                                    ) : (
+                                        <>
+                                            <Link to="/login">
+                                                <button className="px-4 py-2 hover:text-gray-900">
+                                                    Login
+                                                </button>
+                                            </Link>
+                                            <Link to="/signup">
+                                                <button
+                                                    className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300">
+                                                    SignUp
+                                                </button>
+                                            </Link>
+                                        </>
+                                    )}
                                 </>
+
                             )}
                     </div>
                     {/* Hamburger icon */}

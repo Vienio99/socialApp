@@ -15,9 +15,7 @@ function PostDetail(props) {
         setPost(posts.find(post => {
             return post.id === parseInt(props.id);
         }));
-        // TO-DO: change it
-        // eslint-disable-next-line
-    }, [props.id]);
+    }, [posts, props.id]);
 
     return (
         <div className="flex-grow">
