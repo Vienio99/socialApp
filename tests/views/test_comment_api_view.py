@@ -46,13 +46,13 @@ class CommentDetailApiViewTest(APITestCase):
         cls.comment = Comment.objects.create(author=cls.user, text='Hello', post=cls.post)
 
         cls.data = {
-            'author': cls.user.pk,
+            'author': cls.user.username,
             'text': 'Definitely not hello world',
             'post': cls.post.pk
         }
 
         cls.data2 = {
-            'author': cls.user.pk,
+            'author': cls.user.username,
             'text': 'My new comment',
             'post': cls.post.pk,
         }
