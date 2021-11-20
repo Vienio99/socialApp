@@ -24,7 +24,7 @@ function App() {
         if (refreshToken && !isAuthenticated) {
             dispatch(loadUser());
         }
-        // Move it to axios interceptors
+        // TO-DO: Move it to axios interceptors
         const interval = setInterval(() => {
             if (isAuthenticated) {
                 dispatch(refreshAccessToken());

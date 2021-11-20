@@ -143,7 +143,7 @@ class PostDetailApiViewTest(APITestCase):
         newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
         self.assertEqual(response.data['text'], 'Hello boys')
-        self.assertEqual(response.data['likes'], 0)
+        self.assertEqual(response.data['like_count'], 0)
         self.assertEqual(response.data['tags'][0]['name'], '#walking')
         self.assertEqual(response.data['tags'][1]['name'], '#football')
         self.assertEqual(response.data['pub_date'], 'now')
