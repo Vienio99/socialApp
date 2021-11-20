@@ -20,12 +20,12 @@ export const getPosts = () => {
                     payload: payload
                 });
             }))
-            .catch(response => {
+            .catch(error => {
+                console.log(error.message);
                 dispatch({
                     type: CREATE_ERROR_MESSAGE,
                     payload: {
-                        message: response.content,
-                        status: response.status
+                        message: error.message,
                     }
                 });
             });
@@ -35,16 +35,14 @@ export const getPosts = () => {
 
 // In this requests, bear in mind that token is in the header already (using localStorage), that's why user has access
 
-
 // ADD POST
 export const addPost = (text, tidyTags) => {
     return function (dispatch, getState) {
         const author = getState().auth.username;
-        console.log(author);
         axiosInstance
             .post('post/', {
                 // TO-DO: change to real user - 1 is for tests only. change it in Django's serializer
-                author: 1,
+                author: author,
                 text: text,
                 tags: tidyTags
             })
@@ -54,12 +52,13 @@ export const addPost = (text, tidyTags) => {
                 // but it runs once anyway idk why
                 dispatch(getPosts());
             })
-            .catch(response => {
+            .catch(error => {
+                console.log(error.response.data.detail);
                 dispatch({
                     type: CREATE_ERROR_MESSAGE,
                     payload: {
-                        message: response.content,
-                        status: response.status
+                        message: error.response.data.detail,
+                        status: error.response.status
                     }
                 });
             });
@@ -81,12 +80,13 @@ export const editPost = (id) => {
                 // but it runs once anyway idk why
                 dispatch(getPosts());
             })
-            .catch(response => {
+            .catch(error => {
+                console.log(error.response.data.detail);
                 dispatch({
                     type: CREATE_ERROR_MESSAGE,
                     payload: {
-                        message: response.content,
-                        status: response.status
+                        message: error.response.data.detail,
+                        status: error.response.status
                     }
                 });
             });
@@ -105,12 +105,13 @@ export const deletePost = (id) => {
                 // but it runs once anyway idk why
                 dispatch(getPosts());
             })
-            .catch(response => {
+            .catch(error => {
+                console.log(error.response.data.detail);
                 dispatch({
                     type: CREATE_ERROR_MESSAGE,
                     payload: {
-                        message: response.content,
-                        status: response.status
+                        message: error.response.data.detail,
+                        status: error.response.status
                     }
                 });
             });

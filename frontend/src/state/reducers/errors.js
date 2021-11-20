@@ -9,8 +9,9 @@ export default function (state = initialState, action) {
   const {payload} = action;
   switch (action.type) {
     case CREATE_ERROR_MESSAGE:
+        console.log(payload);
       return {
-        msg: payload.message,
+        message: payload.message,
         status: payload.status,
       };
     default:

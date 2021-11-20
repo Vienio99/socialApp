@@ -11,6 +11,13 @@ from social.models import Post, Tag
 
 class PostSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, required=False)
+    User = get_user_model()
+
+    # Use SlugRelatedField to validate author by username instead of pk value
+    author = serializers.SlugRelatedField(
+        slug_field='username',
+        queryset=User.objects.all()
+    )
 
     class Meta:
         model = Post
@@ -18,9 +25,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     # Iterate over tags and add them to post
     def create(self, validated_data):
-        # Temporary
-        # User = get_user_model()
-        # author = User.objects.get(username=validated_data['author'])
+        print(validated_data['author'])
         post = Post.objects.create(text=validated_data['text'],
                                    author=validated_data['author'])
         try:

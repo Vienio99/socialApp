@@ -176,5 +176,21 @@ class PostDetailApiViewTest(APITestCase):
         }
         response = self.client.post('/api/v1/post/', data, **headers)
         self.assertEqual(response.status_code, 201)
-    #
+
+    def test_can_create_post_with_username_instead_of_user_id(self):
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        data = {
+            'author': 'user1',
+            'text': 'Hello boys',
+            'tags': []
+        }
+
+        response = self.client.post('/api/v1/post/', data, **headers)
+        print(response.content)
+        self.assertEqual(response.status_code, 201)
+
     # def test_authenticated_users_can_like_post(self):

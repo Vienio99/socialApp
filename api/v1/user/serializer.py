@@ -23,6 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 # noqa to suppress warning about implementing all abstract methods
+# Serializer for custom token claims and including username in access token
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer): # noqa
     @classmethod
     def get_token(cls, user):

@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import axiosInstance from "../axios";
 import {useDispatch, useSelector} from "react-redux";
-import {logout, refreshToken} from "../state/actions/auth";
+import {logout} from "../state/actions/auth";
 import {getPosts} from "../state/actions/posts";
 
 export default function Navbar() {
