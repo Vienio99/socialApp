@@ -25,7 +25,6 @@ class PostSerializer(serializers.ModelSerializer):
 
     # Iterate over tags and add them to post
     def create(self, validated_data):
-        print(validated_data['author'])
         post = Post.objects.create(text=validated_data['text'],
                                    author=validated_data['author'])
         try:

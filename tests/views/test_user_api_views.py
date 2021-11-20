@@ -82,5 +82,4 @@ class LoginTest(APITestCase):
         response = self.client.post('/api/v1/user/token/refresh/', {'refresh': token})
 
         newToken = json.loads(response.content)
-        print(newToken['access'])
         self.assertEqual(response.status_code, 200)

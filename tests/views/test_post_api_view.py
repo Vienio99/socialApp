@@ -44,6 +44,9 @@ class PostDetailApiViewTest(APITestCase):
     user = None
     post2 = None
 
+    def __init__(self, methodName: str = ...):
+        super().__init__(methodName)
+
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create_user(username='user1', password='secret')
@@ -52,15 +55,22 @@ class PostDetailApiViewTest(APITestCase):
         cls.tag = Tag.objects.create(name='#hiking')
 
         cls.data = {
-            'author': cls.user.pk,
+            'author': cls.user.username,
             'text': 'Hello boys',
             'tags': [{'name': '#walking'}, {'name': '#football'}]
         }
 
         cls.data2 = {
-            'author': cls.user.pk,
+            'author': cls.user.username,
             'text': 'New fancy text',
             'tags': [{'name': '#hiking'}, {'name': '#driving'}]
+        }
+
+    def setUp(self):
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        self.headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
         }
 
     def test_can_read_a_specific_post(self):
@@ -77,26 +87,16 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_user_can_update_his_post(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
-        response = self.client.patch(f'/api/v1/post/{self.post.pk}', {'text': 'Hello'}, **headers)
+        response = self.client.patch(f'/api/v1/post/{self.post.pk}', {'text': 'Hello'}, **self.headers)
         # Additional check if post got updated
         updatedPost = Post.objects.get(text='Hello')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(updatedPost.text, 'Hello')
 
     def test_updated_post_has_proper_data(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
         self.client.patch(f'/api/v1/post/{self.post.pk}',
                           {'text': 'New fancy text', 'tags': [{'name': '#hiking'}, {'name': '#driving'}]},
-                          **headers)
+                          **self.headers)
         updatedPost = Post.objects.get(text='New fancy text')
         response = self.client.get(f'/api/v1/post/{updatedPost.pk}')
         self.assertEqual(response.data['text'], 'New fancy text')
@@ -115,13 +115,8 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_post(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
         response = self.client.delete(f'/api/v1/post/{self.post.pk}',
-                                      **headers)
+                                      **self.headers)
         self.assertEqual(response.status_code, 204)
 
     def test_only_author_can_delete_his_post(self):
@@ -134,12 +129,7 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_authenticated_user_can_create_new_post(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
-        self.client.post('/api/v1/post/', self.data, **headers)
+        self.client.post('/api/v1/post/', self.data, **self.headers)
         newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
         self.assertEqual(response.status_code, 200)
@@ -149,12 +139,7 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 401)
 
     def test_created_post_has_proper_data(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
-        self.client.post('/api/v1/post/', self.data, **headers)
+        self.client.post('/api/v1/post/', self.data, **self.headers)
         newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
         self.assertEqual(response.data['text'], 'Hello boys')
@@ -164,33 +149,24 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['pub_date'], 'now')
 
     def test_post_does_not_require_tags(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
         data = {
-            'author': self.user.pk,
+            'author': self.user.username,
             'text': 'Hello boys',
             'tags': []
         }
-        response = self.client.post('/api/v1/post/', data, **headers)
+        response = self.client.post('/api/v1/post/', data, **self.headers)
         self.assertEqual(response.status_code, 201)
 
     def test_can_create_post_with_username_instead_of_user_id(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
         data = {
-            'author': 'user1',
+            'author': self.user.username,
             'text': 'Hello boys',
             'tags': []
         }
 
-        response = self.client.post('/api/v1/post/', data, **headers)
-        print(response.content)
+        response = self.client.post('/api/v1/post/', data, **self.headers)
         self.assertEqual(response.status_code, 201)
 
-    # def test_authenticated_users_can_like_post(self):
+    def test_authenticated_users_can_like_post(self):
+        response = self.client.get(f'/api/v1/post/{self.post.pk}')
+        self.assertEqual(response.status_code, 200)

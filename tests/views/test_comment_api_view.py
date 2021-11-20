@@ -57,6 +57,13 @@ class CommentDetailApiViewTest(APITestCase):
             'post': cls.post.pk,
         }
 
+    def setUp(self):
+        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        self.headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+
     def test_can_read_a_specific_comment(self):
         response = self.client.get(f'/api/v1/comment/{self.comment.pk}')
         self.assertEqual(response.status_code, 200)
@@ -71,28 +78,18 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_user_can_update_his_comment(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
         response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
-                                   {'text': 'Definitely not hello world'},
-                                   **headers)
+                                     {'text': 'Definitely not hello world'},
+                                     **self.headers)
         self.assertEqual(response.status_code, 200)
         # Additional check if the comment is really updated
         updatedComment = Comment.objects.get(text='Definitely not hello world')
         self.assertEqual(updatedComment.text, 'Definitely not hello world')
 
     def test_updated_comment_has_proper_data(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
         self.client.patch(f'/api/v1/comment/{self.comment.pk}',
                           {'text': 'Definitely not hello world'},
-                          **headers)
+                          **self.headers)
         updatedComment = Comment.objects.get(text='Definitely not hello world')
         response = self.client.get(f'/api/v1/comment/{updatedComment.pk}')
         self.assertEqual(response.data['text'], 'Definitely not hello world')
@@ -107,12 +104,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_comment(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
-        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}', **headers)
+        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}', **self.headers)
         self.assertEqual(response.status_code, 204)
 
     def test_only_author_can_delete_his_comment(self):
@@ -125,12 +117,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_authenticated_user_can_create_new_comment(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
-        response = self.client.post('/api/v1/comment/', self.data2, **headers)
+        response = self.client.post('/api/v1/comment/', self.data2, **self.headers)
         self.assertEqual(response.status_code, 201)
 
     def test_non_authenticated_user_can_not_create_new_comment(self):
@@ -138,12 +125,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 401)
 
     def test_created_comment_has_proper_data(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'user1', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
-        response = self.client.post('/api/v1/comment/', self.data2, **headers)
+        response = self.client.post('/api/v1/comment/', self.data2, **self.headers)
         self.assertEqual(response.data['author'], self.user.username)
         self.assertEqual(response.data['text'], 'My new comment')
         self.assertEqual(response.data['post'], self.post.pk)

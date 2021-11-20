@@ -71,9 +71,7 @@ export const editPost = (id) => {
     return function (dispatch) {
         axiosInstance
             // TO-DO: add data here later
-            .patch(`post/${id}`, {
-
-            })
+            .patch(`post/${id}`, {})
             .then((response) => {
                 console.log(response);
                 // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
@@ -118,3 +116,25 @@ export const deletePost = (id) => {
     };
 };
 
+export const likePost = (id) => {
+    return function (dispatch) {
+        axiosInstance
+            .patch(`post/${id}`, {})
+            .then((response) => {
+                console.log(response);
+                // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
+                // but it runs once anyway idk why
+                dispatch(getPosts());
+            })
+            .catch(error => {
+                console.log(error.response.data.detail);
+                dispatch({
+                    type: CREATE_ERROR_MESSAGE,
+                    payload: {
+                        message: error.response.data.detail,
+                        status: error.response.status
+                    }
+                });
+            });
+    };
+};
