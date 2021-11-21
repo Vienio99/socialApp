@@ -165,8 +165,38 @@ class PostDetailApiViewTest(APITestCase):
         }
 
         response = self.client.post('/api/v1/post/', data, **self.headers)
+        print(response.content)
         self.assertEqual(response.status_code, 201)
 
     def test_authenticated_users_can_like_post(self):
-        response = self.client.get(f'/api/v1/post/{self.post.pk}')
+        response = self.client.patch(f'/api/v1/post/{self.post.pk}',
+                                     {'likes': [self.user.username]},
+                                     **self.headers)
+
         self.assertEqual(response.status_code, 200)
+
+    def test_non_authenticated_user_can_not_like_post(self):
+        response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        headers = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+        response = self.client.patch(f'/api/v1/post/{self.post.pk}',
+                                     {'likes': [self.user.username]},
+                                     **headers)
+        print(response.content)
+        self.assertEqual(response.status_code, 200)
+
+
+
+        #
+        # response = self.client.patch(f'/api/v1/post/{self.post.pk}',
+        #                              {'likes': [self.user.username]},
+        #                              **self.headers)
+        # print(response.content)
+        #
+        # post = Post.objects.get(text='Hello guys')
+        # print(post)
+        #
+        # self.assertEqual(response.status_code, 200)
+        #

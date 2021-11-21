@@ -19,6 +19,13 @@ class PostSerializer(serializers.ModelSerializer):
         queryset=User.objects.all()
     )
 
+    likes = serializers.SlugRelatedField(
+        slug_field='username',
+        queryset=User.objects.all(),
+        many=True,
+        required=False
+    )
+
     class Meta:
         model = Post
         fields = "__all__"
@@ -41,6 +48,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     # Iterate over tags and add them to post
     def update(self, instance, validated_data):
+
         # Try to update tags but if there is none in request, go on
         try:
             tags_data = validated_data.pop('tags')
@@ -49,6 +57,18 @@ class PostSerializer(serializers.ModelSerializer):
                     Tag.objects.create(name=tag_data['name'])
                 tag = Tag.objects.get(name=tag_data['name'])
                 instance.tags.add(tag.id)
+        except KeyError:
+            pass
+
+        # Try to add user to likes
+        try:
+            like = validated_data.pop('likes')[0]
+            if like in instance.likes.all():
+                instance.likes.remove(like)
+                instance.likes_count -= 1
+            else:
+                instance.likes.add(like)
+                instance.likes_count += 1
         except KeyError:
             pass
         instance.text = validated_data.get('text', instance.text)

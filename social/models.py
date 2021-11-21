@@ -23,11 +23,12 @@ class Post(models.Model):
         default=None,
         blank=True
     )
-    like_count = models.IntegerField(default='0')
+    likes_count = models.IntegerField(default=0)
     tags = models.ManyToManyField(
         'Tag',
         blank=True
     )
+    comments_count = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['-pub_date']
@@ -53,7 +54,7 @@ class Comment(models.Model):
         default=None,
         blank=True
     )
-    like_count = models.IntegerField(default='0')
+    likes_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.text[:10]
@@ -61,13 +62,6 @@ class Comment(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
-    followers = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name='tag_followers',
-        default=None,
-        blank=True
-    )
-    followers_count = models.IntegerField(default='0')
 
     def __str__(self):
         return self.name
