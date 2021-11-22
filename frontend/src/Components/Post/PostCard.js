@@ -6,15 +6,25 @@ import {
 import PropTypes from "prop-types";
 import CommentUnderPost from "./CommentUnderPost";
 import dog from "../../download.jpg";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../state/actions/auth";
+import {likePost} from "../../state/actions/posts";
 
 function PostCard(props) {
     // TO-DO: Display edit or bin buttons only if user is authenticated
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const [showComments, setShowComments] = useState(false);
-
+    const dispatch = useDispatch();
     const {post} = props;
     const {comments} = props;
+
+    const handleLike = (e) => {
+        e.preventDefault();
+        // Invoke redux action
+        if (isAuthenticated) {
+            dispatch(likePost(post.id));
+        }
+    };
 
     return (
         // Card
@@ -46,7 +56,7 @@ function PostCard(props) {
                     <footer
                         className="flex items-center justify-between px-4 py-1 text-sm text-gray-500 bg-gray-100 rounded-b-md">
                         <div className="flex space-x-5">
-                            <button className="flex items-center space-x-1 hover:text-gray-900">
+                            <button className="flex items-center space-x-1 hover:text-gray-900" onClick={handleLike}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="rgba(251, 191, 36)"
                                      viewBox="0 0 24 24"
                                      stroke="currentColor">
@@ -96,7 +106,8 @@ function PostCard(props) {
 
 PostCard.propTypes = {
     post: PropTypes.object,
-    comments: PropTypes.array
+    comments: PropTypes.array,
+    id: PropTypes.number
 };
 
 

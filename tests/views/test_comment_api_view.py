@@ -149,7 +149,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 403)
 
     def test_authenticated_user_can_unlike_a_comment(self):
-        # Like a post
+        # Like a comment
         response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
                                      {'likes': [self.user.username]},
                                      **self.headersNotAuthor)
@@ -159,7 +159,7 @@ class CommentDetailApiViewTest(APITestCase):
 
         self.assertEqual(response.data['likes'], [self.user.username])
 
-        # Unlike a post
+        # Unlike a comment
         response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
                                      {'likes': [self.user.username]},
                                      **self.headersNotAuthor)

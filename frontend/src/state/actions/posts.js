@@ -117,9 +117,10 @@ export const deletePost = (id) => {
 };
 
 export const likePost = (id) => {
-    return function (dispatch) {
+    return function (dispatch, getState) {
+        console.log(id);
         axiosInstance
-            .patch(`post/${id}`, {})
+            .patch(`post/${id}`, {'likes': [getState().auth.username]})
             .then((response) => {
                 console.log(response);
                 // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
