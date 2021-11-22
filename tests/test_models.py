@@ -15,12 +15,13 @@ class PostModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = User.objects.create(username='user1')
-        cls.post = Post.objects.create(author=cls.user, text='Hello guys', likes=4)
+        cls.post = Post.objects.create(author=cls.user, text='Hello guys', likes_count=1)
         cls.tag = Tag.objects.create(name='#hiking')
+        cls.post.likes.set([cls.user.pk])
         cls.post.tags.set([cls.tag])
 
     def test_post_has_proper_amount_of_likes(self):
-        self.assertEqual(self.post.likes, 4)
+        self.assertEqual(self.post.likes_count, 1)
 
     def test_post_has_proper_author(self):
         self.assertEqual(self.post.author.username, 'user1')

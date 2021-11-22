@@ -60,7 +60,6 @@ class PostSerializer(serializers.ModelSerializer):
         except KeyError:
             pass
 
-        # Try to add user to likes
         try:
             like = validated_data.pop('likes')[0]
             if like in instance.likes.all():
@@ -71,6 +70,7 @@ class PostSerializer(serializers.ModelSerializer):
                 instance.likes_count += 1
         except KeyError:
             pass
+
         instance.text = validated_data.get('text', instance.text)
         instance.save()
 
@@ -84,3 +84,32 @@ class PostSerializer(serializers.ModelSerializer):
         # Display date in hours
         rep['pub_date'] = naturaltime(instance.pub_date)
         return rep
+
+
+# class LikeSerializer(serializers.ModelSerializer):
+#     User = get_user_model()
+#     likes = serializers.SlugRelatedField(
+#         slug_field='username',
+#         queryset=User.objects.all(),
+#         many=True,
+#         required=False
+#     )
+#
+#     class Meta:
+#         model = Post
+#         fields = ('likes',)
+#
+#     def update(self, instance, validated_data):
+#         # Try to add user to likes
+#         try:
+#             like = validated_data.pop('likes')[0]
+#             if like in instance.likes.all():
+#                 instance.likes.remove(like)
+#                 instance.likes_count -= 1
+#             else:
+#                 instance.likes.add(like)
+#                 instance.likes_count += 1
+#         except KeyError:
+#             pass
+#         instance.save()
+#         return instance

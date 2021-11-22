@@ -99,6 +99,7 @@ class PostDetailApiViewTest(APITestCase):
                           **self.headers)
         updatedPost = Post.objects.get(text='New fancy text')
         response = self.client.get(f'/api/v1/post/{updatedPost.pk}')
+        print(response.content)
         self.assertEqual(response.data['text'], 'New fancy text')
         self.assertEqual(response.data['tags'][0]['name'], '#hiking')
         self.assertEqual(response.data['tags'][1]['name'], '#driving')
@@ -112,6 +113,7 @@ class PostDetailApiViewTest(APITestCase):
         response = self.client.patch(f'/api/v1/post/{self.post.pk}',
                                      {'text': 'Not hello'},
                                      **headers)
+        print(response.content)
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_post(self):
@@ -125,7 +127,8 @@ class PostDetailApiViewTest(APITestCase):
         headers = {
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
         }
-        response = self.client.put(f'/api/v1/post/{self.post.pk}', **headers)
+        response = self.client.delete(f'/api/v1/post/{self.post.pk}', **headers)
+        print(response.content)
         self.assertEqual(response.status_code, 403)
 
     def test_authenticated_user_can_create_new_post(self):
@@ -143,7 +146,7 @@ class PostDetailApiViewTest(APITestCase):
         newPost = Post.objects.get(text='Hello boys')
         response = self.client.get(f'/api/v1/post/{newPost.pk}')
         self.assertEqual(response.data['text'], 'Hello boys')
-        self.assertEqual(response.data['like_count'], 0)
+        self.assertEqual(response.data['likes_count'], 0)
         self.assertEqual(response.data['tags'][0]['name'], '#walking')
         self.assertEqual(response.data['tags'][1]['name'], '#football')
         self.assertEqual(response.data['pub_date'], 'now')
@@ -169,13 +172,6 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_authenticated_users_can_like_post(self):
-        response = self.client.patch(f'/api/v1/post/{self.post.pk}',
-                                     {'likes': [self.user.username]},
-                                     **self.headers)
-
-        self.assertEqual(response.status_code, 200)
-
-    def test_non_authenticated_user_can_not_like_post(self):
         response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
         tokens = json.loads(response.content)
         headers = {
@@ -184,8 +180,12 @@ class PostDetailApiViewTest(APITestCase):
         response = self.client.patch(f'/api/v1/post/{self.post.pk}',
                                      {'likes': [self.user.username]},
                                      **headers)
-        print(response.content)
         self.assertEqual(response.status_code, 200)
+
+    def test_non_authenticated_user_can_not_like_post(self):
+        response = self.client.patch(f'/api/v1/post/{self.post.pk}',
+                                     {'likes': [self.user.username]})
+        self.assertEqual(response.status_code, 401)
 
 
 
