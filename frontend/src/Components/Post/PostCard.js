@@ -7,14 +7,18 @@ import PropTypes from "prop-types";
 import CommentUnderPost from "./CommentUnderPost";
 import dog from "../../download.jpg";
 import {useDispatch, useSelector} from "react-redux";
-import {logout} from "../../state/actions/auth";
-import {likePost} from "../../state/actions/posts";
+import {addPost, likePost} from "../../state/actions/posts";
 
 function PostCard(props) {
     // TO-DO: Display edit or bin buttons only if user is authenticated
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const [isAuthor, setIsAuthor] = useState(false);
     const [showComments, setShowComments] = useState(false);
+
+    // Reply
+    const [showReplyForm, setShowReplayForm] = useState(false);
+    const [replyText, setReplyText] = useState('');
+
     const dispatch = useDispatch();
     const {post} = props;
     const {comments} = props;
@@ -25,6 +29,15 @@ function PostCard(props) {
         if (isAuthenticated) {
             dispatch(likePost(post.id));
         }
+    };
+
+    // Reply logic
+    const handleReply = (e) => {
+        e.preventDefault();
+        // dispatch(addPost(text, t idyTags));
+        console.log(replyText);
+        // Clear form after submitting
+        setReplyText('');
     };
 
     return (
@@ -42,12 +55,14 @@ function PostCard(props) {
                         </div>
                         <div className="flex items-center space-x-2">
                             <p className="py-1 text-sm text-gray-500">Posted {post.pub_date} </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700" fill="none"
+                                 viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                       d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700" fill="none"
+                                 viewBox="0 0 24 24"
                                  stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                       d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -88,30 +103,81 @@ function PostCard(props) {
                                 <p>0 Comments</p>
                             </button>
                         </div>
-                        <button className="flex items-center hover:text-gray-900"
-                                onClick={() => setShowComments(!showComments)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                      d="M16 17l-4 4m0 0l-4-4m4 4V3"/>
-                            </svg>
-                            <p>Show/hide comments</p>
-                        </button>
+                        <div className="flex items-center hover:text-gray-900 space-x-4">
+                            {isAuthenticated &&
+                            <button className="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                          d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
+                                </svg>
+                                <p className="px-1" onClick={() => setShowReplayForm(!showReplyForm)}>Reply</p>
+                            </button>
+                            }
+                            <button className="flex items-center hover:text-gray-900"
+                                    onClick={() => setShowComments(!showComments)}>
+                                {showComments ?
+                                    <>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none"
+                                             viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                  d="M8 7l4-4m0 0l4 4m-4-4v18"/>
+                                        </svg>
+                                        <p>Hide comments</p>
+                                    </> :
+                                    <>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none"
+                                             viewBox="0 0 24 24"
+                                             stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                  d="M16 17l-4 4m0 0l-4-4m4 4V3"/>
+                                        </svg>
+                                        <p>Show comments</p>
+                                    </>
+                                }
+                            </button>
+                        </div>
                     </footer>
-
                 </div>
             </div>
-            {/* Comments for post*/}
-            {showComments &&
+            {/* Reply form */}
             <div className="w-1/2 mx-auto">
+                {showReplyForm &&
+                <div className="flex flex-col w-3/4 ml-auto">
+                    <div className="flex justify-end">
+                        <div className="flex flex-col w-1/2 px-4 py-4 mb-4 bg-gray-200 shadow-md rounded-md">
+                            <form onSubmit={e => handleReply(e)}>
+                                <div className="mb-4">
+                                    <input
+                                        className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none text-sm"
+                                        id="text"
+                                        type="text" placeholder="Text"
+                                        onChange={e => setReplyText(e.target.value)}
+                                        value={replyText}
+                                    />
+                                </div>
+                                <div className="flex items-center justify-end">
+                                    <button
+                                        className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300 text-sm"
+                                        type="submit">
+                                        Reply
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                }
+                {/* Comments for post*/}
+                {showComments &&
                 <div className="flex flex-col w-3/4 ml-auto">
                     {comments && comments.filter(comment => comment.post === post.id).map(comment => {
                         return <CommentUnderPost comment={comment} key={comment.id}/>;
                     })
                     }
                 </div>
+                }
             </div>
-            }
         </li>
     );
 }
