@@ -2,7 +2,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from social.models import Comment
 from .serializer import CommentSerializer
-from ...permissions import IsOwnerOrReadOnly
+from ...permissions import IsOwnerOrLikeOnlyOrReadOnly
 
 
 class CommentList(ListCreateAPIView):
@@ -13,7 +13,7 @@ class CommentList(ListCreateAPIView):
 
 class CommentDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = CommentSerializer
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (IsOwnerOrLikeOnlyOrReadOnly,)
 
     def get_queryset(self):
         return Comment.objects.filter(id=self.kwargs.get('pk', None))

@@ -64,6 +64,12 @@ class CommentDetailApiViewTest(APITestCase):
             "HTTP_AUTHORIZATION": "JWT " + tokens['access']
         }
 
+        response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
+        tokens = json.loads(response.content)
+        self.headersNotAuthor = {
+            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
+        }
+
     def test_can_read_a_specific_comment(self):
         response = self.client.get(f'/api/v1/comment/{self.comment.pk}')
         self.assertEqual(response.status_code, 200)
@@ -95,12 +101,8 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['text'], 'Definitely not hello world')
 
     def test_only_author_can_update_his_comment(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
-        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}', {'text': 'whatever'}, **headers)
+        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}', {'text': 'whatever'},
+                                     **self.headersNotAuthor)
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_comment(self):
@@ -108,12 +110,7 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.status_code, 204)
 
     def test_only_author_can_delete_his_comment(self):
-        response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
-        tokens = json.loads(response.content)
-        headers = {
-            "HTTP_AUTHORIZATION": "JWT " + tokens['access']
-        }
-        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}', **headers)
+        response = self.client.delete(f'/api/v1/comment/{self.comment.pk}', **self.headersNotAuthor)
         self.assertEqual(response.status_code, 403)
 
     def test_authenticated_user_can_create_new_comment(self):
@@ -129,3 +126,45 @@ class CommentDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['author'], self.user.username)
         self.assertEqual(response.data['text'], 'My new comment')
         self.assertEqual(response.data['post'], self.post.pk)
+
+    def test_can_create_comment_with_username_instead_of_user_id(self):
+        response = self.client.post('/api/v1/comment/', self.data, **self.headers)
+        self.assertEqual(response.status_code, 201)
+
+    def test_authenticated_users_can_like_comment(self):
+        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
+                                     {'likes': [self.user.username]},
+                                     **self.headersNotAuthor)
+        self.assertEqual(response.status_code, 200)
+
+    def test_non_authenticated_user_can_not_like_comment(self):
+        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
+                                     {'likes': [self.user.username]})
+        self.assertEqual(response.status_code, 401)
+
+    def test_authenticated_users_can_only_update_likes_field_on_the_comment_instance_and_nothing_else(self):
+        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
+                                     {'likes': [self.user.username], 'text': 'ok'},
+                                     **self.headersNotAuthor)
+        self.assertEqual(response.status_code, 403)
+
+    def test_authenticated_user_can_unlike_a_comment(self):
+        # Like a post
+        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
+                                     {'likes': [self.user.username]},
+                                     **self.headersNotAuthor)
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get(f'/api/v1/comment/{self.comment.pk}')
+
+        self.assertEqual(response.data['likes'], [self.user.username])
+
+        # Unlike a post
+        response = self.client.patch(f'/api/v1/comment/{self.comment.pk}',
+                                     {'likes': [self.user.username]},
+                                     **self.headersNotAuthor)
+        self.assertEqual(response.status_code, 200)
+
+        response = self.client.get(f'/api/v1/comment/{self.comment.pk}')
+
+        self.assertEqual(response.data['likes'], [])
