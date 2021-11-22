@@ -10,7 +10,6 @@ User = get_user_model()
 
 # TO-DO - divide tests
 # TO-DO - move data to setUp
-# TO-DO - use dummy data
 
 
 class PostListApiViewTest(APITestCase):

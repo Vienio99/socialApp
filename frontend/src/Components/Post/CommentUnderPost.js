@@ -1,9 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import dog from "../../download.jpg";
+import {likeComment, likePost} from "../../state/actions/posts";
+import {useDispatch, useSelector} from "react-redux";
 
 function CommentUnderPost(props) {
     const {comment} = props;
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const dispatch = useDispatch();
+
+    // Like if user is authenticated
+    const handleLike = (e) => {
+        e.preventDefault();
+        // Invoke redux action
+        if (isAuthenticated) {
+            dispatch(likeComment(comment.id));
+        }
+    };
+
     return (
         // Card
         <div className="flex justify-center">
@@ -25,7 +39,7 @@ function CommentUnderPost(props) {
                 {/* Footer */}
                 <footer className="flex items-center justify-between px-4 py-1 text-sm text-gray-500 bg-gray-100 rounded-b-md">
                     <div className="flex space-x-5">
-                        <button className="flex items-center space-x-1 hover:text-gray-900">
+                        <button className="flex items-center space-x-1 hover:text-gray-900" onClick={handleLike}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="rgba(251, 191, 36)"
                                  viewBox="0 0 24 24"
                                  stroke="currentColor">

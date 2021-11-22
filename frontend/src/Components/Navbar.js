@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {
-    Link, useHistory
+    Link
 } from "react-router-dom";
 import axiosInstance from "../axios";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,7 +10,6 @@ import Loader from "./Loader";
 
 export default function Navbar() {
     const dispatch = useDispatch();
-    const history = useHistory();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const isLoading = useSelector((state) => state.auth.isLoading);
     const username = useSelector((state) => state.auth.username);

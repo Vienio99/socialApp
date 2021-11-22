@@ -1,17 +1,24 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import React from "react";
 import {
-    Link
+    Link, useHistory
 } from "react-router-dom";
 import PropTypes from "prop-types";
 import CommentUnderPost from "./CommentUnderPost";
 import dog from "../../download.jpg";
 import {useDispatch, useSelector} from "react-redux";
-import {addPost, likePost, replyPost} from "../../state/actions/posts";
+import {addPost, deletePost, getPosts, likePost, replyPost} from "../../state/actions/posts";
 
 function PostCard(props) {
+    const {post} = props;
+    const {comments} = props;
+
+    const history = useHistory();
+
     // TO-DO: Display edit or bin buttons only if user is authenticated
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const currentUser = useSelector((state) => state.auth.username);
+
     const [isAuthor, setIsAuthor] = useState(false);
     const [showComments, setShowComments] = useState(false);
 
@@ -20,9 +27,16 @@ function PostCard(props) {
     const [replyText, setReplyText] = useState('');
 
     const dispatch = useDispatch();
-    const {post} = props;
-    const {comments} = props;
 
+    useEffect(() => {
+        if (post.author === currentUser) {
+            setIsAuthor(true);
+        }
+    }, [currentUser, post.author]);
+
+
+
+    // Like if user is authenticated
     const handleLike = (e) => {
         e.preventDefault();
         // Invoke redux action
@@ -40,6 +54,15 @@ function PostCard(props) {
         setReplyText('');
     };
 
+    // Delete post
+    const handleDelete = (e) => {
+        e.preventDefault();
+        dispatch(deletePost(post.id));
+        console.log('post deleted ' + post.id);
+        // Temporary solution for the case if user is on detail page
+        history.push('/');
+    };
+
     return (
         // Card
         <li className="flex flex-col">
@@ -55,18 +78,28 @@ function PostCard(props) {
                         </div>
                         <div className="flex items-center space-x-2">
                             <p className="py-1 text-sm text-gray-500">Posted {post.pub_date} </p>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700" fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700" fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                      d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
+                            {isAuthor &&
+                            <div>
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700"
+                                         fill="none"
+                                         viewBox="0 0 24 24"
+                                         stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                    </svg>
+                                </button>
+                                <button onClick={e => handleDelete(e)}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700"
+                                         fill="none"
+                                         viewBox="0 0 24 24"
+                                         stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                              d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            }
                         </div>
                     </header>
                     {/* Text */}
@@ -170,7 +203,7 @@ function PostCard(props) {
                 }
                 {/* Comments for post*/}
                 {showComments &&
-                <div className="flex flex-col w-3/4 ml-auto">
+                <div className="flex flex-col w-3/4 ml-auto space-y-3">
                     {comments && comments.filter(comment => comment.post === post.id).map(comment => {
                         return <CommentUnderPost comment={comment} key={comment.id}/>;
                     })

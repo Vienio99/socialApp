@@ -8,7 +8,6 @@ import {useDispatch} from "react-redux";
 //TO-DO - move prepareTags logic to backend
 
 function PostForm() {
-    // Maybe move it to redux?
     const [text, setText] = useState('');
     const [tags, setTags] = useState('');
 
@@ -17,6 +16,7 @@ function PostForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const tidyTags = prepareTags();
+        console.log(tidyTags);
         dispatch(addPost(text, tidyTags));
 
         // Clear form after submitting
@@ -25,12 +25,15 @@ function PostForm() {
     };
 
     function prepareTags() {
-        const tidyTags = tags.split(' ');
+        // Trim of any whitespaces and separate words
+        const tidyTags = tags.trim().split(/[ ]+/);
         return tidyTags.map(tag => {
             if (!tag.startsWith('#')) {
-                tag = '#' + tag;
+                tag = '#' + tag.trim();
+                return {'name': tag};
+            } else if (tag.startsWith('#') && tag !== '#') {
+                return tag;
             }
-            return {'name': tag};
         });
     }
 

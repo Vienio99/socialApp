@@ -9,7 +9,6 @@ from .serializer import UserSerializer, MyTokenObtainPairSerializer
 User = get_user_model()
 
 
-# TO-DO - change to viewsets
 # TO-DO - maybe change the way it parses data for user detail for performance boost?
 
 class UserList(ListCreateAPIView):
