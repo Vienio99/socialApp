@@ -139,3 +139,28 @@ export const likePost = (id) => {
             });
     };
 };
+
+export const replyPost = (text, id) => {
+    return function (dispatch, getState) {
+        console.log(getState().auth.username);
+        axiosInstance
+            .post(`comment/`, {'author': getState().auth.username, 'text': text, 'post': id})
+            .then((response) => {
+                console.log(response.content);
+                // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
+                // but it runs once anyway idk why
+                dispatch(getPosts());
+            })
+            .catch(error => {
+                console.log(error);
+                console.log(error.response.data.detail);
+                dispatch({
+                    type: CREATE_ERROR_MESSAGE,
+                    payload: {
+                        message: error.response.data.detail,
+                        status: error.response.status
+                    }
+                });
+            });
+    };
+};

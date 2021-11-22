@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import CommentUnderPost from "./CommentUnderPost";
 import dog from "../../download.jpg";
 import {useDispatch, useSelector} from "react-redux";
-import {addPost, likePost} from "../../state/actions/posts";
+import {addPost, likePost, replyPost} from "../../state/actions/posts";
 
 function PostCard(props) {
     // TO-DO: Display edit or bin buttons only if user is authenticated
@@ -34,7 +34,7 @@ function PostCard(props) {
     // Reply logic
     const handleReply = (e) => {
         e.preventDefault();
-        // dispatch(addPost(text, t idyTags));
+        dispatch(replyPost(replyText, post.id));
         console.log(replyText);
         // Clear form after submitting
         setReplyText('');
