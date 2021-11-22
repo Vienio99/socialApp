@@ -13,6 +13,7 @@ import {likePost} from "../../state/actions/posts";
 function PostCard(props) {
     // TO-DO: Display edit or bin buttons only if user is authenticated
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const [isAuthor, setIsAuthor] = useState(false);
     const [showComments, setShowComments] = useState(false);
     const dispatch = useDispatch();
     const {post} = props;
@@ -36,19 +37,31 @@ function PostCard(props) {
                         <div>
                             <div className="flex items-center">
                                 <img src={dog} width="50px" alt="profile-picture"/>
-                                <p className="ml-2 text-lg font-bold">{post.author}</p>
+                                <p className="ml-2 text-lg font-bold text-gray-700">{post.author}</p>
                             </div>
                         </div>
-                        <p className="py-1 text-sm text-gray-500">Posted {post.pub_date} </p>
+                        <div className="flex items-center space-x-2">
+                            <p className="py-1 text-sm text-gray-500">Posted {post.pub_date} </p>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                      d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
                     </header>
                     {/* Text */}
                     <Link to={`/post/${post.id}`}>
-                        <div className="px-4 py-4">
+                        <div className="px-4 py-4 text-gray-700">
                             <p>{post.text}</p>
                         </div>
                         <div className="flex px-4 mb-2 font-bold space-x-3">
                             {post.tags && post.tags.map(tag => (
-                                <p className="text-sm" key={tag.id}>{tag.name}</p>
+                                <p className="text-sm text-gray-700" key={tag.id}>{tag.name}</p>
                             ))}
                         </div>
                     </Link>

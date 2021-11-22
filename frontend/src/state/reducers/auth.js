@@ -63,6 +63,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: false,
+                isLoading: false,
                 username: null,
                 accessToken: null,
                 refreshToken: null,
