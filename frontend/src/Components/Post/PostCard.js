@@ -15,15 +15,15 @@ function PostCard(props) {
 
     const history = useHistory();
 
-    // TO-DO: Display edit or bin buttons only if user is authenticated
+
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const currentUser = useSelector((state) => state.auth.username);
-
+    // TO-DO: Display edit or bin buttons only if user is author
     const [isAuthor, setIsAuthor] = useState(false);
     const [showComments, setShowComments] = useState(false);
 
     // Reply
-    const [showReplyForm, setShowReplayForm] = useState(false);
+    const [showReplyForm, setShowReplyForm] = useState(false);
     const [replyText, setReplyText] = useState('');
 
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function PostCard(props) {
     }, [currentUser, post.author]);
 
 
-
+    // TO-DO: transfer it to custom hook or inline within element?
     // Like if user is authenticated
     const handleLike = (e) => {
         e.preventDefault();
@@ -44,6 +44,7 @@ function PostCard(props) {
             dispatch(likePost(post.id));
         }
     };
+    // TO-DO: delete e.preventDefault as it is probably not needed at all
 
     // Reply logic
     const handleReply = (e) => {
@@ -144,7 +145,7 @@ function PostCard(props) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                           d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
                                 </svg>
-                                <p className="px-1" onClick={() => setShowReplayForm(!showReplyForm)}>Reply</p>
+                                <p className="px-1" onClick={() => setShowReplyForm(!showReplyForm)}>Reply</p>
                             </button>
                             }
                             <button className="flex items-center hover:text-gray-900"
@@ -191,7 +192,7 @@ function PostCard(props) {
                                 </div>
                                 <div className="flex items-center justify-end">
                                     <button
-                                        className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300 text-sm"
+                                        className="px-4 py-2 text-sm text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
                                         type="submit">
                                         Reply
                                     </button>

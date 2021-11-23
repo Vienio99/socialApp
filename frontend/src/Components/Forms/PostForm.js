@@ -1,13 +1,12 @@
-import React, {useState} from "react";
-import axiosInstance from '../../axios';
+import React, {useEffect, useState} from "react";
 import {addPost} from "../../state/actions/posts";
 import {useDispatch} from "react-redux";
 
-//TO-DO - handle improper tags f.e. without hash-tags etc.
 //TO-DO - display error message below input fields
 //TO-DO - move prepareTags logic to backend
 
 function PostForm() {
+    const [isValid, setIsValid] = useState(false);
     const [text, setText] = useState('');
     const [tags, setTags] = useState('');
 
@@ -37,6 +36,14 @@ function PostForm() {
         });
     }
 
+    useEffect( () => {
+        setIsValid(
+            !!text && !!tags && !/^\s*$/.test(text) && !/^\s*$/.test(tags)
+        );
+        console.log('ok');
+        }, [text, tags]);
+
+
     return (
         // Card
         <div className="flex flex-col">
@@ -47,28 +54,35 @@ function PostForm() {
                             <label className="block mb-2 font-bold text-gray-700 text-md" htmlFor="text">
                                 Text
                             </label>
-                            <input className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none"
+                            <input className="w-full px-3 py-2 leading-tight text-gray-700 bg-gray-100 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                                    id="text"
-                                   type="text" placeholder="Text"
+                                   type="text"
+                                   placeholder="Text"
                                    onChange={e => setText(e.target.value)}
                                    value={text}
                             />
+                            <p className="px-3 mt-2 text-xs italic text-red-500">Please fill out this field.</p>
                         </div>
                         <div className="mb-6">
                             <label className="block mb-2 font-bold text-gray-700 text-md" htmlFor="tags">
                                 Tags
                             </label>
                             <input
-                                className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none border-red"
-                                id="tags" type="tags" placeholder="#tags"
+                                className="w-full px-3 py-2 leading-tight text-gray-700 bg-gray-100 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="tags"
+                                type="tags"
+                                placeholder="#tags"
                                 onChange={e => setTags(e.target.value)}
                                 value={tags}
                             />
+                            <p className="px-3 mt-2 text-xs italic text-red-500">Please fill out this field.</p>
                         </div>
                         <div className="flex items-center justify-end">
                             <button
-                                className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
-                                type="submit">
+                                className="px-4 py-2 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300 disabled:opacity-50 disabled:bg-gray-200 disabled:text-gray-700"
+                                type="submit"
+                                disabled={!isValid}
+                            >
                                 Send
                             </button>
                         </div>
