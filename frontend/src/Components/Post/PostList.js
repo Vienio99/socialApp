@@ -14,6 +14,7 @@ function PostList(props) {
     const posts = useSelector((state) => state.posts.posts);
     const comments = useSelector((state) => state.posts.comments);
     const isLoading = useSelector((state) => state.posts.isLoading);
+    // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     const dispatch = useDispatch();
 

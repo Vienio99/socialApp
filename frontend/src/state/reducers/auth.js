@@ -4,7 +4,7 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL, USER_LOADING, USER_LOADED
+    REGISTER_FAIL, USER_LOADING, USER_LOADED, REFRESH_FAIL, LOAD_FAIL
 } from "../actions/types";
 import axiosInstance from "../../axios";
 import jwt_decode from "jwt-decode";
@@ -54,6 +54,8 @@ const reducer = (state = initialState, action) => {
             };
         case LOGOUT_SUCCESS:
         case LOGIN_FAIL:
+        case REFRESH_FAIL:
+        case LOAD_FAIL:
             localStorage.clear();
             axiosInstance.defaults.headers['Authorization'] = null;
 

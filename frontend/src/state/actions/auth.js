@@ -1,8 +1,9 @@
 import axiosInstance from "../../axios";
 import {
+    LOAD_FAIL,
     LOGIN_FAIL,
     LOGIN_SUCCESS,
-    LOGOUT_SUCCESS,
+    LOGOUT_SUCCESS, REFRESH_FAIL,
     REGISTER_FAIL,
     REGISTER_SUCCESS, USER_LOADED, USER_LOADING,
 } from "./types";
@@ -24,7 +25,12 @@ export const loadUser = () => {
                     payload: response.data
                 });
             })
-            .catch(response => console.log(response));
+            .catch(response => {
+                dispatch({
+                    type: LOAD_FAIL
+                });
+                console.log(response);
+            });
     };
 };
 
@@ -71,7 +77,9 @@ export const logout = () => {
                     type: LOGOUT_SUCCESS
                 });
             })
-            .catch(response => console.log(response));
+            .catch(response =>
+                console.log(response)
+            );
     };
 };
 
@@ -111,6 +119,11 @@ export const refreshAccessToken = () => {
             .then(response => {
                 localStorage.setItem('access_token', response.data.access);
             })
-            .catch(response => console.log(response));
+            .catch(response => {
+                dispatch({
+                    type: REFRESH_FAIL
+                });
+                console.log(response);
+            });
     };
 };

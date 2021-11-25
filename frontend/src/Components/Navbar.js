@@ -18,6 +18,8 @@ export default function Navbar() {
     const handleLogout = (e) => {
         e.preventDefault();
         // Invoke redux action
+
+        //TO-DO: after logout posts still have delete and edit buttons visible
         dispatch(logout());
     };
 
