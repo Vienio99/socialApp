@@ -13,7 +13,7 @@ beforeEach(() => {
         'pub_date': 'now',
         'text': 'trying to learn rtl',
         'tags': [{'id': 1, 'name': '#hiking'}, {'id': 2, 'name': '#running'}],
-        'likes': 5,
+        'likes_count': 5,
     };
 
     const comments = [
@@ -30,22 +30,40 @@ beforeEach(() => {
     );
 });
 
-test('PostCard renders information properly', async () => {
+test('renders information properly', async () => {
     const author = screen.getByText(/test/i);
     const text = screen.getByText(/trying to learn rtl/i);
     const tag1 = screen.getByText('#hiking');
     const tag2 = screen.getByText('#running');
     const likes = screen.getByText('5 Likes');
+    const comments = screen.getByText('2 Comments');
 
     expect(author).toBeInTheDocument();
     expect(text).toBeInTheDocument();
     expect(tag1).toBeInTheDocument();
     expect(tag2).toBeInTheDocument();
     expect(likes).toBeInTheDocument();
+    expect(comments).toBeInTheDocument();
 });
 
-test('PostCard renders comments properly', async () => {
+test('renders comments properly', async () => {
     const commentText = screen.getByText('I like hiking');
 
     expect(commentText).toBeInTheDocument();
+});
+
+test('showing proper amount of likes after clicking like button', async () => {
+//
+});
+
+test('showing comments after clicking showComments button', async () => {
+//
+});
+
+test('showing reply form after clicking reply button', async () => {
+//
+});
+
+test('adds comment under post after submiting', async() => {
+//
 });

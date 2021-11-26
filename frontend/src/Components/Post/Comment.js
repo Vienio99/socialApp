@@ -4,7 +4,7 @@ import dog from "../../download.jpg";
 import {likeComment, likePost} from "../../state/actions/posts";
 import {useDispatch, useSelector} from "react-redux";
 
-function CommentUnderPost(props) {
+function Comment(props) {
     const {comment} = props;
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const dispatch = useDispatch();
@@ -56,11 +56,11 @@ function CommentUnderPost(props) {
 }
 
 
-CommentUnderPost.propTypes = {
+Comment.propTypes = {
     comment: PropTypes.object
 };
 
 
-export default CommentUnderPost;
+export default Comment;
 
 

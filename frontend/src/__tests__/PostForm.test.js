@@ -86,7 +86,7 @@ test('displays minimum length error messages if input is invalid', async () => {
     });
 
     const textError = screen.queryByText('Text must be at least 5 characters long.');
-    const tagsError = screen.queryByText('Tags must be at least 5 characters long.');
+    const tagsError = screen.queryByText('Tags have to be at least 5 characters long.');
 
     expect(textError).toBeInTheDocument();
     expect(tagsError).toBeInTheDocument();

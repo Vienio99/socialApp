@@ -10,9 +10,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 // TO-DO: when there is 404 error, forward user to 404 page
 
-function PostList(props) {
+function PostList() {
     const posts = useSelector((state) => state.posts.posts);
-    const comments = useSelector((state) => state.posts.comments);
     const isLoading = useSelector((state) => state.posts.isLoading);
     // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -41,7 +40,7 @@ function PostList(props) {
                 {currentPosts.map(post => (
                     <PostCard key={post.id}
                               post={post}
-                              comments={comments}/>
+                    />
                 ))}
             </ul>
             <PaginationBar postsPerPage={postsPerPage}

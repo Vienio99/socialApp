@@ -36,15 +36,16 @@ export const getPosts = () => {
 // In this requests, bear in mind that token is in the header already (using localStorage), that's why user has access
 
 // ADD POST
-export const addPost = (text, tidyTags) => {
+export const addPost = (text, tags) => {
     return function (dispatch, getState) {
         const author = getState().auth.username;
+
         axiosInstance
             .post('post/', {
                 // TO-DO: change to real user - 1 is for tests only. change it in Django's serializer
                 author: author,
                 text: text,
-                tags: tidyTags
+                tags: tags
             })
             .then((response) => {
                 console.log(response);
@@ -53,7 +54,7 @@ export const addPost = (text, tidyTags) => {
                 dispatch(getPosts());
             })
             .catch(error => {
-                console.log(error.response.data.detail);
+                console.log(error.response);
                 dispatch({
                     type: CREATE_ERROR_MESSAGE,
                     payload: {
