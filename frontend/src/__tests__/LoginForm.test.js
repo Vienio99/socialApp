@@ -71,18 +71,6 @@ test('displaying error if user did not input username or password', async () => 
     expect(passwordError).toBeInTheDocument();
 });
 
-test('displaying error if user does not exist', async () => {
-    const {submitButton} = setUp();
-
-    await waitFor(() => {
-        fireEvent.click(submitButton);
-    });
-
-    const error = screen.queryByText('User with that credentials does not exist.');
-
-    expect(error).toBeInTheDocument();
-});
-
 test('removes error messages if input is valid', async () => {
     const {username, password, submitButton} = setUp();
 
@@ -104,3 +92,15 @@ test('removes error messages if input is valid', async () => {
     expect(usernameError).not.toBeInTheDocument();
     expect(passwordError).not.toBeInTheDocument();
 });
+
+// test('displaying error if user does not exist', async () => {
+//     const {submitButton} = setUp();
+//
+//     await waitFor(() => {
+//         fireEvent.click(submitButton);
+//     });
+//
+//     const error = screen.queryByText('User with that credentials does not exist.');
+//
+//     expect(error).toBeInTheDocument();
+// });

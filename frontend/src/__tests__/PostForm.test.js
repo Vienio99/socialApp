@@ -58,7 +58,7 @@ test('input fields are blank after submitting the form', async () => {
     expect(tags).toHaveValue('');
 });
 
-test('displays required error messages if input is invalid', async () => {
+test('displays required error messages', async () => {
     const {submitButton} = setUp();
 
     await waitFor(() => {
@@ -72,7 +72,7 @@ test('displays required error messages if input is invalid', async () => {
     expect(tagsError).toBeInTheDocument();
 });
 
-test('displays minimum length error messages if input is invalid', async () => {
+test('displays minimum length error messages', async () => {
     const {text, tags, submitButton} = setUp();
 
     await waitFor(() => {
@@ -89,7 +89,7 @@ test('displays minimum length error messages if input is invalid', async () => {
     expect(tagsError).toBeInTheDocument();
 });
 
-test('displays maximum length error messages if input is invalid', async () => {
+test('displays maximum length error messages', async () => {
     const {text, tags, submitButton} = setUp();
 
     await waitFor(() => {
@@ -106,13 +106,13 @@ test('displays maximum length error messages if input is invalid', async () => {
     expect(tagsError).toBeInTheDocument();
 });
 
-test('displays improper tags error if tags are invalid', async () => {
+test('displays improper tags format error', async () => {
     const {text, tags, submitButton} = setUp();
 
     await waitFor(() => {
         fireEvent.change(text, {target: {value: 'Correct text'}});
         fireEvent.change(tags, {target: {value: 'incorrect #tags'}});
-                fireEvent.click(submitButton);
+        fireEvent.click(submitButton);
     });
 
     const tagsError = screen.queryByText('Proper format for tags is f.e. #hiking');
