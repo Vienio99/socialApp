@@ -5,12 +5,12 @@ import {useDispatch} from "react-redux";
 
 function ReplyForm(props) {
     // eslint-disable-next-line react/prop-types
-    const { post } = props;
+    const {post} = props;
     const [replyText, setReplyText] = useState('');
 
-        const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-        // Reply logic
+    // Reply logic
     const handleReply = (e) => {
         e.preventDefault();
         dispatch(replyPost(replyText, post.id));

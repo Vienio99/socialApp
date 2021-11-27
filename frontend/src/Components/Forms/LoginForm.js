@@ -1,26 +1,46 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useHistory, useLocation} from "react-router-dom";
-import SuccessModal from "./SuccessModal";
-import Loader from "../Loader";
-import axiosInstance from "../../axios";
 import {login} from "../../state/actions/auth";
 import {useDispatch} from "react-redux";
+import * as Yup from "yup";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
 
+const schema = Yup.object().shape({
+        username: Yup.string()
+            .required('Username is required.'),
+        password: Yup.string()
+            .required('Password is required.')
+    }
+);
 
 function LoginForm(props) {
+    // const {
+    //     register,
+    //     handleSubmit,
+    //     reset,
+    //     formState: {errors, isSubmitSuccessful}
+    // } = useForm({resolver: yupResolver(schema)});
+
     // TO-DO - Use location to show modal after redirecting from signup page
     const dispatch = useDispatch();
     const location = useLocation();
     const history = useHistory();
     // const [showModal, setShowModal] = useState(false);
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        if (isSubmitSuccessful) {
+            reset();
+        }
+    }, [isSubmitSuccessful, reset]);
 
     const handleLogin = (e) => {
         e.preventDefault();
         // Invoke redux action
         dispatch(login(username, password));
         // TO-DO: forward user only after login has been successful
+        setUsername('');
+        setPassword('');
         history.push('/',);
     };
 
@@ -60,7 +80,7 @@ return (
                     className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none border-red"
                     id="password"
                     type="password"
-                    placeholder="**********"
+                    placeholder="Password"
                     onChange={e => setPassword(e.target.value)}
                     value={password}/>
                 <p className="text-xs italic text-red">Please input a password.</p>

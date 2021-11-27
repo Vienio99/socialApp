@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 
 const schema = Yup.object().shape({
         text: Yup.string()
-            .required('A text is required.')
+            .required('Text is required.')
             .min(5, 'Text must be at least 5 characters long.')
             .max(500, 'Text must not exceed 500 characters.'),
         tags: Yup.string()

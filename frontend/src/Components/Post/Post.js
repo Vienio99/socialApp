@@ -4,18 +4,16 @@ import {
     Link, useHistory
 } from "react-router-dom";
 import PropTypes from "prop-types";
-import Comment from "./Comment";
 import dog from "../../download.jpg";
 import {useDispatch, useSelector} from "react-redux";
 import {addPost, deletePost, getPosts, likePost, replyPost} from "../../state/actions/posts";
 import CommentList from "./CommentList";
 import ReplyForm from "./ReplyForm";
 
-function PostCard(props) {
+function Post(props) {
     const {post} = props;
 
     const history = useHistory();
-
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const currentUser = useSelector((state) => state.auth.username);
@@ -72,7 +70,7 @@ function PostCard(props) {
                             <p className="py-1 text-sm text-gray-500">Posted {post.pub_date} </p>
                             {isAuthor &&
                             <div>
-                                <button>
+                                <button title="Edit post">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700"
                                          fill="none"
                                          viewBox="0 0 24 24"
@@ -81,7 +79,7 @@ function PostCard(props) {
                                               d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                                     </svg>
                                 </button>
-                                <button onClick={e => handleDelete(e)}>
+                                <button title="Delete post" onClick={e => handleDelete(e)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700"
                                          fill="none"
                                          viewBox="0 0 24 24"
@@ -128,15 +126,15 @@ function PostCard(props) {
                                 <p>0 Comments</p>
                             </button>
                         </div>
-                        <div className="flex items-center hover:text-gray-900 space-x-4">
+                        <div className="flex items-center space-x-4">
                             {isAuthenticated &&
-                            <button className="flex items-center">
+                            <button className="flex items-center hover:text-gray-900" onClick={() => setShowReplyForm(!showReplyForm)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none"
                                      viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                           d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
                                 </svg>
-                                <p className="px-1" onClick={() => setShowReplyForm(!showReplyForm)}>Reply</p>
+                                <p className="px-1" >Reply</p>
                             </button>
                             }
                             <button className="flex items-center hover:text-gray-900"
@@ -176,11 +174,11 @@ function PostCard(props) {
 }
 
 
-PostCard.propTypes = {
+Post.propTypes = {
     post: PropTypes.object,
     comments: PropTypes.array,
     id: PropTypes.number
 };
 
 
-export default PostCard;
+export default Post;

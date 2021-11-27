@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import React from "react";
-import PostCard from "./PostCard";
+import Post from "./Post";
 import Loader from "../Loader";
 import PostForm from "../Forms/PostForm";
 import PaginationBar from "../PaginationBar";
@@ -38,8 +38,8 @@ function PostList() {
             {(isLoading && !posts.length) && <Loader/>}
             <ul className="flex flex-col space-y-10">
                 {currentPosts.map(post => (
-                    <PostCard key={post.id}
-                              post={post}
+                    <Post key={post.id}
+                          post={post}
                     />
                 ))}
             </ul>

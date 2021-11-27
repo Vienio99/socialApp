@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import React from "react";
 import PropTypes from "prop-types";
-import PostCard from "./PostCard";
+import Post from "./Post";
 import {useSelector} from "react-redux";
 
 function PostDetail(props) {
@@ -19,7 +19,7 @@ function PostDetail(props) {
 
     return (
         <div className="flex-grow">
-            <PostCard post={post} comments={comments}/>
+            <Post post={post} comments={comments}/>
         </div>
     );
 }

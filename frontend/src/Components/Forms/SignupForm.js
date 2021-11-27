@@ -48,7 +48,7 @@ function SignupForm() {
                         className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none border-red"
                         id="password"
                         type="password"
-                        placeholder="**********"
+                        placeholder="Password"
                         onChange={e => setPassword(e.target.value)}
                         value={password}/>
                     <p className="text-xs italic text-red">Please input a password.</p>
@@ -61,7 +61,7 @@ function SignupForm() {
                 {/*        className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none border-red"*/}
                 {/*        id="password2"*/}
                 {/*        type="password2"*/}
-                {/*        placeholder="**********"*/}
+                {/*        placeholder="Password"*/}
                 {/*        onChange={e => setPassword2(e.target.value)}*/}
                 {/*        value={password2}/>*/}
                 {/*    <p className="text-xs italic text-red">Please repeat a password.</p>*/}

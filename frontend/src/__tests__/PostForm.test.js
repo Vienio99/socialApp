@@ -1,17 +1,14 @@
 import {
-    act,
-    findAllByText,
     fireEvent,
     render,
     screen,
     waitFor,
-    waitForElementToBeRemoved
 } from "@testing-library/react";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
-import {store} from "../../state/store";
-import PostForm from "./PostForm";
+import {store} from "../state/store";
+import PostForm from "../Components/Forms/PostForm";
 
 
 beforeEach(() => {
@@ -62,13 +59,13 @@ test('input fields are blank after submitting the form', async () => {
 });
 
 test('displays required error messages if input is invalid', async () => {
-    const {text, tags, submitButton} = setUp();
+    const {submitButton} = setUp();
 
     await waitFor(() => {
         fireEvent.click(submitButton);
     });
 
-    const textError = screen.queryByText('A text is required.');
+    const textError = screen.queryByText('Text is required.');
     const tagsError = screen.queryByText('Tags are required.');
 
     expect(textError).toBeInTheDocument();
