@@ -74,10 +74,10 @@ function SignupForm() {
                         Password *
                     </label>
                     <input
-                        className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none border-red"
+                        className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none border-red"
                         id="password"
                         type="password"
-                        placeholder="Password1"
+                        placeholder="Password"
                         {...register('password1')}
                     />
                     {errors.password1 &&
@@ -88,10 +88,10 @@ function SignupForm() {
                         Repeat password *
                     </label>
                     <input
-                        className="w-full px-3 py-2 mb-3 text-gray-700 border rounded shadow appearance-none border-red"
+                        className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none border-red"
                         id="password1"
                         type="password"
-                        placeholder="Password2"
+                        placeholder="Repeat password"
                         {...register('password2')}
                     />
                     {errors.password2 &&

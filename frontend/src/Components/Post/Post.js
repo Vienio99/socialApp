@@ -6,7 +6,7 @@ import {
 import PropTypes from "prop-types";
 import dog from "../../download.jpg";
 import {useDispatch, useSelector} from "react-redux";
-import {addPost, deletePost, getPosts, likePost, replyPost} from "../../state/actions/posts";
+import {addPost, deletePost, getPosts, likePost} from "../../state/actions/posts";
 import CommentList from "./CommentList";
 import ReplyForm from "./ReplyForm";
 
@@ -34,14 +34,16 @@ function Post(props) {
 
 
     // TO-DO: transfer it to custom hook or inline within element?
-    // Like if user is authenticated
     const handleLike = (e) => {
         e.preventDefault();
         // Invoke redux action
-        if (isAuthenticated) {
-            dispatch(likePost(post.id));
-        }
+        dispatch(likePost(post.id));
     };
+
+    // const handleEdit = (e) => {
+    //     e.preventDefault();
+    //     dispatch(editPost(post.id));
+    // };
 
     // TO-DO: delete e.preventDefault as it is probably not needed at all
     // Delete post

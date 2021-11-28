@@ -23,8 +23,8 @@ beforeEach(() => {
 
 const setUp = () => {
     const username = screen.queryByPlaceholderText(/Username/i);
-    const password1 = screen.queryByPlaceholderText(/Password1/i);
-    const password2 = screen.queryByPlaceholderText(/Password2/i);
+    const password1 = screen.queryByPlaceholderText(/Password/i);
+    const password2 = screen.queryByPlaceholderText(/Repeat password/i);
     const submitButton = screen.getByText('Sign Up');
 
     return {

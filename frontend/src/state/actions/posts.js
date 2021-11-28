@@ -1,6 +1,7 @@
 import axiosInstance from "../../axios";
 import axios from "axios";
 import {CREATE_ERROR_MESSAGE, POSTS_FETCH, POSTS_FETCH_SUCCESS} from "./types";
+import {returnErrors} from "./messages";
 
 // GET POSTS
 
@@ -20,14 +21,9 @@ export const getPosts = () => {
                     payload: payload
                 });
             }))
-            .catch(error => {
-                console.log(error.message);
-                dispatch({
-                    type: CREATE_ERROR_MESSAGE,
-                    payload: {
-                        message: error.message,
-                    }
-                });
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
             });
     };
 
@@ -38,11 +34,10 @@ export const getPosts = () => {
 // ADD POST
 export const addPost = (text, tags) => {
     return function (dispatch, getState) {
+        // Get current user
         const author = getState().auth.username;
-
         axiosInstance
             .post('post/', {
-                // TO-DO: change to real user - 1 is for tests only. change it in Django's serializer
                 author: author,
                 text: text,
                 tags: tags
@@ -53,15 +48,9 @@ export const addPost = (text, tags) => {
                 // but it runs once anyway idk why
                 dispatch(getPosts());
             })
-            .catch(error => {
-                console.log(error.response);
-                dispatch({
-                    type: CREATE_ERROR_MESSAGE,
-                    payload: {
-                        message: error.response.data.detail,
-                        status: error.response.status
-                    }
-                });
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
             });
     };
 };
@@ -75,19 +64,12 @@ export const editPost = (id) => {
             .patch(`post/${id}`, {})
             .then((response) => {
                 console.log(response);
-                // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
-                // but it runs once anyway idk why
                 dispatch(getPosts());
             })
-            .catch(error => {
-                console.log(error.response.data.detail);
-                dispatch({
-                    type: CREATE_ERROR_MESSAGE,
-                    payload: {
-                        message: error.response.data.detail,
-                        status: error.response.status
-                    }
-                });
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
+
             });
     };
 };
@@ -100,19 +82,11 @@ export const deletePost = (id) => {
             .delete(`post/${id}`)
             .then((response) => {
                 console.log(response);
-                // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
-                // but it runs once anyway idk why
                 dispatch(getPosts());
             })
-            .catch(error => {
-                console.log(error.response.data.detail);
-                dispatch({
-                    type: CREATE_ERROR_MESSAGE,
-                    payload: {
-                        message: error.response.data.detail,
-                        status: error.response.status
-                    }
-                });
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
             });
     };
 };
@@ -124,68 +98,14 @@ export const likePost = (id) => {
             .patch(`post/${id}`, {'likes': [getState().auth.username]})
             .then((response) => {
                 console.log(response);
-                // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
-                // but it runs once anyway idk why
-                dispatch(getPosts());
-            })
-            .catch(error => {
-                console.log(error.response.data.detail);
-                dispatch({
-                    type: CREATE_ERROR_MESSAGE,
-                    payload: {
-                        message: error.response.data.detail,
-                        status: error.response.status
-                    }
-                });
-            });
-    };
-};
-
-export const replyPost = (text, id) => {
-    return function (dispatch, getState) {
-        console.log(getState().auth.username);
-        axiosInstance
-            .post(`comment/`, {'author': getState().auth.username, 'text': text, 'post': id})
-            .then((response) => {
-                console.log(response.content);
-                // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
-                // but it runs once anyway idk why
                 dispatch(getPosts());
             })
             .catch(error => {
                 console.log(error);
-                console.log(error.response.data.detail);
-                dispatch({
-                    type: CREATE_ERROR_MESSAGE,
-                    payload: {
-                        message: error.response.data.detail,
-                        status: error.response.status
-                    }
-                });
+                dispatch(returnErrors(error.response.data, error.response.status));
+
             });
     };
 };
 
-export const likeComment = (id) => {
-    return function (dispatch, getState) {
-        console.log(id);
-        axiosInstance
-            .patch(`comment/${id}`, {'likes': [getState().auth.username]})
-            .then((response) => {
-                console.log(response);
-                // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
-                // but it runs once anyway idk why
-                dispatch(getPosts());
-            })
-            .catch(error => {
-                console.log(error.response.data.detail);
-                dispatch({
-                    type: CREATE_ERROR_MESSAGE,
-                    payload: {
-                        message: error.response.data.detail,
-                        status: error.response.status
-                    }
-                });
-            });
-    };
-};
+

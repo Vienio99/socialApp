@@ -99,15 +99,3 @@ function PostForm() {
 }
 
 export default PostForm;
-
-
-// Old function but put it here, may be helpful in the future
-// function prepareTags(tags) {
-//     // Trim of any whitespaces and separate words
-//     const tidyTags = tags.trim().split(/[ ]+/);
-//     return tidyTags.map(tag => {
-//
-//             return {'name': tag};
-//
-//     });
-// }

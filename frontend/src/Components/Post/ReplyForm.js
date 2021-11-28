@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import {replyPost} from "../../state/actions/posts";
+import {replyPost} from "../../state/actions/comments";
 import {useDispatch} from "react-redux";
 import * as Yup from "yup";
 import {useForm} from "react-hook-form";

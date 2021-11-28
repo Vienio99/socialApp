@@ -9,13 +9,16 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "../state/store";
 import PostForm from "../Components/Forms/PostForm";
+import axios from "../axios";
 
+
+jest.mock('axios');
 
 beforeEach(() => {
     render(
         <Provider store={store}>
             <BrowserRouter>
-                <PostForm/>
+                <PostForm />
             </BrowserRouter>
         </Provider>
     );
@@ -24,7 +27,7 @@ beforeEach(() => {
 const setUp = () => {
     const text = screen.queryByPlaceholderText(/Text/i);
     const tags = screen.queryByPlaceholderText(/#tags/i);
-    const submitButton = screen.getByText('Send');
+    const submitButton = screen.getByText(/'Send'/i);
 
     return {
         text,

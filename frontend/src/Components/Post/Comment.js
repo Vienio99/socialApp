@@ -1,21 +1,39 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import dog from "../../download.jpg";
-import {likeComment, likePost} from "../../state/actions/posts";
+import {deleteComment, likeComment} from "../../state/actions/comments";
 import {useDispatch, useSelector} from "react-redux";
 
 function Comment(props) {
     const {comment} = props;
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const currentUser = useSelector((state) => state.auth.username);
+    // TO-DO: Display edit or bin buttons only if user is author
+    const [isAuthor, setIsAuthor] = useState(false);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (comment.author === currentUser) {
+            setIsAuthor(true);
+        }
+    }, [currentUser, comment.author]);
 
     // Like if user is authenticated
     const handleLike = (e) => {
         e.preventDefault();
         // Invoke redux action
-        if (isAuthenticated) {
-            dispatch(likeComment(comment.id));
-        }
+        dispatch(likeComment(comment.id));
+    };
+
+    // const handleEdit = (e) => {
+    //     e.preventDefault();
+    //     dispatch(editComment(comment.id));
+    // };
+
+    // Delete comment
+    const handleDelete = (e) => {
+        e.preventDefault();
+        dispatch(deleteComment(comment.id));
+        console.log('comment deleted ' + comment.id);
     };
 
     return (
@@ -25,19 +43,44 @@ function Comment(props) {
                 {/* Header */}
                 <header className="flex items-center justify-between px-4 py-2 bg-gray-200">
                     <div>
-                            <div className="flex items-center">
-                                <img src={dog} width="30px" alt=""/>
-                                <p className="ml-2 text-sm font-bold text-gray-700">{comment.author}</p>
-                            </div>
+                        <div className="flex items-center">
+                            <img src={dog} width="30px" alt=""/>
+                            <p className="ml-2 text-sm font-bold text-gray-700">{comment.author}</p>
+                        </div>
                     </div>
-                    <p className="text-sm text-gray-500">Posted {comment.pub_date} </p>
+                    <div className="flex items-center space-x-2">
+                        <p className="py-1 text-sm text-gray-500">Posted {comment.pub_date} </p>
+                        {isAuthor &&
+                        <div>
+                            <button title="Edit post">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
+                            </button>
+                            <button title="Delete post" onClick={e => handleDelete(e)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                          d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        }
+                    </div>
                 </header>
                 {/* Text */}
                 <div className="px-4 py-2 text-sm text-gray-700">
                     <p>{comment.text}</p>
                 </div>
                 {/* Footer */}
-                <footer className="flex items-center justify-between px-4 py-1 text-sm text-gray-500 bg-gray-100 rounded-b-md">
+                <footer
+                    className="flex items-center justify-between px-4 py-1 text-sm text-gray-500 bg-gray-100 rounded-b-md">
                     <div className="flex space-x-5">
                         <button className="flex items-center space-x-1 hover:text-gray-900" onClick={handleLike}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="rgba(251, 191, 36)"

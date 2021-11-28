@@ -7,6 +7,7 @@ import {
     REGISTER_FAIL,
     REGISTER_SUCCESS, USER_LOADED, USER_LOADING,
 } from "./types";
+import {returnErrors} from "./messages";
 
 // LOAD USER AFTER PAGE REFRESH ETC.
 export const loadUser = () => {
@@ -19,17 +20,19 @@ export const loadUser = () => {
             .post('user/token/refresh/', {
                 'refresh': localStorage.getItem('refresh_token'),
             })
-            .then(response => {
+            .then((response) => {
+                console.log(response);
                 dispatch({
                     type: USER_LOADED,
                     payload: response.data
                 });
             })
-            .catch(response => {
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
                 dispatch({
                     type: LOAD_FAIL
                 });
-                console.log(response);
             });
     };
 };
@@ -53,9 +56,9 @@ export const login = (username, password) => {
                     payload: response.data
                 });
             })
-            .catch((response) => {
-                // send response to error reducer
-                console.log(response);
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
                 dispatch({
                     type: LOGIN_FAIL
                 });
@@ -71,15 +74,17 @@ export const logout = () => {
                 access: localStorage.getItem('access_token'),
                 refresh: localStorage.getItem('refresh_token'),
             })
-            .then(response => {
+            .then((response) => {
                 console.log(response);
                 dispatch({
                     type: LOGOUT_SUCCESS
                 });
             })
-            .catch(response =>
-                console.log(response)
-            );
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
+
+            });
     };
 };
 
@@ -98,9 +103,9 @@ export const signup = (username, password, password2) => {
                     type: REGISTER_SUCCESS
                 });
             })
-            .catch((response) => {
-                // send response to error reducer
-                console.log(response.content);
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
                 dispatch({
                     type: REGISTER_FAIL
                 });
@@ -116,14 +121,16 @@ export const refreshAccessToken = () => {
             .post('user/token/refresh/', {
                 'refresh': localStorage.getItem('refresh_token'),
             })
-            .then(response => {
+            .then((response) => {
+                console.log(response);
                 localStorage.setItem('access_token', response.data.access);
             })
-            .catch(response => {
+            .catch((error) => {
+                console.log(error);
+                dispatch(returnErrors(error.response.data, error.response.status));
                 dispatch({
                     type: REFRESH_FAIL
                 });
-                console.log(response);
             });
     };
 };

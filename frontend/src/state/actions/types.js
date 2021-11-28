@@ -12,10 +12,11 @@ export const DELETE_POST = 'DELETE_POST';
 export const GET_POST = 'GET_POST';
 export const EDIT_POST = 'EDIT_POST';
 
-
+export const GET_ERRORS = 'GET_ERRORS';
+export const CREATE_MESSAGE = 'CREATE_MESSAGE';
 // export const GET_ERRORS = 'GET_ERRORS'; ??
 
-
+export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 // Comment
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';

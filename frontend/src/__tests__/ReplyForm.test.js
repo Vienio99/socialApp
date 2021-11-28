@@ -8,14 +8,23 @@ import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "../state/store";
-import ReplyForm from "../Components/Post/ReplyForm";
+import Post from "../Components/Post/Post";
 
 
 beforeEach(() => {
+    const post = {
+        'id': 1,
+        'author': 'test',
+        'pub_date': 'now',
+        'text': 'trying to learn rtl',
+        'tags': [{'id': 1, 'name': '#hiking'}, {'id': 2, 'name': '#running'}],
+        'likes_count': 5,
+    };
+
     render(
         <Provider store={store}>
             <BrowserRouter>
-                <ReplyForm/>
+                <Post post={post} key={post.id}/>
             </BrowserRouter>
         </Provider>
     );
