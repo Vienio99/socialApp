@@ -38,7 +38,6 @@ export const editComment = (id) => {
     };
 };
 
-
 // DELETE COMMENT
 export const deleteComment = (id) => {
     return function (dispatch) {

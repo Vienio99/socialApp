@@ -6,9 +6,10 @@ import {
 import PropTypes from "prop-types";
 import dog from "../../download.jpg";
 import {useDispatch, useSelector} from "react-redux";
-import {addPost, deletePost, getPosts, likePost} from "../../state/actions/posts";
+import {deletePost, likePost} from "../../state/actions/posts";
 import CommentList from "./CommentList";
 import ReplyForm from "./ReplyForm";
+import PostForm from "../Forms/PostForm";
 
 function Post(props) {
     const {post} = props;
@@ -17,6 +18,8 @@ function Post(props) {
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const currentUser = useSelector((state) => state.auth.username);
+
+    const [isEdited, setIsEdited] = useState(false);
     // TO-DO: Display edit or bin buttons only if user is author
     const [isAuthor, setIsAuthor] = useState(false);
     const [showComments, setShowComments] = useState(false);
@@ -72,7 +75,9 @@ function Post(props) {
                             <p className="py-1 text-sm text-gray-500">Posted {post.pub_date} </p>
                             {isAuthor &&
                             <div>
-                                <button title="Edit post">
+                                <button title="Edit post" onClick={() => {
+                                    setIsEdited(!isEdited);
+                                }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-700"
                                          fill="none"
                                          viewBox="0 0 24 24"
@@ -94,17 +99,48 @@ function Post(props) {
                             }
                         </div>
                     </header>
-                    {/* Text */}
-                    <Link to={`/post/${post.id}`}>
-                        <div className="px-4 py-4 text-gray-700">
-                            <p>{post.text}</p>
-                        </div>
-                        <div className="flex px-4 mb-2 font-bold space-x-3">
-                            {post.tags && post.tags.map(tag => (
-                                <p className="text-sm text-gray-700" key={tag.id}>{tag.name}</p>
-                            ))}
-                        </div>
-                    </Link>
+                    {isEdited ?
+                        <>
+                            {/* Edit form */}
+                            <form>
+                                <textarea
+                                    className="w-full px-3 py-2 leading-tight text-gray-700 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                                    rows="3"
+                                    name="text"
+                                    placeholder="Text"
+                                />
+                                <input
+                                    className="w-full px-3 py-2 leading-tight text-gray-700 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                                    name="tags"
+                                    type="tags"
+                                    placeholder="#tags"
+                                />
+                                <div className="flex items-center justify-end">
+                                    <button
+                                        className="px-4 py-1 mt-1 mb-1 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300 disabled:opacity-50 disabled:bg-gray-200 disabled:text-gray-700"
+                                        type="submit"
+                                    >
+                                        Edit
+                                    </button>
+                                </div>
+                            </form>
+                        </>
+                        :
+                        <>
+                            {/* Text */}
+                            <Link to={`/post/${post.id}`}>
+                                <div className="px-4 py-4 text-gray-700">
+                                    <p>{post.text}</p>
+                                </div>
+                                <div className="flex px-4 mb-2 font-bold space-x-3">
+                                    {post.tags && post.tags.map(tag => (
+                                        <p className="text-sm text-gray-700" key={tag.id}>{tag.name}</p>
+                                    ))}
+                                </div>
+                            </Link>
+                        </>
+                    }
+
                     {/* Footer */}
                     <footer
                         className="flex items-center justify-between px-4 py-1 text-sm text-gray-500 bg-gray-100 rounded-b-md">
@@ -130,13 +166,14 @@ function Post(props) {
                         </div>
                         <div className="flex items-center space-x-4">
                             {isAuthenticated &&
-                            <button className="flex items-center hover:text-gray-900" onClick={() => setShowReplyForm(!showReplyForm)}>
+                            <button className="flex items-center hover:text-gray-900"
+                                    onClick={() => setShowReplyForm(!showReplyForm)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none"
                                      viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                           d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
                                 </svg>
-                                <p className="px-1" >Reply</p>
+                                <p className="px-1">Reply</p>
                             </button>
                             }
                             <button className="flex items-center hover:text-gray-900"
@@ -167,7 +204,7 @@ function Post(props) {
             </div>
             <div className="w-1/2 mx-auto">
                 {/* Reply form */}
-                {showReplyForm && <ReplyForm post={post} />}
+                {showReplyForm && <ReplyForm post={post}/>}
                 {/* Comments for post*/}
                 {showComments && <CommentList post={post}/>}
             </div>
