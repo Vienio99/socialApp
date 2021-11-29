@@ -57,11 +57,11 @@ export const addPost = (text, tags) => {
 
 // EDIT POST
 
-export const editPost = (id) => {
+export const editPost = (id, text, tags) => {
     return function (dispatch) {
         axiosInstance
             // TO-DO: add data here later
-            .patch(`post/${id}`, {})
+            .patch(`post/${id}`, {'text': text, 'tags': tags})
             .then((response) => {
                 console.log(response);
                 dispatch(getPosts());

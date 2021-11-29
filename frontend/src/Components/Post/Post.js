@@ -6,7 +6,7 @@ import {
 import PropTypes from "prop-types";
 import dog from "../../download.jpg";
 import {useDispatch, useSelector} from "react-redux";
-import {deletePost, likePost} from "../../state/actions/posts";
+import {deletePost, editPost, likePost} from "../../state/actions/posts";
 import CommentList from "./CommentList";
 import ReplyForm from "./ReplyForm";
 import PostForm from "../Forms/PostForm";
@@ -15,19 +15,19 @@ function Post(props) {
     const {post} = props;
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const currentUser = useSelector((state) => state.auth.username);
 
     const [isEdited, setIsEdited] = useState(false);
+    const [text, setText] = useState(post.text);
+    const [tags, setTags] = useState(post.tags.map(tag => (tag.name)).join(' '));
     // TO-DO: Display edit or bin buttons only if user is author
     const [isAuthor, setIsAuthor] = useState(false);
     const [showComments, setShowComments] = useState(false);
-
-    // Reply
     const [showReplyForm, setShowReplyForm] = useState(false);
 
-    const dispatch = useDispatch();
 
     useEffect(() => {
         if (post.author === currentUser) {
@@ -43,12 +43,21 @@ function Post(props) {
         dispatch(likePost(post.id));
     };
 
-    // const handleEdit = (e) => {
-    //     e.preventDefault();
-    //     dispatch(editPost(post.id));
-    // };
+    const handleEdit = (e) => {
+        e.preventDefault();
+        setIsEdited(!isEdited);
+        const tidyTags = prepareTags(tags);
+        dispatch(editPost(post.id, text, tidyTags));
+    };
 
-    // TO-DO: delete e.preventDefault as it is probably not needed at all
+    function prepareTags(tags) {
+        // Trim of any whitespaces and separate words
+        const tidyTags = tags.trim().split(/[ ]+/);
+        return tidyTags.map(tag => {
+            return {'name': tag};
+        });
+    }
+
     // Delete post
     const handleDelete = (e) => {
         e.preventDefault();
@@ -56,6 +65,14 @@ function Post(props) {
         console.log('post deleted ' + post.id);
         // Temporary solution for the case if user is on detail page
         history.push('/');
+    };
+
+    // if user cancel the form, values return to initial ones
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setIsEdited(!isEdited);
+        setText(post.text);
+        setTags(post.tags.map(tag => (tag.name)).join(' '));
     };
 
     return (
@@ -108,19 +125,31 @@ function Post(props) {
                                     rows="3"
                                     name="text"
                                     placeholder="Text"
+                                    onChange={e => setText(e.target.value)}
+                                    value={text}
                                 />
                                 <input
                                     className="w-full px-3 py-2 leading-tight text-gray-700 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                                     name="tags"
                                     type="tags"
                                     placeholder="#tags"
+                                    onChange={e => setTags(e.target.value)}
+                                    value={tags}
                                 />
-                                <div className="flex items-center justify-end">
+                                <div className="flex items-center justify-end space-x-2">
                                     <button
-                                        className="px-4 py-1 mt-1 mb-1 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300 disabled:opacity-50 disabled:bg-gray-200 disabled:text-gray-700"
+                                        className="px-4 py-1 mt-1 mb-1 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
                                         type="submit"
+                                        onClick={e => handleEdit(e)}
                                     >
                                         Edit
+                                    </button>
+                                    <button
+                                        className="px-4 py-1 mt-1 mb-1 bg-gray-300 rounded text-grey-700 hover:bg-gray-200 hover:text-gray-600 transition duration-300"
+                                        type="submit"
+                                        onClick={e => handleCancel(e)}
+                                    >
+                                        Cancel
                                     </button>
                                 </div>
                             </form>

@@ -49,8 +49,16 @@ class PostSerializer(serializers.ModelSerializer):
     # Iterate over tags and add them to post
     def update(self, instance, validated_data):
 
+        # Try to update text but if there is none in request, go on
+        try:
+            instance.text = validated_data.get('text', instance.text)
+        except KeyError:
+            pass
+
         # Try to update tags but if there is none in request, go on
         try:
+            # Clear tags that are already in the instance
+            instance.tags.clear()
             tags_data = validated_data.pop('tags')
             for tag_data in tags_data:
                 if not Tag.objects.filter(name=tag_data['name']):
@@ -72,7 +80,6 @@ class PostSerializer(serializers.ModelSerializer):
         except KeyError:
             pass
 
-        instance.text = validated_data.get('text', instance.text)
         instance.save()
 
         return instance
