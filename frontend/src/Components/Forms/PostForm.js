@@ -27,7 +27,6 @@ function PostForm() {
         formState: {errors, isSubmitSuccessful}
     } = useForm({resolver: yupResolver(schema)});
 
-
     useEffect(() => {
         if (isSubmitSuccessful) {
             reset();
@@ -41,22 +40,21 @@ function PostForm() {
     };
 
     function prepareTags(tags) {
-    // Trim of any whitespaces and separate words
-    const tidyTags = tags.trim().split(/[ ]+/);
+        // Trim of any whitespaces and separate words
+        const tidyTags = tags.trim().split(/[ ]+/);
         return tidyTags.map(tag => {
             return {'name': tag};
         });
     }
 
-
     return (
-        // Card
         <div className="flex flex-col">
             <div className="flex justify-center">
                 <div className="flex flex-col w-1/2 px-6 py-6 mb-4 bg-gray-300 shadow-md rounded-md">
                     <form onSubmit={handleSubmit(submitForm)}>
                         <div className="mb-4">
-                            <label className="block mb-2 font-bold text-gray-700 form-textarea text-md" htmlFor="text">
+                            <label className="block mb-2 font-bold text-gray-700 form-textarea text-md"
+                                   htmlFor="text">
                                 Text
                             </label>
                             <textarea

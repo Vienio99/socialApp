@@ -58,8 +58,8 @@ class PostSerializer(serializers.ModelSerializer):
         # Try to update tags but if there is none in request, go on
         try:
             # Clear tags that are already in the instance
-            instance.tags.clear()
             tags_data = validated_data.pop('tags')
+            instance.tags.clear()
             for tag_data in tags_data:
                 if not Tag.objects.filter(name=tag_data['name']):
                     Tag.objects.create(name=tag_data['name'])

@@ -10,6 +10,7 @@ import {deletePost, editPost, likePost} from "../../state/actions/posts";
 import CommentList from "./CommentList";
 import ReplyForm from "./ReplyForm";
 import PostForm from "../Forms/PostForm";
+import EditPostForm from "../Forms/EditPostForm";
 
 function Post(props) {
     const {post} = props;
@@ -21,9 +22,7 @@ function Post(props) {
     const currentUser = useSelector((state) => state.auth.username);
 
     const [isEdited, setIsEdited] = useState(false);
-    const [text, setText] = useState(post.text);
-    const [tags, setTags] = useState(post.tags.map(tag => (tag.name)).join(' '));
-    console.log(tags);
+
     // TO-DO: Display edit or bin buttons only if user is author
     const [isAuthor, setIsAuthor] = useState(false);
     const [showComments, setShowComments] = useState(false);
@@ -40,13 +39,6 @@ function Post(props) {
         e.preventDefault();
         // Invoke redux action
         dispatch(likePost(post.id));
-    };
-
-    const handleEdit = (e) => {
-        e.preventDefault();
-        setIsEdited(!isEdited);
-        const tidyTags = prepareTags(tags);
-        dispatch(editPost(post.id, text, tidyTags));
     };
 
     function prepareTags(tags) {
@@ -66,12 +58,18 @@ function Post(props) {
         history.push('/');
     };
 
+    const handleEdit = (data) => {
+        setIsEdited(!isEdited);
+        const tidyTags = prepareTags(data.tags);
+        dispatch(editPost(post.id, data.text, tidyTags));
+    };
+
     // if user cancel the form, values return to initial ones
     const handleCancel = (e) => {
         e.preventDefault();
         setIsEdited(!isEdited);
-        setText(post.text);
-        setTags(post.tags.map(tag => (tag.name)).join(' '));
+        // setText(post.text);
+        // setTags(post.tags.map(tag => (tag.name)).join(' '));
     };
 
     return (
@@ -116,43 +114,7 @@ function Post(props) {
                         </div>
                     </header>
                     {isEdited ?
-                        <>
-                            {/* Edit form */}
-                            <form>
-                                <textarea
-                                    className="w-full px-3 py-2 leading-tight text-gray-700 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                    rows="3"
-                                    name="text"
-                                    placeholder="Text"
-                                    onChange={e => setText(e.target.value)}
-                                    value={text}
-                                />
-                                <input
-                                    className="w-full px-3 py-2 leading-tight text-gray-700 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                    name="tags"
-                                    type="tags"
-                                    placeholder="#tags"
-                                    onChange={e => setTags(e.target.value)}
-                                    value={tags}
-                                />
-                                <div className="flex items-center justify-end space-x-2">
-                                    <button
-                                        className="px-4 py-1 mt-1 mb-1 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
-                                        type="submit"
-                                        onClick={e => handleEdit(e)}
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        className="px-4 py-1 mt-1 mb-1 bg-gray-300 rounded text-grey-700 hover:bg-gray-200 hover:text-gray-600 transition duration-300"
-                                        type="submit"
-                                        onClick={e => handleCancel(e)}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </form>
-                        </>
+                        <EditPostForm handleEdit={handleEdit} handleCancel={handleCancel} text={post.text} tags={post.tags}/>
                         :
                         <>
                             {/* Text */}
@@ -248,3 +210,39 @@ Post.propTypes = {
 
 
 export default Post;
+
+
+                        {/*    <form>*/}
+                        {/*        <textarea*/}
+                        {/*            className="w-full px-3 py-2 leading-tight text-gray-700 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"*/}
+                        {/*            rows="3"*/}
+                        {/*            name="text"*/}
+                        {/*            placeholder="Text"*/}
+                        {/*            onChange={e => setText(e.target.value)}*/}
+                        {/*            value={text}*/}
+                        {/*        />*/}
+                        {/*        <input*/}
+                        {/*            className="w-full px-3 py-2 leading-tight text-gray-700 border-2 border-gray-100 rounded shadow appearance-none focus:outline-none focus:bg-white focus:border-gray-500"*/}
+                        {/*            name="tags"*/}
+                        {/*            type="tags"*/}
+                        {/*            placeholder="#tags"*/}
+                        {/*            onChange={e => setTags(e.target.value)}*/}
+                        {/*            value={tags}*/}
+                        {/*        />*/}
+                        {/*        <div className="flex items-center justify-end space-x-2">*/}
+                        {/*            <button*/}
+                        {/*                className="px-4 py-1 mt-1 mb-1 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"*/}
+                        {/*                type="submit"*/}
+                        {/*                onClick={e => handleEdit(e)}*/}
+                        {/*            >*/}
+                        {/*                Edit*/}
+                        {/*            </button>*/}
+                        {/*            <button*/}
+                        {/*                className="px-4 py-1 mt-1 mb-1 bg-gray-300 rounded text-grey-700 hover:bg-gray-200 hover:text-gray-600 transition duration-300"*/}
+                        {/*                type="submit"*/}
+                        {/*                onClick={e => handleCancel(e)}*/}
+                        {/*            >*/}
+                        {/*                Cancel*/}
+                        {/*            </button>*/}
+                        {/*        </div>*/}
+                        {/*    </form>*/}
