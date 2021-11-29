@@ -23,18 +23,17 @@ function Post(props) {
     const [isEdited, setIsEdited] = useState(false);
     const [text, setText] = useState(post.text);
     const [tags, setTags] = useState(post.tags.map(tag => (tag.name)).join(' '));
+    console.log(tags);
     // TO-DO: Display edit or bin buttons only if user is author
     const [isAuthor, setIsAuthor] = useState(false);
     const [showComments, setShowComments] = useState(false);
     const [showReplyForm, setShowReplyForm] = useState(false);
-
 
     useEffect(() => {
         if (post.author === currentUser) {
             setIsAuthor(true);
         }
     }, [currentUser, post.author]);
-
 
     // TO-DO: transfer it to custom hook or inline within element?
     const handleLike = (e) => {
@@ -169,7 +168,6 @@ function Post(props) {
                             </Link>
                         </>
                     }
-
                     {/* Footer */}
                     <footer
                         className="flex items-center justify-between px-4 py-1 text-sm text-gray-500 bg-gray-100 rounded-b-md">

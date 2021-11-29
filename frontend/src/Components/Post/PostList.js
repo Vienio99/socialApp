@@ -16,7 +16,6 @@ function PostList() {
     // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     const dispatch = useDispatch();
-
     // Pagination mechanism
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
