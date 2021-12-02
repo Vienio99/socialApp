@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.contrib.humanize.templatetags.humanize import naturaltime
-from django.db.models import Count
 from rest_framework import serializers
 from api.v1.tag.serializer import TagSerializer
 from social.models import Post, Tag, Comment
@@ -20,6 +19,7 @@ class PostSerializer(serializers.ModelSerializer):
         queryset=User.objects.all()
     )
 
+    # Use SlugRelatedField to retrieve user and add him to likes field on post instance
     likes = serializers.SlugRelatedField(
         slug_field='username',
         queryset=User.objects.all(),
@@ -27,12 +27,14 @@ class PostSerializer(serializers.ModelSerializer):
         required=False
     )
 
+    # Method field for comments_count method
     comments_count = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Post
         fields = "__all__"
 
+    # Get comments amount for each post instance
     def get_comments_count(self, post):
         return Comment.objects.filter(post_id=post.id).count()
 
@@ -95,6 +97,6 @@ class PostSerializer(serializers.ModelSerializer):
         rep = super(PostSerializer, self).to_representation(instance)
         rep['author'] = instance.author.username
 
-        # Display date in hours
+        # Display date in "2 hours ago" etc.
         rep['pub_date'] = naturaltime(instance.pub_date)
         return rep

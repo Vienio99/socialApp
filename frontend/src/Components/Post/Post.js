@@ -82,7 +82,9 @@ function Post(props) {
                         <div>
                             <div className="flex items-center">
                                 <img src={dog} width="50px" alt="profile-picture"/>
-                                <p className="ml-2 text-lg font-bold text-gray-700">{post.author}</p>
+                                <Link to={`/user/${post.author}`}>
+                                    <p className="ml-2 text-lg font-bold text-gray-700">{post.author}</p>
+                                </Link>
                             </div>
                         </div>
                         <div className="flex items-center space-x-2">

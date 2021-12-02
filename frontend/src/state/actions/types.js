@@ -12,6 +12,10 @@ export const DELETE_POST = 'DELETE_POST';
 export const GET_POST = 'GET_POST';
 export const EDIT_POST = 'EDIT_POST';
 
+export const USER_FETCH = 'USER_FETCH';
+export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
+export const EDIT_USER = 'EDIT_USER';
+
 export const GET_ERRORS = 'GET_ERRORS';
 export const CREATE_MESSAGE = 'CREATE_MESSAGE';
 // export const GET_ERRORS = 'GET_ERRORS'; ??

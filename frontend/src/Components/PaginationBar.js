@@ -71,7 +71,7 @@ export default function PaginationBar({postsPerPage, totalPosts, paginate, curre
                         })}
                         <a
                             href="#"
-                            onClick={ currentPage < pageNumbers.length ? () => paginate(currentPage - 1) : null}
+                            onClick={ currentPage < pageNumbers.length ? () => paginate(currentPage + 1) : null}
                             className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50"
                         >
                             <span className="sr-only">Next</span>

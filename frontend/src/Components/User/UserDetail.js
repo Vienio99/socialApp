@@ -1,32 +1,30 @@
 import {useEffect, useState} from 'react';
 import React from "react";
-import axios from 'axios';
 import PropTypes from "prop-types";
+import {getUser} from "../../state/actions/users";
+import {useDispatch, useSelector} from "react-redux";
+import Loader from "../Loader";
 
 function UserDetail(props) {
-    const [user, setUser] = useState([]);
+    const {username} = props;
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.users.user);
+    const isLoading = useSelector((state) => state.users.isLoading);
 
     useEffect(() => {
-        const fetchUser = async () => {
-            const response = await axios(
-                `http://127.0.0.1:8000/api/v1/user/${props.username}`
-            ).then(function (response) {
-                    console.log(response);
-                  }).catch(function (error) {
-                    console.log(error);
-                  });
-            setUser(response.data);
-        };
-        fetchUser();
-    }, [props.username]);
+        dispatch(getUser(username));
+    }, [dispatch, username]);
 
     return (
-        <h1>{user.username}</h1>
+        <div className="flex-grow mx-auto">
+            {(isLoading && !user.length) && <Loader/>}
+            <h1>{user.username}</h1>
+        </div>
     );
 }
 
 UserDetail.propTypes = {
-    username: PropTypes.object
+    username: PropTypes.string
 };
 
 export default UserDetail;

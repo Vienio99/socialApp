@@ -4,12 +4,10 @@ import UserDetail from "../Components/User/UserDetail";
 import PropTypes from 'prop-types';
 
 
-function UserScreen({ match }) {
-    const { username } = match.params;
+function UserScreen({match}) {
+    const {username} = match.params;
     return (
-        <React.Fragment>
-            <Main content={<UserDetail username={username}/>} />
-        </React.Fragment>
+        <UserDetail username={username}/>
     );
 }
 
