@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -57,7 +56,7 @@ function EditPostForm(props) {
                 {...register('tags')}
             />
             {errors.tags &&
-            <p className="px-3 mt-2 mt-1 mb-1 text-xs italic text-red-500">{errors.tags.message}</p>}
+            <p className="px-3 mt-1 mt-2 mb-1 text-xs italic text-red-500">{errors.tags.message}</p>}
             <div className="flex items-center justify-end space-x-2">
                 <button
                     className="px-4 py-1 mt-1 mb-1 text-yellow-900 bg-yellow-400 rounded hover:bg-yellow-300 hover:text-yellow-800 transition duration-300"
