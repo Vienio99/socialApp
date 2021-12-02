@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Count
 from rest_framework.test import APITestCase
 from rest_framework.utils import json
 from api.v1.comment.serializer import CommentSerializer
@@ -44,6 +45,8 @@ class CommentDetailApiViewTest(APITestCase):
         cls.notAuthor = User.objects.create_user(username='notAuthor', password='secret')
         cls.post = Post.objects.create(author=cls.user, text='Hello guys')
         cls.comment = Comment.objects.create(author=cls.user, text='Hello', post=cls.post)
+        cls.comment2 = Comment.objects.create(author=cls.user, text='fasfsfasfasf', post=cls.post)
+        cls.comment3 = Comment.objects.create(author=cls.user, text='daaa', post=cls.post)
 
         cls.data = {
             'author': cls.user.username,
@@ -168,3 +171,7 @@ class CommentDetailApiViewTest(APITestCase):
         response = self.client.get(f'/api/v1/comment/{self.comment.pk}')
 
         self.assertEqual(response.data['likes'], [])
+
+    def test_post_has_working_comment_counter_function(self):
+        response = self.client.get(f'/api/v1/post/{self.post.pk}')
+        self.assertEqual(response.data['comments_count'], 3)

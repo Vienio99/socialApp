@@ -28,7 +28,6 @@ class Post(models.Model):
         'Tag',
         blank=True
     )
-    comments_count = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['-pub_date']

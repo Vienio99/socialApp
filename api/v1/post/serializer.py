@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.db.models import Count
 from rest_framework import serializers
 from api.v1.tag.serializer import TagSerializer
-from social.models import Post, Tag
+from social.models import Post, Tag, Comment
 
 
 # TO-DO - refactor code
@@ -26,9 +27,14 @@ class PostSerializer(serializers.ModelSerializer):
         required=False
     )
 
+    comments_count = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Post
         fields = "__all__"
+
+    def get_comments_count(self, post):
+        return Comment.objects.filter(post_id=post.id).count()
 
     # Iterate over tags and add them to post
     def create(self, validated_data):
