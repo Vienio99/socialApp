@@ -97,16 +97,12 @@ test('displays maximum length error messages', async () => {
 
     await waitFor(() => {
         fireEvent.change(text, {target: {value: 'lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text lenghty text '}});
-        fireEvent.change(tags, {target: {value: '#long #tags #long #tags #long #tags #long #tags #long #tags #long #tags #long #tags #long #tags #long'}});
-
         fireEvent.click(submitButton);
     });
 
     const textError = screen.queryByText('Text must not exceed 500 characters.');
-    const tagsError = screen.queryByText('Tags must not exceed 100 characters.');
 
     expect(textError).toBeInTheDocument();
-    expect(tagsError).toBeInTheDocument();
 });
 
 test('displays improper tags format error', async () => {

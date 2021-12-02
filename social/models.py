@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator
 from django.db import models
 from social_project import settings
 
@@ -25,8 +26,7 @@ class Post(models.Model):
     )
     likes_count = models.IntegerField(default=0)
     tags = models.ManyToManyField(
-        'Tag',
-        blank=True
+        'Tag'
     )
 
     class Meta:

@@ -25,13 +25,6 @@ export default function PaginationBar({postsPerPage, totalPosts, paginate, curre
                 </a>
             </div>
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-center">
-                {/*<div>*/}
-                {/*    <p className="text-sm text-gray-700">*/}
-                {/*        Showing <span className="font-medium">1</span> to <span*/}
-                {/*        className="font-medium">10</span> of{' '}*/}
-                {/*        <span className="font-medium">97</span> results*/}
-                {/*    </p>*/}
-                {/*</div>*/}
                 <div>
                     <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
                         <a

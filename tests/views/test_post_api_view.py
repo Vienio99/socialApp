@@ -100,13 +100,11 @@ class PostDetailApiViewTest(APITestCase):
 
     def test_updated_post_has_proper_data(self):
         self.client.patch(f'/api/v1/post/{self.post.pk}',
-                          {'text': 'New fancy text', 'tags': [{'name': '#hiking'}, {'name': '#driving'}]},
+                          {'text': 'New fancy text'},
                           **self.headers)
         updatedPost = Post.objects.get(text='New fancy text')
         response = self.client.get(f'/api/v1/post/{updatedPost.pk}')
         self.assertEqual(response.data['text'], 'New fancy text')
-        self.assertEqual(response.data['tags'][0]['name'], '#hiking')
-        self.assertEqual(response.data['tags'][1]['name'], '#driving')
 
     def test_only_author_can_update_his_post(self):
         response = self.client.post('/api/v1/user/token/', {'username': 'notAuthor', 'password': 'secret'})
@@ -149,24 +147,14 @@ class PostDetailApiViewTest(APITestCase):
         self.assertEqual(response.data['tags'][1]['name'], '#football')
         self.assertEqual(response.data['pub_date'], 'now')
 
-    def test_post_does_not_require_tags(self):
-        data = {
-            'author': self.user.username,
-            'text': 'Hello boys',
-            'tags': []
-        }
-        response = self.client.post('/api/v1/post/', data, **self.headers)
-        self.assertEqual(response.status_code, 201)
-
     def test_can_create_post_with_username_instead_of_user_id(self):
         data = {
             'author': self.user.username,
             'text': 'Hello boys',
-            'tags': []
+            'tags': [{'name': '#hiking'}]
         }
 
         response = self.client.post('/api/v1/post/', data, **self.headers)
-        print(response.content)
         self.assertEqual(response.status_code, 201)
 
     def test_authenticated_users_can_like_post(self):

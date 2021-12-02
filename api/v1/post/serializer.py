@@ -1,17 +1,21 @@
 from django.contrib.auth import get_user_model
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.core.validators import MinValueValidator
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 from api.v1.tag.serializer import TagSerializer
 from social.models import Post, Tag, Comment
-
+from django.db import models
+import re
 
 # TO-DO - refactor code
 # TO-DO - partial = true for partial updates
 # TO-DO - validation
+User = get_user_model()
+
 
 class PostSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, required=False)
-    User = get_user_model()
 
     # Use SlugRelatedField to validate author by username instead of pk value
     author = serializers.SlugRelatedField(
@@ -27,16 +31,35 @@ class PostSerializer(serializers.ModelSerializer):
         required=False
     )
 
-    # Method field for comments_count method
-    comments_count = serializers.SerializerMethodField(read_only=True)
-
     class Meta:
         model = Post
         fields = "__all__"
 
-    # Get comments amount for each post instance
-    def get_comments_count(self, post):
-        return Comment.objects.filter(post_id=post.id).count()
+    def validate(self, data):
+        # Had to put tags validation here because they are not immediately added
+        # when Post is created and therefore not requested (text is required anyway)
+        if self.context.get('request').method == 'POST' and not data.get('tags'):
+            raise serializers.ValidationError('Tags are required.')
+        return data
+
+    def validate_text(self, text):
+        if len(text) < 5:
+            raise serializers.ValidationError('Text must be at least 5 characters long.')
+        if len(text) > 500:
+            raise serializers.ValidationError('Text must not exceed 500 characters.')
+        return text
+
+    def validate_tags(self, tags):
+        for tag in tags:
+            if not re.match('#(\w+)', tag['name']):
+                raise serializers.ValidationError('Invalid tag format.')
+            if len(tag['name']) < 1:
+                raise serializers.ValidationError('Tag must not be empty.')
+            if len(tag['name']) > 20:
+                raise serializers.ValidationError('Tag must not exceed 20 characters.')
+        if len(tags) < 1:
+            raise serializers.ValidationError('No tags were provided.')
+        return tags
 
     # Iterate over tags and add them to post
     def create(self, validated_data):
@@ -50,7 +73,7 @@ class PostSerializer(serializers.ModelSerializer):
                 tag = Tag.objects.get(name=tag_data['name'])
                 post.tags.add(tag.id)
         except KeyError:
-            return 'No tags were provided'
+            pass
 
         return post
 
@@ -97,6 +120,7 @@ class PostSerializer(serializers.ModelSerializer):
         rep = super(PostSerializer, self).to_representation(instance)
         rep['author'] = instance.author.username
 
+        rep['comments_count'] = Comment.objects.filter(post_id=instance.id).count()
         # Display date in "2 hours ago" etc.
         rep['pub_date'] = naturaltime(instance.pub_date)
         return rep

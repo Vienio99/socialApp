@@ -1,6 +1,6 @@
 import axiosInstance from "../../axios";
 import axios from "axios";
-import {CREATE_ERROR_MESSAGE, POSTS_FETCH, POSTS_FETCH_SUCCESS} from "./types";
+import {POSTS_FETCH, POSTS_FETCH_SUCCESS} from "./types";
 import {returnErrors} from "./messages";
 
 // GET POSTS

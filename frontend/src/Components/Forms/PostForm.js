@@ -12,9 +12,10 @@ const schema = Yup.object().shape({
             .max(500, 'Text must not exceed 500 characters.'),
         tags: Yup.string()
             .required('Tags are required.')
-            .min(5, 'Tags have to be at least 5 characters long.')
-            .max(100, 'Tags must not exceed 100 characters.')
-            .matches(/^(?:#)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:(?!))){0,28}(?:[A-Za-z0-9_]))?)((?: #)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?))*$/, 'Proper format for tags is f.e. #hiking')
+            // There is 1, 17 but it counts as 20 characters? not sure why
+            // but it should count 20 because there is validation with same amount in Django when it comes to single tag
+            // Same with minimum - 1 counts as 3 (in Django there is 3 minimum)
+            .matches(/^(?:#)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:(?!))){0,17}(?:[A-Za-z0-9_]))?)((?: #)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,17}(?:[A-Za-z0-9_]))?))*$/, 'Proper format for tags is f.e. #hiking. Tag have to be at least 3 characters and maximum 20 characters long.')
     }
 );
 

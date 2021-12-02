@@ -10,9 +10,7 @@ const schema = Yup.object().shape({
             .max(500, 'Text must not exceed 500 characters.'),
         tags: Yup.string()
             .required('Tags are required.')
-            .min(5, 'Tags have to be at least 5 characters long.')
-            .max(100, 'Tags must not exceed 100 characters.')
-            .matches(/^(?:#)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:(?!))){0,28}(?:[A-Za-z0-9_]))?)((?: #)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?))*$/, 'Proper format for tags is f.e. #hiking')
+            .matches(/^(?:#)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:(?!))){0,17}(?:[A-Za-z0-9_]))?)((?: #)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,17}(?:[A-Za-z0-9_]))?))*$/, 'Proper format for tags is f.e. #hiking. Tag have to be at least 1 character and maximum 20 characters long.')
     }
 );
 
