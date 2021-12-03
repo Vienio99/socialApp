@@ -49,16 +49,17 @@ class PostSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Text must not exceed 500 characters.')
         return text
 
+    # TO-DO: Move it to tag serializer maybe?
     def validate_tags(self, tags):
         for tag in tags:
             if not re.match('#(\w+)', tag['name']):
                 raise serializers.ValidationError('Invalid tag format.')
-            if len(tag['name']) < 1:
-                raise serializers.ValidationError('Tag must not be empty.')
             if len(tag['name']) > 20:
                 raise serializers.ValidationError('Tag must not exceed 20 characters.')
         if len(tags) < 1:
             raise serializers.ValidationError('No tags were provided.')
+        if len(tags) > 20:
+            raise serializers.ValidationError('Too much tags provided (maximum 20 tags).')
         return tags
 
     # Iterate over tags and add them to post

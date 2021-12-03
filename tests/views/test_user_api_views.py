@@ -30,7 +30,7 @@ class UserDetailApiViewTest(APITestCase):
             'password': 'secret'
         }
 
-    def test_can_get_created_user(self):
+    def test_can_create_new_user(self):
         self.client.post('/api/v1/user/', self.data)
         newUser = User.objects.get(username='user')
         response = self.client.get(f'/api/v1/user/{newUser.username}')

@@ -115,7 +115,6 @@ class PostDetailApiViewTest(APITestCase):
         response = self.client.patch(f'/api/v1/post/{self.post.pk}',
                                      {'text': 'Not hello'},
                                      **headers)
-        print(response.content)
         self.assertEqual(response.status_code, 403)
 
     def test_user_can_delete_his_post(self):

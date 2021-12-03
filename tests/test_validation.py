@@ -124,9 +124,9 @@ class PostValidationTest(APITestCase):
         response = self.client.post('/api/v1/post/', data, **self.headers)
         self.assertEqual(response.status_code, 400)
         content = json.loads(response.content)
-        self.assertEqual(content['tags'][0], 'Tag must not be empty.')
+        self.assertEqual(content['tags'][0], 'Invalid tag format.')
 
-    def test_maximum_tags_length_validation(self):
+    def test_maximum_single_tag_length_validation(self):
         data = {
             'author': self.user.username,
             'text': 'working text',
@@ -136,6 +136,22 @@ class PostValidationTest(APITestCase):
         self.assertEqual(response.status_code, 400)
         content = json.loads(response.content)
         self.assertEqual(content['tags'][0], 'Tag must not exceed 20 characters.')
+
+    def test_maximum_amount_of_tags_validation(self):
+        data = {
+            'author': self.user.username,
+            'text': 'working text',
+            'tags': [{'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'},
+                     {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'},
+                     {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'},
+                     {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'},
+                     {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'}, {'name': '#hiking'},
+                     {'name': '#hiking'}]
+        }
+        response = self.client.post('/api/v1/post/', data, **self.headers)
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertEqual(content['tags'][0], 'Too much tags provided (maximum 20 tags).')
 
     def test_tag_not_matching_regex_validation(self):
         data = {
@@ -147,3 +163,39 @@ class PostValidationTest(APITestCase):
         self.assertEqual(response.status_code, 400)
         content = json.loads(response.content)
         self.assertEqual(content['tags'][0], 'Invalid tag format.')
+
+
+class UserValidationTest(APITestCase):
+
+    def test_username_minimum_length_validation(self):
+        data = {
+            'username': 'use',
+            'password': 'secret'
+        }
+        response = self.client.post('/api/v1/user/', data)
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertEqual(content['username'][0], 'Username must be at least 4 characters long.')
+
+    def test_username_maximum_length_validation(self):
+        data = {
+            'username': 'useruseruseruseruseruser',
+            'password': 'secret'
+        }
+        response = self.client.post('/api/v1/user/', data)
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertEqual(content['username'][0], 'Username must not exceed 20 characters.')
+
+    def test_username_format_validation(self):
+        data = {
+            'username': '#!wrongusername',
+            'password': 'secret'
+        }
+        response = self.client.post('/api/v1/user/', data)
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertEqual(content['username'][0], 'Enter a valid username. This value may contain only letters, '
+                                                 'numbers, and @/./+/-/_ characters.')
+
+

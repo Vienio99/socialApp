@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -15,6 +17,13 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {
             'write_only': True
         }}
+
+    def validate_username(self, username):
+        if len(username) < 4:
+            raise serializers.ValidationError('Username must be at least 4 characters long.')
+        if len(username) > 20:
+            raise serializers.ValidationError('Username must not exceed 20 characters.')
+        return username
 
     def create(self, validated_data):
         user = User.objects.create_user(username=validated_data['username'],

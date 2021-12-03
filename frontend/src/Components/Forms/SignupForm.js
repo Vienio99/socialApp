@@ -14,7 +14,7 @@ const schema = Yup.object().shape({
             .required('Username is required.')
             .min(4, 'Username must be 4 to 20 characters long.')
             .max(20, 'Username must be 4 to 20 characters long.')
-            .matches(/^[A-Za-z0-9]+$/, 'Username must contain letters or letters and numbers only.'),
+            .matches(/^[A-Za-z0-9]+$/, 'Username must contain letters and numbers only.'),
         password1: Yup.string()
             .required('Password is required.')
             .min(4, 'Password must be 4 to 20 characters long.')
