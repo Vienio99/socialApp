@@ -198,4 +198,20 @@ class UserValidationTest(APITestCase):
         self.assertEqual(content['username'][0], 'Enter a valid username. This value may contain only letters, '
                                                  'numbers, and @/./+/-/_ characters.')
 
+    def test_username_already_exists_in_database(self):
+        data = {
+            'username': 'user',
+            'password': 'secret'
+        }
+        response = self.client.post('/api/v1/user/', data)
+        self.assertEqual(response.status_code, 201)
+
+        data2 = {
+            'username': 'user',
+            'password': 'secret2'
+        }
+        response = self.client.post('/api/v1/user/', data2)
+        self.assertEqual(response.status_code, 400)
+        content = json.loads(response.content)
+        self.assertEqual(content['username'][0], 'A user with that username already exists.')
 

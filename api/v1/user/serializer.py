@@ -19,6 +19,8 @@ class UserSerializer(serializers.ModelSerializer):
         }}
 
     def validate_username(self, username):
+        if len(User.objects.filter(username=username)) > 0:
+            raise serializers.ValidationError('User with that username already exists.')
         if len(username) < 4:
             raise serializers.ValidationError('Username must be at least 4 characters long.')
         if len(username) > 20:
@@ -38,7 +40,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer): # noqa
     def get_token(cls, user):
         token = super().get_token(user)
 
-        # Add custom claims
+        # Add custom claims so after deserializing I can read username from the access token
         token['username'] = user.username
         # ...
 
