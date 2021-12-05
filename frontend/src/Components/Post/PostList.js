@@ -41,7 +41,10 @@ function PostList() {
         }
 
         console.log('message' + message);
-        if (message === 'OK') {
+        if (message === 'Created') {
+            alert.show('Post created!', {type: 'success'});
+            dispatch({type: CLEAR_MESSAGE});
+        } else if (message === 'OK') {
             alert.show('Post edited!', {type: 'success'});
             dispatch({type: CLEAR_MESSAGE});
         } else if (message === 'No Content') {

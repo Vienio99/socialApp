@@ -24,9 +24,6 @@ const schema = Yup.object().shape({
 
 function PostForm() {
     const dispatch = useDispatch();
-    const error = useSelector((state) => state.errors.message.detail);
-    const alert = useAlert();
-    const message = useSelector((state) => state.messages.message);
 
     const {
         register,
@@ -40,17 +37,7 @@ function PostForm() {
             reset();
         }
 
-        if (error) {
-            alert.show(error, {type: 'error'});
-            // Clear errors after displaying them because otherwise it will pop up again after routing back to Signup Form
-            dispatch({type: CLEAR_ERRORS});
-        }
-
-        if (message === 'Created') {
-            alert.show('Post created!', {type: 'success'});
-            dispatch({type: CLEAR_MESSAGE});
-        }
-    }, [alert, dispatch, error, isSubmitSuccessful, message, reset]);
+    }, [dispatch, isSubmitSuccessful, reset]);
 
     const submitForm = (data) => {
         console.log(data);
