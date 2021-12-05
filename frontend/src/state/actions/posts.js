@@ -103,7 +103,6 @@ export const likePost = (id) => {
             .catch(error => {
                 console.log(error);
                 dispatch(returnErrors(error.response.data, error.response.status));
-
             });
     };
 };

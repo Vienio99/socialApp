@@ -15,7 +15,6 @@ export const replyPost = (text, id) => {
             .catch((error) => {
                 console.log(error);
                 dispatch(returnErrors(error.response.data, error.response.status));
-
             });
     };
 };
@@ -33,7 +32,6 @@ export const editComment = (id) => {
             .catch((error) => {
                 console.log(error);
                 dispatch(returnErrors(error.response.data, error.response.status));
-
             });
     };
 };

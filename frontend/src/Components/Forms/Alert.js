@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function SuccessModal() {
+function Alert() {
 
     return (
         <div className="p-2 mx-auto bg-white border shadow-lg top-20 w-96 rounded-md">
@@ -41,4 +41,4 @@ function SuccessModal() {
     );
 }
 
-export default SuccessModal;
+export default Alert;

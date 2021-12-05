@@ -26,6 +26,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const GET_COMMENT = 'GET_COMMENT';
 
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 // Auth
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';

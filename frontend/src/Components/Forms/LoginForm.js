@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {useHistory, useLocation} from "react-router-dom";
 import {login} from "../../state/actions/auth";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import * as Yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
+import {useAlert} from "react-alert";
+import {CLEAR_ERRORS} from "../../state/actions/types";
 
 const schema = Yup.object().shape({
         username: Yup.string()
@@ -22,42 +24,44 @@ function LoginForm(props) {
         formState: {errors, isSubmitSuccessful}
     } = useForm({resolver: yupResolver(schema)});
 
+    const alert = useAlert();
+    const error = useSelector((state) => state.errors.message.detail);
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
     // TO-DO - Use location to show modal after redirecting from signup page
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleLogin = (data) => {
         // Invoke redux action
         dispatch(login(data.username, data.password));
-
-        // TO-DO: forward user only after login has been successful
-        // history.push('/',);
     };
 
     useEffect(() => {
         if (isSubmitSuccessful) {
             reset();
         }
-    }, [isSubmitSuccessful, reset]);
 
-    // const location = useLocation();
+        if (error && !isAuthenticated) {
+            alert.show(error, {type: 'error'});
+            // Clear errors after displaying them because otherwise it will pop up again after routing back to Login Form
+            dispatch({type: CLEAR_ERRORS});
+        }
+
+        if (isAuthenticated) {
+            alert.show('Login successful!', {type: 'success'});
+            history.push('/',);
+        }
+    }, [isSubmitSuccessful, reset, error, alert, isAuthenticated, dispatch, history]);
+
     // const history = useHistory();
-    // const [showModal, setShowModal] = useState(false);
-    // useEffect(() => {
-    //     try {
-    //         setShowModal(location.state.showModal);
-    //     } catch (error) {
-    //         setShowModal(false);
-    //     }
-    // }, []);
-
-    // handleClose;
 
     return (
         <div className="flex-grow mx-auto">
             <form className="flex flex-col max-w-4xl px-8 pt-6 pb-8 mb-4 bg-gray-200 rounded shadow-md"
                   onSubmit={handleSubmit(handleLogin)}>
                 <h1 className="mb-5 text-2xl font-bold text-center text-gray-700">Login</h1>
-                {/*{showModal && <SuccessModal/>}*/}
+                {/*{showModal && <Alert/>}*/}
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
                         Username *

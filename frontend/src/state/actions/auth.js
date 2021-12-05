@@ -89,7 +89,7 @@ export const logout = () => {
 };
 
 // REGISTER USER
-export const signup = (username, password, password2) => {
+export const signup = (username, password) => {
     return function (dispatch) {
         axiosInstance
             .post('user/', {

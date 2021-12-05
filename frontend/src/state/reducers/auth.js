@@ -13,7 +13,7 @@ const initialState = {
     accessToken: localStorage.getItem('access_token'),
     refreshToken: localStorage.getItem('refresh_token'),
     isLoading: false,
-    isAuthenticated: null,
+    isAuthenticated: false,
     username: null,
     error: null
 };

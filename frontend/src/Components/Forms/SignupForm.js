@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import axiosInstance from '../../axios';
 import {signup} from "../../state/actions/auth";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import * as Yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -28,6 +28,7 @@ const schema = Yup.object().shape({
 function SignupForm() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const error = useSelector((state) => state.errors.message);
     const {
         register,
         handleSubmit,
@@ -49,7 +50,6 @@ function SignupForm() {
             reset();
         }
     }, [isSubmitSuccessful, reset]);
-
 
     return (
         <div className="flex-grow mx-auto">
