@@ -16,7 +16,7 @@ const schema = Yup.object().shape({
     }
 );
 
-function LoginForm(props) {
+function LoginForm() {
     const {
         register,
         handleSubmit,
@@ -53,8 +53,6 @@ function LoginForm(props) {
             history.push('/',);
         }
     }, [isSubmitSuccessful, reset, error, alert, isAuthenticated, dispatch, history]);
-
-    // const history = useHistory();
 
     return (
         <div className="flex-grow mx-auto">
