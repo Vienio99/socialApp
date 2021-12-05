@@ -11,6 +11,7 @@ import CommentList from "./CommentList";
 import ReplyForm from "./ReplyForm";
 import PostForm from "../Forms/PostForm";
 import EditPostForm from "../Forms/EditPostForm";
+import {CLEAR_ERRORS, CLEAR_MESSAGE} from "../../state/actions/types";
 
 function Post(props) {
     const {post} = props;

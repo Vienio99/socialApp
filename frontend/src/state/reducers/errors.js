@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
         case GET_ERRORS:
             console.log(payload);
             return {
-                message: payload.msg,
+                message: payload.message,
                 status: payload.status,
             };
         case CLEAR_ERRORS:

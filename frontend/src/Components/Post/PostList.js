@@ -6,6 +6,8 @@ import PostForm from "../Forms/PostForm";
 import PaginationBar from "../PaginationBar";
 import {getPosts} from "../../state/actions/posts";
 import {useDispatch, useSelector} from "react-redux";
+import {CLEAR_ERRORS, CLEAR_MESSAGE} from "../../state/actions/types";
+import {useAlert} from "react-alert";
 
 
 // TO-DO: when there is 404 error, forward user to 404 page
@@ -13,6 +15,9 @@ import {useDispatch, useSelector} from "react-redux";
 function PostList() {
     const posts = useSelector((state) => state.posts.posts);
     const isLoading = useSelector((state) => state.posts.isLoading);
+    const error = useSelector((state) => state.errors.message.detail);
+    const alert = useAlert();
+    const message = useSelector((state) => state.messages.message);
     // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     const dispatch = useDispatch();
@@ -28,7 +33,22 @@ function PostList() {
 
     useEffect(() => {
         dispatch(getPosts());
-    }, [dispatch]);
+
+        if (error) {
+            alert.show(error, {type: 'error'});
+            // Clear errors after displaying them because otherwise it will pop up again after routing back to Signup Form
+            dispatch({type: CLEAR_ERRORS});
+        }
+
+        console.log('message' + message);
+        if (message === 'OK') {
+            alert.show('Post edited!', {type: 'success'});
+            dispatch({type: CLEAR_MESSAGE});
+        } else if (message === 'No Content') {
+            alert.show('Post deleted!', {type: 'success'});
+            dispatch({type: CLEAR_MESSAGE});
+        }
+    }, [alert, dispatch, error, message]);
 
 
     return (

@@ -1,7 +1,7 @@
 import axiosInstance from "../../axios";
 import axios from "axios";
 import {POSTS_FETCH, POSTS_FETCH_SUCCESS} from "./types";
-import {returnErrors} from "./messages";
+import {createMessage, returnErrors} from "./messages";
 
 // GET POSTS
 
@@ -44,6 +44,7 @@ export const addPost = (text, tags) => {
             })
             .then((response) => {
                 console.log(response);
+                dispatch(createMessage(response.statusText, response.status));
                 // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
                 // but it runs once anyway idk why
                 dispatch(getPosts());
@@ -64,12 +65,12 @@ export const editPost = (id, text, tags) => {
             .patch(`post/${id}`, {'text': text, 'tags': tags})
             .then((response) => {
                 console.log(response);
+                dispatch(createMessage(response.statusText, response.status));
                 dispatch(getPosts());
             })
             .catch((error) => {
                 console.log(error);
                 dispatch(returnErrors(error.response.data, error.response.status));
-
             });
     };
 };
@@ -82,6 +83,7 @@ export const deletePost = (id) => {
             .delete(`post/${id}`)
             .then((response) => {
                 console.log(response);
+                dispatch(createMessage(response.statusText, response.status));
                 dispatch(getPosts());
             })
             .catch((error) => {

@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useAlert} from "react-alert";
-import {CLEAR_ERRORS} from "../../state/actions/types";
+import {CLEAR_ERRORS, CLEAR_MESSAGE} from "../../state/actions/types";
 
 const schema = Yup.object().shape({
         username: Yup.string()
@@ -26,6 +26,7 @@ function LoginForm() {
 
     const alert = useAlert();
     const error = useSelector((state) => state.errors.message.detail);
+    const message = useSelector((state) => state.messages.message);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     // TO-DO - Use location to show modal after redirecting from signup page
@@ -42,17 +43,19 @@ function LoginForm() {
             reset();
         }
 
+        // Check if is authenticated because otherwise it could show error anyway (?)
         if (error && !isAuthenticated) {
             alert.show(error, {type: 'error'});
             // Clear errors after displaying them because otherwise it will pop up again after routing back to Login Form
             dispatch({type: CLEAR_ERRORS});
         }
 
-        if (isAuthenticated) {
+        if (message === 'OK') {
             alert.show('Login successful!', {type: 'success'});
             history.push('/',);
+            dispatch({type: CLEAR_MESSAGE});
         }
-    }, [isSubmitSuccessful, reset, error, alert, isAuthenticated, dispatch, history]);
+    }, [isSubmitSuccessful, reset, error, alert, isAuthenticated, dispatch, history, message]);
 
     return (
         <div className="flex-grow mx-auto">

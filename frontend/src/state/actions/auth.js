@@ -7,7 +7,7 @@ import {
     REGISTER_FAIL,
     REGISTER_SUCCESS, USER_LOADED, USER_LOADING,
 } from "./types";
-import {returnErrors} from "./messages";
+import {createMessage, returnErrors} from "./messages";
 
 // LOAD USER AFTER PAGE REFRESH ETC.
 export const loadUser = () => {
@@ -51,6 +51,7 @@ export const login = (username, password) => {
             })
             .then((response) => {
                 console.log(response);
+                dispatch(createMessage(response.statusText, response.status));
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: response.data
@@ -83,7 +84,6 @@ export const logout = () => {
             .catch((error) => {
                 console.log(error);
                 dispatch(returnErrors(error.response.data, error.response.status));
-
             });
     };
 };
@@ -99,6 +99,7 @@ export const signup = (username, password) => {
             })
             .then((response) => {
                 console.log(response);
+                dispatch(createMessage(response.statusText, response.status));
                 dispatch({
                     type: REGISTER_SUCCESS
                 });

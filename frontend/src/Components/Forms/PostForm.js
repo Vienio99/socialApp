@@ -5,7 +5,7 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import {useAlert} from "react-alert";
-import {CLEAR_ERRORS} from "../../state/actions/types";
+import {CLEAR_ERRORS, CLEAR_MESSAGE} from "../../state/actions/types";
 
 const schema = Yup.object().shape({
         text: Yup.string()
@@ -26,6 +26,8 @@ function PostForm() {
     const dispatch = useDispatch();
     const error = useSelector((state) => state.errors.message.detail);
     const alert = useAlert();
+    const message = useSelector((state) => state.messages.message);
+
     const {
         register,
         handleSubmit,
@@ -43,7 +45,12 @@ function PostForm() {
             // Clear errors after displaying them because otherwise it will pop up again after routing back to Signup Form
             dispatch({type: CLEAR_ERRORS});
         }
-    }, [alert, dispatch, error, isSubmitSuccessful, reset]);
+
+        if (message === 'Created') {
+            alert.show('Post created!', {type: 'success'});
+            dispatch({type: CLEAR_MESSAGE});
+        }
+    }, [alert, dispatch, error, isSubmitSuccessful, message, reset]);
 
     const submitForm = (data) => {
         console.log(data);

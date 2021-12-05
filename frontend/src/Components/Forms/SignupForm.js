@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import * as Yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {CLEAR_ERRORS} from "../../state/actions/types";
+import {CLEAR_ERRORS, CLEAR_MESSAGE} from "../../state/actions/types";
 import {useAlert} from "react-alert";
 
 // TO-DO - check if user exists on backend
@@ -31,6 +31,7 @@ function SignupForm() {
     const history = useHistory();
     const dispatch = useDispatch();
     const error = useSelector((state) => state.errors.message.username);
+    const message = useSelector((state) => state.messages.message);
     const alert = useAlert();
     const {
         register,
@@ -55,12 +56,13 @@ function SignupForm() {
             // Clear errors after displaying them because otherwise it will pop up again after routing back to Signup Form
             dispatch({type: CLEAR_ERRORS});
         }
-
-        // if (!error && isSubmitSuccessful) {
-        //     alert.show('Signup successful!', {type: 'success'});
-        //     history.push('/login',);
-        // }
-    }, [alert, dispatch, error, history, isSubmitSuccessful, reset]);
+        console.log('message' + message);
+        if (message === 'Created') {
+            alert.show('Signup successful!', {type: 'success'});
+            history.push('/login',);
+            dispatch({type: CLEAR_MESSAGE});
+        }
+    }, [alert, dispatch, error, history, isSubmitSuccessful, reset, message]);
 
     return (
         <div className="flex-grow mx-auto">

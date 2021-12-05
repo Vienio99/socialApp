@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import {useDispatch, useSelector} from "react-redux";
 
 const schema = Yup.object().shape({
         text: Yup.string()
@@ -17,7 +18,8 @@ const schema = Yup.object().shape({
 function EditPostForm(props) {
     // eslint-disable-next-line react/prop-types
     const {handleCancel, handleEdit, text, tags} = props;
-    console.log(text);
+    const dispatch = useDispatch();
+
     const {
         register,
         handleSubmit,
@@ -33,7 +35,7 @@ function EditPostForm(props) {
         if (isSubmitSuccessful) {
             reset();
         }
-    }, [isSubmitSuccessful, reset]);
+    }, [dispatch, isSubmitSuccessful, reset]);
 
     return (
         <form onSubmit={handleSubmit(handleEdit)}>
