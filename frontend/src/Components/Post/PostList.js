@@ -10,17 +10,14 @@ import {CLEAR_ERRORS, CLEAR_MESSAGE} from "../../state/actions/types";
 import {useAlert} from "react-alert";
 
 
-// TO-DO: when there is 404 error, forward user to 404 page
-
 function PostList() {
     const posts = useSelector((state) => state.posts.posts);
     const isLoading = useSelector((state) => state.posts.isLoading);
     const error = useSelector((state) => state.errors.message.detail);
-    const alert = useAlert();
     const message = useSelector((state) => state.messages.message);
-    // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
+    const alert = useAlert();
     const dispatch = useDispatch();
+
     // Pagination mechanism
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
@@ -28,7 +25,7 @@ function PostList() {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    //Change page
+    // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     useEffect(() => {
@@ -41,7 +38,6 @@ function PostList() {
             dispatch({type: CLEAR_ERRORS});
         }
 
-        console.log('message' + message);
         if (message !== '') {
             alert.show(message, {type: 'success'});
             dispatch({type: CLEAR_MESSAGE});

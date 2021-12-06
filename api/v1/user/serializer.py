@@ -13,6 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ['username', 'password', 'email', 'age', 'tags', 'img']
+        # To ensure password doesn't appear in response
         extra_kwargs = {
             'password': {'write_only': True},
         }

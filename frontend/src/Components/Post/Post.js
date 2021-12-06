@@ -82,7 +82,7 @@ function Post(props) {
                     <header className="flex justify-between px-4 py-1 bg-gray-300 rounded-t-md">
                         <div>
                             <div className="flex items-center">
-                                <img src={dog} width="50px" alt="profile-picture"/>
+                                <img src={`http://127.0.0.1:8000/media/${post.author_img}`} width="50px" alt="profile-picture"/>
                                 <Link to={`/user/${post.author}`}>
                                     <p className="ml-2 text-lg font-bold text-gray-700">{post.author}</p>
                                 </Link>

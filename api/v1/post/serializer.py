@@ -120,6 +120,9 @@ class PostSerializer(serializers.ModelSerializer):
         # View user instead of number
         rep = super(PostSerializer, self).to_representation(instance)
         rep['author'] = instance.author.username
+        # print(instance.author.img)
+        if instance.author.img:
+            rep['author_img'] = str(instance.author.img)
 
         rep['comments_count'] = Comment.objects.filter(post_id=instance.id).count()
         # Display date in "2 hours ago" etc.

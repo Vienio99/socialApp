@@ -9,8 +9,6 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {CLEAR_ERRORS, CLEAR_MESSAGE} from "../../state/actions/types";
 import {useAlert} from "react-alert";
 
-// TO-DO - check if user exists on backend
-
 const schema = Yup.object().shape({
         username: Yup.string()
             .required('Username is required.')
@@ -51,13 +49,12 @@ function SignupForm() {
             reset();
         }
 
-        console.log('error' + error);
         if (error) {
             alert.show(error, {type: 'error'});
             // Clear errors after displaying them because otherwise it will pop up again after routing back to Signup Form
             dispatch({type: CLEAR_ERRORS});
         }
-        console.log('message' + message);
+
         if (message !== '') {
             alert.show(message, {type: 'success'});
             history.push('/login',);
