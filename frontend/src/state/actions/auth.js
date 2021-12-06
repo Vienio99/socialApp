@@ -89,14 +89,20 @@ export const logout = () => {
 };
 
 // REGISTER USER
-export const signup = (username, password) => {
+export const signup = (username, password, img) => {
+    console.log(img[0]);
+    // Had to use FormData for Django to properly recognize data (especially img)
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    // Append to formData only if image is not undefined, otherwise Django will fire an error
+    if (img[0] !== undefined) {
+        formData.append('img', img[0]);
+    }
+
     return function (dispatch) {
         axiosInstance
-            .post('user/', {
-                // Not sure why there must be string on key, but when it comes to JWT requests there is no need
-                'username': username,
-                'password': password,
-            })
+            .post('user/', formData)
             .then((response) => {
                 console.log(response);
                 dispatch(createMessage('Signup successful! You can now log in.'));

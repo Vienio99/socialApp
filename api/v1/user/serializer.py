@@ -9,14 +9,20 @@ User = get_user_model()
 
 # TO-DO: make validation if user exists, if so return the error to frontend
 
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ['username', 'password', 'email', 'age', 'tags']
-        extra_kwargs = {'password': {
-            'write_only': True
-        }}
+        fields = ['username', 'password', 'email', 'age', 'tags', 'img']
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
+
+    def validate(self, data):
+        # check if there is any img, if not set default
+        img = data.get('img')
+        if not img:
+            data['img'] = 'avatars/default.jpg'
+        return data
 
     def validate_username(self, username):
         if len(User.objects.filter(username=username)) > 0:
@@ -29,13 +35,14 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(username=validated_data['username'],
-                                        password=validated_data['password'])
+                                        password=validated_data['password'],
+                                        img=validated_data['img'])
         return user
 
 
 # noqa to suppress warning about implementing all abstract methods
 # Serializer for custom token claims and including username in access token
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer): # noqa
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):  # noqa
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
@@ -45,4 +52,3 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer): # noqa
         # ...
 
         return token
-

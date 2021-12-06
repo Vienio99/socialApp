@@ -23,7 +23,8 @@ const schema = Yup.object().shape({
             .max(20, 'Password must be 4 to 20 characters long.'),
         password2: Yup.string()
             .required('Password confirmation is required.')
-            .oneOf([Yup.ref('password1'), null], 'Passwords do not match.')
+            .oneOf([Yup.ref('password1'), null], 'Passwords do not match.'),
+        img: Yup.mixed()
     }
 );
 
@@ -42,7 +43,7 @@ function SignupForm() {
 
 
     const handleRegister = (data) => {
-        dispatch(signup(data.username, data.password1, data.password2));
+        dispatch(signup(data.username, data.password1, data.img));
     };
 
     useEffect(() => {
@@ -97,7 +98,7 @@ function SignupForm() {
                     <p className="px-3 mt-2 text-xs italic text-red-500">{errors.password1.message}</p>}
                 </div>
                 <div className="mb-6">
-                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password2">
+                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password1">
                         Repeat password *
                     </label>
                     <input
@@ -109,6 +110,17 @@ function SignupForm() {
                     />
                     {errors.password2 &&
                     <p className="px-3 mt-2 text-xs italic text-red-500">{errors.password2.message}</p>}
+                </div>
+                <div className="mb-6">
+                    <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="img">
+                        Profile picture
+                    </label>
+                    <input
+                        className="w-full px-3 py-2 text-gray-700 border rounded shadow appearance-none border-red"
+                        id="img"
+                        type="file"
+                        {...register('img')}
+                    />
                 </div>
                 <div className="flex items-center justify-between">
                     <button

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -12,6 +13,8 @@ User = get_user_model()
 # TO-DO - maybe change the way it parses data for user detail for performance boost?
 
 class UserList(ListCreateAPIView):
+    # TO-DO: enable this below and remove creation of FormData in auth in React
+    # parser_classes = [MultiPartParser, FormParser]
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (AllowAny,)
