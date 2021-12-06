@@ -50,8 +50,8 @@ function LoginForm() {
             dispatch({type: CLEAR_ERRORS});
         }
 
-        if (message === 'OK') {
-            alert.show('Login successful!', {type: 'success'});
+        if (message !== '') {
+            alert.show(message, {type: 'success'});
             history.push('/',);
             dispatch({type: CLEAR_MESSAGE});
         }

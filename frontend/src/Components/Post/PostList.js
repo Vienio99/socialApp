@@ -34,6 +34,7 @@ function PostList() {
     useEffect(() => {
         dispatch(getPosts());
 
+        // TO-DO: fix problems with fetching data when user is logged in
         if (error) {
             alert.show(error, {type: 'error'});
             // Clear errors after displaying them because otherwise it will pop up again after routing back to Signup Form
@@ -41,18 +42,11 @@ function PostList() {
         }
 
         console.log('message' + message);
-        if (message === 'Created') {
-            alert.show('Post created!', {type: 'success'});
-            dispatch({type: CLEAR_MESSAGE});
-        } else if (message === 'OK') {
-            alert.show('Post edited!', {type: 'success'});
-            dispatch({type: CLEAR_MESSAGE});
-        } else if (message === 'No Content') {
-            alert.show('Post deleted!', {type: 'success'});
+        if (message !== '') {
+            alert.show(message, {type: 'success'});
             dispatch({type: CLEAR_MESSAGE});
         }
     }, [alert, dispatch, error, message]);
-
 
     return (
         <div className="flex flex-col flex-grow space-y-10">

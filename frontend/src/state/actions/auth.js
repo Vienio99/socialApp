@@ -51,7 +51,7 @@ export const login = (username, password) => {
             })
             .then((response) => {
                 console.log(response);
-                dispatch(createMessage(response.statusText, response.status));
+                dispatch(createMessage('Login successful!'));
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: response.data
@@ -99,7 +99,7 @@ export const signup = (username, password) => {
             })
             .then((response) => {
                 console.log(response);
-                dispatch(createMessage(response.statusText, response.status));
+                dispatch(createMessage('Signup successful! You can now log in.'));
                 dispatch({
                     type: REGISTER_SUCCESS
                 });

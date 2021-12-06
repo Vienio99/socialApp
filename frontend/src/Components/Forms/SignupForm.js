@@ -57,8 +57,8 @@ function SignupForm() {
             dispatch({type: CLEAR_ERRORS});
         }
         console.log('message' + message);
-        if (message === 'Created') {
-            alert.show('Signup successful!', {type: 'success'});
+        if (message !== '') {
+            alert.show(message, {type: 'success'});
             history.push('/login',);
             dispatch({type: CLEAR_MESSAGE});
         }

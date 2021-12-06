@@ -44,7 +44,7 @@ export const addPost = (text, tags) => {
             })
             .then((response) => {
                 console.log(response);
-                dispatch(createMessage(response.statusText, response.status));
+                dispatch(createMessage('Post created!'));
                 // now this action is used here and in PostList component as well in useEffect, maybe change it somehow?
                 // but it runs once anyway idk why
                 dispatch(getPosts());
@@ -65,7 +65,7 @@ export const editPost = (id, text, tags) => {
             .patch(`post/${id}`, {'text': text, 'tags': tags})
             .then((response) => {
                 console.log(response);
-                dispatch(createMessage(response.statusText, response.status));
+                dispatch(createMessage('Post edited!'));
                 dispatch(getPosts());
             })
             .catch((error) => {
@@ -83,7 +83,7 @@ export const deletePost = (id) => {
             .delete(`post/${id}`)
             .then((response) => {
                 console.log(response);
-                dispatch(createMessage(response.statusText, response.status));
+                dispatch(createMessage('Post deleted!'));
                 dispatch(getPosts());
             })
             .catch((error) => {

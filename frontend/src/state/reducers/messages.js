@@ -1,8 +1,7 @@
 import {CLEAR_MESSAGE, CREATE_MESSAGE} from '../actions/types';
 
 const initialState = {
-    message: {},
-    status: null,
+    message: ''
 };
 
 export default function (state = initialState, action) {
@@ -11,13 +10,11 @@ export default function (state = initialState, action) {
         case CREATE_MESSAGE:
             console.log(payload.message);
             return {
-                message: payload.message,
-                status: payload.status,
+                message: payload.message
             };
         case CLEAR_MESSAGE:
             return {
-                message: {},
-                status: null,
+                message: ''
             };
         default:
             return state;
