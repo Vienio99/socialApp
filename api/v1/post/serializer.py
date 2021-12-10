@@ -90,8 +90,7 @@ class PostSerializer(serializers.ModelSerializer):
             tags_data = validated_data.pop('tags')
             instance.tags.clear()
             for tag_data in tags_data:
-                if not Tag.objects.filter(name=tag_data['name']):
-                    Tag.objects.create(name=tag_data['name'])
+                Tag.objects.get_or_create(name=tag_data['name'])
                 tag = Tag.objects.get(name=tag_data['name'])
                 instance.tags.add(tag.id)
         except KeyError:
