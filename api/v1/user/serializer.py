@@ -16,14 +16,8 @@ class UserSerializer(serializers.ModelSerializer):
         # To ensure password doesn't appear in response
         extra_kwargs = {
             'password': {'write_only': True},
+            'img': {'default': 'avatars/default.jpg'}
         }
-
-    def validate(self, data):
-        # check if there is any img, if not set default
-        img = data.get('img')
-        if not img:
-            data['img'] = 'avatars/default.jpg'
-        return data
 
     def validate_username(self, username):
         if len(User.objects.filter(username=username)) > 0:

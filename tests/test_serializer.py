@@ -35,7 +35,7 @@ class PostSerializerTest(TestCase):
         data = self.serializer.data
 
         self.assertCountEqual(data.keys(), ['id', 'pub_date', 'likes', 'likes_count',
-                                            'comments_count', 'author', 'text', 'tags'])
+                                            'comments_count', 'author', 'text', 'tags', 'author_img'])
 
     def test_author_field_content(self):
         data = self.serializer.data

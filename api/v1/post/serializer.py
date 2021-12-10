@@ -66,15 +66,12 @@ class PostSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         post = Post.objects.create(text=validated_data['text'],
                                    author=validated_data['author'])
-        try:
-            tags_data = validated_data.pop('tags')
-            for tag_data in tags_data:
-                if not Tag.objects.filter(name=tag_data['name']):
-                    Tag.objects.create(name=tag_data['name'])
-                tag = Tag.objects.get(name=tag_data['name'])
-                post.tags.add(tag.id)
-        except KeyError:
-            pass
+
+        tags_data = validated_data.pop('tags')
+        for tag_data in tags_data:
+            Tag.objects.get_or_create(name=tag_data['name'])
+            tag = Tag.objects.get(name=tag_data['name'])
+            post.tags.add(tag.id)
 
         return post
 
@@ -112,6 +109,8 @@ class PostSerializer(serializers.ModelSerializer):
         except KeyError:
             pass
 
+        # Update img
+
         instance.save()
 
         return instance
@@ -120,11 +119,12 @@ class PostSerializer(serializers.ModelSerializer):
         # View user instead of number
         rep = super(PostSerializer, self).to_representation(instance)
         rep['author'] = instance.author.username
-        # print(instance.author.img)
-        if instance.author.img:
-            rep['author_img'] = str(instance.author.img)
+
+        # Transform this to str() because otherwise it throws error about the format
+        rep['author_img'] = str(instance.author.img)
 
         rep['comments_count'] = Comment.objects.filter(post_id=instance.id).count()
+
         # Display date in "2 hours ago" etc.
         rep['pub_date'] = naturaltime(instance.pub_date)
         return rep
