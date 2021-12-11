@@ -131,7 +131,10 @@ function Post(props) {
                                 </div>
                                 <div className="flex px-4 mb-2 font-bold space-x-3">
                                     {post.tags && post.tags.map(tag => (
-                                        <p className="text-sm text-gray-700" key={tag.id}>{tag.name}</p>
+                                        // Use substring to avoid hashtag because with it, it won't render the page
+                                        <Link to={`/tags/${tag.name.substring(1)}`} key={tag.id}>
+                                            <p className="text-sm text-gray-700">{tag.name}</p>
+                                        </Link>
                                     ))}
                                 </div>
                             </Link>

@@ -1,5 +1,4 @@
 import React from "react";
-import Main from "../Components/Main";
 import UserDetail from "../Components/User/UserDetail";
 import PropTypes from 'prop-types';
 

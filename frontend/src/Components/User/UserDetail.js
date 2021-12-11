@@ -31,6 +31,7 @@ function UserDetail(props) {
             <div className="flex flex-col items-center space-y-5">
                 <img src={user.img} width="200px" alt="profile-picture"/>
                 <p className="text-xl font-bold">{user.username}</p>
+                {/* Replace it with PostList maybe? */}
                 {(isLoadingPosts && !posts.length) && <Loader/>}
                 <ul className="flex flex-col w-4/5 space-y-10">
                     {posts.filter(post => post.author === username).map(post => {
