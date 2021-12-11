@@ -11,6 +11,7 @@ import SignupScreen from "../Screens/SignupScreen";
 import {useDispatch, useSelector} from "react-redux";
 import {loadUser, refreshAccessToken} from "../state/actions/auth";
 import TagScreen from "../Screens/TagScreen";
+import UserSettings from "./User/UserSettings";
 
 //TO-DO - make routes to every user and display his info and posts on the page
 //TO-DO - make routes to every tag with appropriate posts that contain this tag
@@ -46,6 +47,7 @@ function App() {
                     <Route path="/login" component={LoginScreen}/>
                     <Route path="/signup" component={SignupScreen}/>
                     <Route path="/tags/:name" component={TagScreen}/>
+                    <Route path="/settings" component={UserSettings} />
                 </Switch>
                 <Footer/>
             </Router>

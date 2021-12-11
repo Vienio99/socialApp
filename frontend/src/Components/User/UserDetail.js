@@ -15,7 +15,7 @@ import Comment from "../Post/Comment";
 function UserDetail(props) {
     const {username} = props;
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.users.user);
+    const userData = useSelector((state) => state.users.user);
     const isLoadingUsers = useSelector((state) => state.users.isLoading);
     const isLoadingPosts = useSelector((state) => state.posts.isLoading);
     const posts = useSelector((state) => state.posts.posts);
@@ -27,10 +27,10 @@ function UserDetail(props) {
 
     return (
         <div className="flex-grow mb-10">
-            {(isLoadingUsers && !user.length) && <Loader/>}
+            {(isLoadingUsers && !userData.length) && <Loader/>}
             <div className="flex flex-col items-center space-y-5">
-                <img src={user.img} width="200px" alt="profile-picture"/>
-                <p className="text-xl font-bold">{user.username}</p>
+                <img src={userData.img} width="200px" alt="profile-picture"/>
+                <p className="text-xl font-bold">{userData.username}</p>
                 {/* Replace it with PostList maybe? */}
                 {(isLoadingPosts && !posts.length) && <Loader/>}
                 <ul className="flex flex-col w-4/5 space-y-10">
